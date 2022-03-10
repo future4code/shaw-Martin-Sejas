@@ -69,7 +69,7 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
-    padding-top: 2.5%;
+    padding-top: 8%;
 }
 
 #container-de-descricao>ol {
@@ -113,6 +113,11 @@ td button {
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+}
+
+.table-text {
+    text-align: center;
+    width: 30%
 }
 
 
