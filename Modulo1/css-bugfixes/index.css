@@ -14,6 +14,7 @@ h2 {
     padding: 10px 5px 10px 5px;
     color: white;
     text-align: center;
+    
 }
 
 input {
@@ -127,6 +128,15 @@ td button {
     width: 30%
 }
 
+.buy-button:active {
+    color: white;
+}
+
+.buy-button:hover 
+{
+    background-color:  #f1cb1e;
+}
+
 
 #back-button {
     background-color: white;
@@ -136,6 +146,14 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    text-align: center;
+    
+}
+
+#voltar-container
+{
+    text-align: center;
+    padding-top: 10%;
 }
 
 #back-button:hover {
