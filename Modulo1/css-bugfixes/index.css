@@ -21,6 +21,15 @@ h2 {
     
 }
 
+ol 
+{
+    padding: 10px 5px 10px 5px;
+    list-style-position:inside;
+    
+ 
+}
+
+
 
 input {
     height: 20px;
@@ -30,6 +39,8 @@ input {
 button:focus {
     color: white;
 }
+
+
 
 img {
     width: 100px;
@@ -78,9 +89,7 @@ div img {
     padding-top: 8%;
 }
 
-#container-de-descricao>ol {
-    padding: 15px 0px;
-}
+
 
 #container-para-comprar {
     background-color: #e7eb90;
