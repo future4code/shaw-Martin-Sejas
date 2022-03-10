@@ -12,11 +12,15 @@ header {
     color: rgb(146, 64, 9);     
 }
 
+/* Styling do footer */
+
 footer {
     font-family:Impact;
     color: rgb(146, 64, 9); 
     margin-top: 10%;
 }
+
+/* Styling dos logos */
 
 .logo{
     max-width: 5vw;
@@ -57,6 +61,30 @@ body{
     color:  rgb(22, 2, 94);
 }
 
+.spacing {
+   
+    padding-left: 5%;
+}
 
+.titulos {
+    font-weight: bold;
+    text-underline-position: under;
+   
+}
+
+form {
+    width: 99.5%;
+    margin: 0 auto;
+}
+
+
+input {
+    display: inline-block;
+    vertical-align: 30%;
+}
+
+label{
+    text-align: left;
+}
 
 
