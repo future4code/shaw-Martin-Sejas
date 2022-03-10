@@ -147,3 +147,10 @@ td button {
     background-color: white;
 }
 
+#lupa
+{
+    background-color: white;
+    max-width: 20px ;
+    max-height: 20px;
+}
+
