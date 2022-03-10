@@ -21,6 +21,7 @@ h2 {
     
 }
 
+
 input {
     height: 20px;
     width: 500px;
@@ -105,6 +106,7 @@ div:last-child {
 
 table {
     width: 60%;
+    margin: 0 auto;
 }
 
 img {
@@ -184,3 +186,5 @@ td button {
     border-right: 0px;
     border-bottom-width: 0.1vh;
 }
+
+
