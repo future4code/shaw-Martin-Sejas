@@ -102,6 +102,12 @@ table {
     width: 60%;
 }
 
+img {
+    max-width: 50px;
+    max-height: 50px;
+    text-align: center;
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
@@ -113,6 +119,7 @@ td button {
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+    background-color: white;
 }
 
 .table-text {
@@ -133,5 +140,10 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+#jeans 
+{
+    background-color: white;
 }
 
