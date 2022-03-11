@@ -1,0 +1,207 @@
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto;
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+    
+}
+
+ol 
+{
+    padding: 10px 5px 10px 5px;
+    list-style-position:inside;
+    
+ 
+}
+
+
+
+input {
+    height: 20px;
+    width: 500px;
+}
+
+button:focus {
+    color: white;
+}
+
+
+
+img {
+    width: 100px;
+}
+
+div>p:first-child {
+    display: inline;
+}
+
+div img {
+    background: black;
+}
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+.container {
+    height: 500px;
+    text-align: center;
+}
+
+.icone {
+    height: 15px;
+}
+
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    padding-top: 8%;
+}
+
+
+
+#container-para-comprar {
+    background-color: #e7eb90;
+}
+
+#container-para-comprar>p {
+    color: #c44f00;
+    padding: 100px 0;
+    font-size: 60px;
+}
+
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+div:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    width: 60%;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 50px;
+    max-height: 50px;
+    text-align: center;
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+    background-color: white;
+}
+
+.table-text {
+    text-align: center;
+    width: 30%
+}
+
+.buy-button:active {
+    color: white;
+}
+
+.buy-button:hover 
+{
+    background-color:  #f1cb1e;
+}
+
+
+#back-button {
+    background-color: white;
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 10px;
+    color: black;
+    text-align: center;
+    
+}
+
+#voltar-container
+{
+    text-align: center;
+    padding-top: 10%;
+}
+
+#back-button:hover {
+    background-color: #635a3d
+}
+
+#jeans 
+{
+    background-color: white;
+}
+
+#lupa
+{
+    background-color: white;
+    max-width: 20px ;
+    max-height: 20px;
+}
+
+#lupa:hover{
+    opacity: 0.5;
+}
+
+#lupa:active{
+    opacity: 1;
+}
+
+#search-bar {
+    border-style: groove;
+    border-color: black;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom-width: 0.1vh;
+}
+
+
