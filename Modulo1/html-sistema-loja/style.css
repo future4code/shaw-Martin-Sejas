@@ -1,0 +1,90 @@
+/* background for main pages */
+.main-pages {
+    background-color: rgb(245, 223, 190);
+    margin: 0.5%;
+   
+}
+
+/* Styling dos headers */
+
+header {
+    font-family:Impact;
+    color: rgb(146, 64, 9);     
+}
+
+/* Styling do footer */
+
+footer {
+    font-family:Impact;
+    color: rgb(146, 64, 9); 
+    margin-top: 10%;
+}
+
+/* Styling dos logos */
+
+.logo{
+    max-width: 5vw;
+    max-height: 5vh;
+}
+
+/* Styling do slogan*/
+.slogan {
+    font-family: fantasy;
+      
+}
+
+/* Styling de links entre paginas*/
+
+.paginas {
+    /* border-style: groove;
+    border-radius: 0.5%;
+    */
+    font-family: Verdana;
+    font-size: small;
+    padding: 0.5%; 
+   
+    border-bottom: 1pt;
+    border-top: 1pt;
+    border-right: 1pt;
+    border-left: 1pt;
+    border-style: groove;
+ 
+}
+
+h2 {
+    padding: 0.5%;
+}
+
+body{
+    font: optional;
+    font-family:  Helvetica;
+    color:  rgb(22, 2, 94);
+}
+
+.spacing {
+   
+    padding-left: 5%;
+}
+
+.titulos {
+    font-weight: bold;
+    text-underline-position: under;
+   
+}
+
+form {
+    width: 99.5%;
+    margin: 0 auto;
+}
+
+
+input {
+    display: inline-block;
+    vertical-align: 30%;
+}
+
+label{
+    text-align: left;
+}
+
+
