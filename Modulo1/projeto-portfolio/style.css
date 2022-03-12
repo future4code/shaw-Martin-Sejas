@@ -1,0 +1,142 @@
+/* General tags */
+
+header {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    position: fixed;   
+}
+
+footer 
+{
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    
+}
+
+header h2 
+{
+    display:inline-block;
+    padding-left: 5vw;
+
+}
+
+header h4 {
+    display:inline-block;
+    text-align: right;
+}
+
+body 
+{   
+    background-color: rgb(32, 46, 59) ;
+}
+
+
+/* General Classes and IDs */
+
+.links 
+{
+    text-decoration: none; 
+    text-align: right;
+    color: white;
+}
+
+.links:hover
+{
+    opacity: 0.5;
+}
+
+img.logo {
+    display: inline-block;
+    max-width: 30px;
+    max-height: 30px;
+    background-color: rgb(32, 46, 59) ;
+  
+}
+
+.logo:hover
+{
+    opacity: 0.5;
+}
+
+#nome-principal {
+    text-decoration: none;
+    color: white;
+    text-align: left; 
+    
+}
+
+#main-header 
+{
+     display: inline-block;
+     width: 100vw;
+     height:10vh; 
+     border-bottom: 0.3vh;
+     border-bottom-style: groove;
+     border-bottom-color: white;
+    
+}
+
+#main-footer
+{
+     display: inline-block;
+     position: fixed;
+     bottom: 0px;
+     left:0;
+     width: 100%;
+     height: 6%;  
+     border-top: 0.3vh;
+     border-top-style: groove;
+     border-top-color: white;   
+}
+
+#page-links-container
+{  
+    position:relative;
+    float: right;
+    text-align: right;
+    margin-right: 5%;
+
+}
+
+#logo-container 
+{  
+     display: flex;
+     justify-content: space-between;
+     align-self: baseline;
+     align-content: center;
+     height: 5%;
+     width: 150px;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 0.25%;
+   
+    
+}
+
+#email-logo 
+{
+    display: inline-block;
+    background-color: rgb(32, 46, 59) ;
+    
+}
+
+
+
+
+
+
+
+/* */
+
+
+
+/* */
+
+
+/* */
+
+
+/* */
+
+
+/* */
