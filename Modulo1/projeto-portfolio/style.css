@@ -20,6 +20,10 @@ header h2
 
 }
 
+form h1 {
+    text-align: center;
+}
+
 header h4 {
     display:inline-block;
     text-align: right;
@@ -50,7 +54,6 @@ img.logo {
     max-width: 30px;
     max-height: 30px;
     background-color: rgb(32, 46, 59) ;
-  
 }
 
 .logo:hover
@@ -61,8 +64,7 @@ img.logo {
 #nome-principal {
     text-decoration: none;
     color: white;
-    text-align: left; 
-    
+    text-align: left;   
 }
 
 #main-header 
@@ -70,9 +72,11 @@ img.logo {
      display: inline-block;
      width: 100vw;
      height:10vh; 
-     border-bottom: 0.3vh;
-     border-bottom-style: groove;
+     border-bottom: 6px;
+     border-bottom-style: double;
+     /* border-width: 2px ; */
      border-bottom-color: white;
+     
     
 }
 
@@ -84,8 +88,8 @@ img.logo {
      left:0;
      width: 100%;
      height: 6%;  
-     border-top: 0.3vh;
-     border-top-style: groove;
+     border-top: 6px;
+     border-top-style :double;
      border-top-color: white;   
 }
 
@@ -121,17 +125,195 @@ img.logo {
 }
 
 
+/*contato.html  */
+
+#form-container
+{
+    font-family: 'Smooch Sans', sans-serif;
+    color: white;
+    display: flex;
+    position: relative;
+    top: 11vh; 
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10vh;
+    padding-bottom: 6vh;   
+}
+
+#from , #reply
+{
+    width: 300px;
+    display:flex;
+    justify-content:space-between;
+    margin-left: 2vw;
+    margin-right: 2vw;
+   
+}
+
+#message
+{
+    display:inline-block;
+    text-align: center;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    
+}
+
+#msg
+{
+    width: 300px;
+    max-width: 300px;
+    padding-top: 20px;
+    min-height: 170px;
+    background-color:rgb(177, 177, 177);  
+}
+
+#mail, #name
+{
+   width: 250px;
+   background-color:rgb(177, 177, 177);
+}
+
+#my-form
+{
+   border: 8px rgb(141, 141, 141);
+   border-style: double;  
+   padding-bottom: 30%;
+   height: 40vh;
+}
+
+.button 
+{
+    font-family: 'Raleway';
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 
 
+/* index.html*/
 
+#index-container
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position:relative;
+    top: 11vh; 
+    width: 93vw;
+    margin-right: auto;
+    margin-left: auto;
+    height:81vh;
+    
+}
 
+#foto-container 
+{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: flex-start;
+    /* border: 2px white solid; */
+    /* border-left: 2px white solid; */
+    border-right: 2px white solid;
+    border-top: 0px;
+    border-bottom: 0px;
+    /* border-left: 1px yellow solid; */
+    width: 350px
+}
 
-/* */
+#profile-pic
+{
+    display: flex;
+    position:relative;
+    top: 10%;
+    padding-bottom: auto;
+}
 
+#profile-pic img 
+{
+    max-width: 340px;
+    max-height: 340px;
+}
 
+#profile-caption
+{
+    display: flex;
+    color: white;
+    font-family: 'Smooch Sans', sans-serif;
+    font-size:2.8ch;
+    height: 23vh;
+    width:270px; 
+    margin: auto auto auto auto;
+}
 
-/* */
+#bio-container 
+{
+    display:flex;
+    flex-direction:column;
+    justify-self: center;
+    width:70vw;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
 
+.bio-header
+{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: xx-large;
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#bio-header-line
+{
+    width: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+#bio-description
+{
+    color: rgb(223, 221, 221);
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    width: 65vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-justify: auto;
+    text-align:justify;
+
+}
+
+#bio-experiencia
+{
+    color: rgb(201, 199, 199);
+    font-family: 'Playfair Display', sans-serif;
+    font-size: x-large;
+    /* padding-top: 3%; */
+    font-weight: bold; 
+}
+
+#curriculo
+{
+    font-family: 'Smooch Sans', sans-serif;
+    text-align:justify;
+    font-size:x-large;
+    font-weight: 400;
+
+}
+
+#bio-intro
+{
+    font-size: 1.8ch;
+}
 
 /* */
 

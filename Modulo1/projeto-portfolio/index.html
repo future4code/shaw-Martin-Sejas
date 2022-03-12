@@ -1,48 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Smooch+Sans:wght@500&display=swap"
+        rel="stylesheet">
+        
+
     <title>Martin Sejas</title>
 </head>
 
 <body>
     <header>
-        <div id="main-header" >
-            <a id="nome-principal" href="index.html" > <h2>M&nbspA&nbspR&nbspT&nbspI&nbspN  &nbsp S&nbspE&nbspJ&nbspA&nbspS</h2></a> 
-            <span id = "page-links-container">
-                <a class = "links"  href="index.html" ><h4>HOME</h4></a>
+        <div id="main-header">
+            <a id="nome-principal" href="index.html">
+                <h2>M&nbspA&nbspR&nbspT&nbspI&nbspN &nbsp S&nbspE&nbspJ&nbspA&nbspS</h2>
+            </a>
+            <span id="page-links-container">
+                <a class="links" href="index.html">
+                    <h4>HOME</h4>
+                </a>
                 <span> &nbsp | &nbsp </span>
-                <a class = "links"  href="sobre-mim.html" ><h4>PERFIL</h4></a>
+                <a class="links" href="sobre-mim.html">
+                    <h4>COMPETENCIAS</h4>
+                </a>
                 <span> &nbsp | &nbsp </span>
-                <a class = "links"  href="portfolio.html" ><h4>PORTFOLIO</h4></a>
+                <a class="links" href="portfolio.html">
+                    <h4>PORTFOLIO</h4>
+                </a>
                 <span> &nbsp | &nbsp </span>
-                <a class = "links"  href="contato.html" ><h4>CONTATO</h4></a>
-               </span>
+                <a class="links" href="contato.html">
+                    <h4>CONTATO</h4>
+                </a>
+            </span>
         </div>
     </header>
 
+    <div id="index-container">
+        <div id="foto-container">
+            <div id="profile-pic">
+                <img src="img/martin_natureza.PNG" alt=" Profile Picture">
+            </div>
+
+            <div id="profile-caption">
+                " A minha ética de trabalho é focada na satisfação dos clientes. Me orgulho em
+                produzir código de alta qualidade. <br> <br> Convido você a conhecer um pouco mais sobre mim navegando pelo meu portofolio "
+            </div>
+        </div>
+
+        <div id="bio-container">
+            <div id="bio-description">
+
+                <h1 class="bio-header"> Perfil</h1>
+                <!-- <hr id="bio-header-line"> -->
+                <hr>
+                <br>
+                <p id="bio-intro">Meu nome é Martin Sejas, sou brasileiro-argentino e tenho 25 anos. Sou engenheiro
+                    mecânico e tenho atuado na industria petroleira como engenheiro de campo por mais de 2 anos,
+                    trabalhando em plataformas por todo Brasil e no exterior. Deixei o meu cargo de engenheiro de campo
+                    para perseguir a minha paixão de programação. Dei inicio a minha carreira em tecnologia cursando na
+                    Labenu o programa full stack e derei inicio a um mestrado de Inteligencia Artificial em Setembro.
+                </p>
+                <br>
+                <hr>
+                
+                
+
+                <h2 class="bio-header" id="bio-experiencia">Experiencia Laboral</h2>
+                <!-- <hr> -->
+                <ul id="curriculo">
+                    <li> [&nbsp02/2022 - 08/2022&nbsp] &nbsp - &nbsp Estudante Desenvolvedor Full Stack
+                        (&nbsp<em>Labenu</em>&nbsp) </li>
+                    <br>
+                    <li> [&nbsp11/2020 - 01/2022&nbsp] &nbsp - &nbsp Engenheiro de Campo
+                        (&nbsp<em>Schlumberger</em>&nbsp) </li>
+                    <br>
+                    <li>[&nbsp11/2019 - 10/2021&nbsp] &nbsp - &nbsp Engenheiro de Campo Trainee
+                        (&nbsp<em>Schlumberger</em>&nbsp)</li>
+                    <br>
+                    <li>[&nbsp09/2015 - 07/2019&nbsp] &nbsp - &nbsp Master in Engineering (Hons) Mechanical Engineering 
+                        (&nbsp<em>University of Nottingham</em>&nbsp)</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
     <footer>
         <div id="main-footer">
-            <div id= "logo-container">
-                <div><img class="logo"  id = "email-logo" src="img/email_3.jpeg" alt="email logo" srcset=""></div>
-                <div><img class="logo" id="github-logo" src="img/github_2.png" alt="github logo" srcset=""></div>
-                <div><img class="logo" id="linkedIn-logo" src="img/linkedIn_2.png" alt="linkedIn logo" srcset=""></div>
-                <div><img class="logo" id="whatsapp-logo" src="img/whatsapp_3.PNG" alt=" whatsapp logo" srcset=""></div>
+            <div id="logo-container">
+                <a href="mailto:mhsejas@gmail.com">
+                    <div><img class="logo" id="email-logo" src="img/email_3.jpeg" alt="email logo" srcset=""></div>
+                </a>
+                <a href="https://github.com/martinsejas/">
+                    <div><img class="logo" id="github-logo" src="img/github_2.png" alt="github logo" srcset=""></div>
+                </a>
+                <a href="https://www.linkedin.com/in/martin-sejas/">
+                    <div><img class="logo" id="linkedIn-logo" src="img/linkedIn_2.png" alt="linkedIn logo" srcset="">
+                    </div>
+                </a>
+                <a href="https://wa.me/5521972932877">
+                    <div><img class="logo" id="whatsapp-logo" src="img/whatsapp_3.PNG" alt=" whatsapp logo" srcset="">
+                    </div>
+                </a>
             </div>
 
         </div>
 
     </footer>
 
-    
+
 </body>
 
 
