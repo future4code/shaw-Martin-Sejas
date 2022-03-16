@@ -337,7 +337,7 @@ footer {
 
     }
 
-    .main-video
+    .main-vigitdeo
     {
         max-width: 80vw;
         height: fit-content;
@@ -345,7 +345,7 @@ footer {
 
     #video-page
     {
-        height: 82vh;
+        height: auto;
     }
 
     #video-page .video-container
