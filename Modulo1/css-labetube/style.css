@@ -188,7 +188,6 @@ footer {
 
     .parent-container {
         width: 100vw;
-        height: auto;
         display: flex;
         flex-direction: column;
 
@@ -275,7 +274,6 @@ footer {
 
     .parent-container {
         width: 100vw;
-        height: auto;
         display: flex;
         flex-direction: column;
 
@@ -351,10 +349,15 @@ footer {
     #video-page .video-container
     {
         justify-content: space-around;
-        height: fit-content;
+        height: 100%;
     }
 }
 
 @media screen and (min-device-width : 801px) {
     /* computadores */
+    #video-page .video-container
+    {
+        justify-content: space-around;
+        height: 100%;
+    }
 }
