@@ -358,6 +358,7 @@ footer {
     #video-page .video-container
     {
         justify-content: space-around;
-        height: 100%;
+        height: 80%;
+        
     }
 }
