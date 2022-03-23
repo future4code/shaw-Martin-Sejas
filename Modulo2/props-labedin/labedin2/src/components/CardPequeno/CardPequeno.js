@@ -1,8 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 
-const SmallCardContainer = styled.div
-`
+const SmallCardContainer = styled.div`
 
     display: flex;
     flex-direction: row;
