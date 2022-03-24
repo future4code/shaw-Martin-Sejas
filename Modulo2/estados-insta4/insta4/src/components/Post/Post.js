@@ -27,6 +27,13 @@ const PostHeader = styled.div`
   display: flex;
   align-items: center;
   padding-left: 10px;
+  width: 100%;
+  
+
+  div {
+    
+    padding-left: 45%;
+  }
 `
 //footer div
 const PostFooter = styled.div`
@@ -38,7 +45,7 @@ const PostFooter = styled.div`
 `
 //photo container for user profile
 const UserPhoto = styled.img`
-  height: 30px;
+  max-height: 30px;
   width: 30px;
   margin-right: 10px;
   border-radius: 50%;
@@ -63,7 +70,10 @@ class Post extends React.Component {
     comentando: false,
     numeroComentarios: 5,
     shared: false,
+    
   }
+
+  
 
   // 3 event functions
   onClickCurtida = () => {
@@ -91,7 +101,10 @@ class Post extends React.Component {
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
-      numeroComentarios: this.state.numeroComentarios + 1
+      numeroComentarios: this.state.numeroComentarios + 1,
+      
+      
+      
     })
   }
 
@@ -128,18 +141,25 @@ class Post extends React.Component {
 
     if(this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
+      
     }
+
+
+
+    
 
     return <PostContainer> {/* main post cointainer */}
       <PostHeader>  {/* header container */}
-        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
+        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem de Usuario'}/>
         <p>{this.props.nomeUsuario}</p>
-        <IconeSalvar 
-        pictureUrl= {emptyBookmark}
-         />
+        <div> 
+           <IconeSalvar 
+           pictureUrl= {emptyBookmark}
+            /> 
+         </div>
       </PostHeader>
-
-      <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'}/>
+       
+      <PostPhoto src={this.props.fotoPost} alt={'Imagem de Post'}/>
 
       <PostFooter>
         <IconeComContador

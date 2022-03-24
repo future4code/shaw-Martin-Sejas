@@ -6,7 +6,8 @@ import emptyBookmark from '../../img/empty_bookmark.png'
 const IconeSalvarContainer = styled.div`
  height: 30px;
   width: 30px;
-  padding-left: 150px; 
+ justify-self: flex-end;
+ align-self: flex-end;
  
 `
 
@@ -14,6 +15,7 @@ const MyBookmark = styled.img`
 
 height: 30px;
   width: 30px;
+  
 
 `
 

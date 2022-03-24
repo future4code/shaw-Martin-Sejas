@@ -6,25 +6,35 @@ import ShareButton from '../../img/share_button.png'
 
 
 const ShareButtonContainer = styled.div `
- height: 30px;
-  width: 30px;
+
   display: flex; 
   flex-direction:column; 
   align-items: center;
   justify-items: center;  
-
-  padding-bottom: 80px;
-  padding-left: 140px; 
+  padding-bottom: 2%;
+  padding-top: 5%;
+  border-top: double 3px black; 
+  background-color: beige;
+ 
 
   div 
   {
       display: flex; 
+     width: 90%;
+      
 
   }
 
   input 
   {
-      width: 200px;
+      width: 90%;
+      
+  }
+
+  button {
+     
+      text-align: center;
+      width: 20vw; 
   }
  
 `
