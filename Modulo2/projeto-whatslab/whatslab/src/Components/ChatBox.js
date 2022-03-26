@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import styled from "styled-components";
 import ChatMessage from "./ChatMessage";
 
@@ -8,7 +8,7 @@ display: flex;
 flex-direction: column; 
 width: 45%; 
 height: 100vh; 
-background-color: beige;
+background-color: grey;
 border-left: 0.1vw black solid; 
 border-right: 0.1vw black solid; 
 border-top:  0.1vw black solid; 
@@ -55,33 +55,33 @@ const MessageInputContainer = styled.div`
 // applies styling to the messages and has the list of messages
 export default  class ChatBox extends React.Component {
 
+  
+
+
+
     state = {
       username: "", 
       message: "", 
-      sampleMessages: [] 
+      sampleMessages: [],
+      id: 0,
     }
 
-    
-    MessageClicked = () => {
-        let deleteMessage = window.confirm("Do you want to delete this message?");
 
-        
-    }
-
-    //Props Username 
-    //Props Message send to message
+   
 
    OnMessageSubmit() {
         let updateMessage = [...this.state.sampleMessages]; 
 
         updateMessage.push(
             <ChatMessage
+            id={this.state.id}
+            key= {this.state.id}
             userName= {this.state.username}
-            myMessage = {this.state.message}
-            clickedMessage = {this.MessageClicked}
+            myMessage = {this.state.message} 
             />
         )
-            this.setState({sampleMessages: updateMessage, username: "", message: ""})
+          
+            this.setState({sampleMessages: updateMessage, username: "", message: "", id: this.state.id +1})
 
     }
 
@@ -101,6 +101,7 @@ render () {
         return msg; 
     } )
 
+    console.log(allMessages)
 return (
             <ChatBoxContainer> 
                  <MessagesContainer>
