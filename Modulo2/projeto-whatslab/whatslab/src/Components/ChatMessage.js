@@ -56,7 +56,7 @@ box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
 margin-bottom: 2%;
 margin-left: 1%; 
 color: black;
-font-weight: bolder; 
+font-weight: bold; 
 
 p {
     padding: 5%; 
