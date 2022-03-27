@@ -2,16 +2,25 @@ import React, { Children } from "react";
 import styled from "styled-components";
 import ChatMessage from "./ChatMessage";
 
+
+
 //styling of main container (Chatbox + inputs)
 const ChatBoxContainer = styled.div`
 display: flex; 
 flex-direction: column; 
-width: 45%; 
+width: 70%; 
+@media only screen and (max-width: 600px) {
+  width: 90%;
+}
+
 height: 100vh; 
-background-color: grey;
+/* background-color: grey; */
+background-image: url("https://wallpapercave.com/wp/wp4410822.jpg");
+background-size: cover;
 border-left: 0.1vw black solid; 
 border-right: 0.1vw black solid; 
 border-top:  0.1vw black solid; 
+border: 0.1rem rgb(255,255,255,0.1) solid; 
 justify-content: center; 
 align-items: center;
 
@@ -24,40 +33,50 @@ const MessagesContainer = styled.div`
  width: 100%;
  height: 95%; 
  overflow-y: auto; 
- 
 `
-
 //styling of container in charge of receiving input
 const MessageInputContainer = styled.div`
 
   display:flex;
   width:100%; 
-  height: 4.2%; 
-  box-shadow:1px 1px 1px; 
+  height: 5%; 
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+  
   
   #Nome {
-    width: 18%; 
+    width: 15%; 
     flex-grow: 0;   
+    padding: 0.5%;
+    margin-left: 0.5%; 
+    margin-bottom: 1%; 
+    border-radius: 0.5rem 0.5rem; 
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+    
   }
 
   button 
   {
     padding-left: 2%; 
+    border-radius: 0.5rem 0.5rem; 
     padding-right: 2%;
     flex-grow: 0; 
+    margin-left: 0.3%; 
+    margin-right:0.5%;
+    margin-bottom: 1%; 
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
   }
   #Mensagem
   {
+    margin-left: 0.5%; 
+    margin-bottom: 1%; 
+    border-radius: 0.5rem 0.5rem; 
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
     flex-grow: 1;
   }
-`
+`;
 
 // applies styling to the messages and has the list of messages
 export default  class ChatBox extends React.Component {
-
-  
-
-
 
     state = {
       username: "", 
@@ -65,9 +84,6 @@ export default  class ChatBox extends React.Component {
       sampleMessages: [],
       id: 0,
     }
-
-
-   
 
    OnMessageSubmit() {
         let updateMessage = [...this.state.sampleMessages]; 
@@ -93,16 +109,15 @@ export default  class ChatBox extends React.Component {
         }
     }
 
-//message itself is already styled
+
 render () {
 
-    // MAKE ARRAY WITH ID AND <ChatMessage>, USE FILTER TO DISPLAY JUST <ChatMessage> for best practice
     const allMessages = this.state.sampleMessages.map( (msg) => {
         return msg; 
     } )
 
     console.log(allMessages)
-return (
+    return (
             <ChatBoxContainer> 
                  <MessagesContainer>
                      {allMessages}
@@ -128,8 +143,6 @@ return (
        
                </MessageInputContainer> 
              </ChatBoxContainer>
-
          );
-
 }
 }

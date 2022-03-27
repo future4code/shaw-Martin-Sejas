@@ -4,27 +4,37 @@ import styled from "styled-components";
 const ChatMessageContainer = styled.div`
 display: flex; 
 flex-direction: column; 
-width: 40%;
-border: 2px solid black;
-background-color: blue;
+justify-self: flex-end;
+align-self: flex-start;
 
-border-radius: 25% 25% 25% 5%;
-box-shadow: 2px 2px 2px;
-padding: 0.5%; 
+max-width: 40%;
+min-width:20%;
+border: 0.01rem solid black;
+background-color: rgba(255, 255,0, 0.2);
+background-color: #094132; 
+ 
+color: white;
+padding: 0.9em 0.8em;
+border-radius: 0.5em;
+font-weight: 450;
+line-height: 1.3;
+box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
 margin-bottom: 2%;
 margin-left: 1%; 
 
 h4 {
-    font-weight: bolder;
-    padding: 3%;
-    padding-bottom: 0%;
-   
+  
+    color: #9AAC8C;
+    color: rgba(255, 255,255, 0.65);
+    padding-left: 3%;  
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 0.2em;
 }
 
 p {
     padding: 3%;  
 }
-
 `
 
 const OwnMessageContainer = styled.div`
@@ -32,31 +42,34 @@ display: flex;
 flex-direction: column; 
 align-self: flex-end;
 justify-content: flex-end; 
-background-color: green;
-width: 40%;
+justify-self: flex-end;
+background-color: #93bb72;
+padding: 0.9em 0.8em;
+border-radius: 0.5em;
+font-weight: 450;
+line-height: 1.3;
+max-width: 40%;
+min-width: 15%;
+margin-right: 1%;
 border: 2px solid black;
-border-radius: 25% 25% 5% 25%;
-box-shadow: 2px 2px 2px;
-padding: 0.5%; 
+box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
 margin-bottom: 2%;
 margin-left: 1%; 
+color: black;
 
 p {
     padding: 5%; 
 }
-
 `
 
 
 export default class ChatMessage extends React.Component {
-
-   
+    // State para decidir se mostrar mensagem ou n
     state = {
         showMessage: true,
-
     }
 
-    
+   //funcao de deletar msg 
   deleteMessage = () => 
   {
         if(window.confirm("Do you want to delete this message?"))
@@ -65,18 +78,12 @@ export default class ChatMessage extends React.Component {
         }
   }
 
-    
-  
-
     render() {
 
-     
-
-       
+       // se showMessage for true
        if (this.state.showMessage) 
             {
-                
-
+                // se tiver usuario, mostra nome e joga pra esquerda
                 if (this.props.userName!== "") 
                 {
                     return (
@@ -86,7 +93,7 @@ export default class ChatMessage extends React.Component {
                         </ChatMessageContainer>
                     )
                 }
-
+                // se nao tiver, a mensagem eh minha, joga para direita sem usuario
                 else 
                 {
                     return (
@@ -95,17 +102,13 @@ export default class ChatMessage extends React.Component {
                         </OwnMessageContainer>
 
                     )
-                }
-               
-             
+                }    
             }
-        else{
+        else{ // se showMessage for falso, mostra nada
             return(
                 <span></span>
             )
         }
-           
-
-       
+                 
     }
 }

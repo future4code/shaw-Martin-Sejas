@@ -1,3 +1,4 @@
+
 import './App.css';
 import styled from 'styled-components';
 import React from 'react';
@@ -10,12 +11,11 @@ display: flex;
 align-items: center; 
 justify-content: center; 
 width:100vw;
+background-color: #015077;
+background-color: rgb(38,55,104) ;
 `
 
-
 class App extends React.Component {
-
-
 
   render()
   {
