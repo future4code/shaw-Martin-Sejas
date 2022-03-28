@@ -5,7 +5,7 @@ import React from 'react';
 import ChatBox from './Components/ChatBox';
 
 
-//Container principal
+//Container principal, planejado de certa forma que poderia ter varios chatboxes se necessario
 const AppContainer = styled.div`
 display: flex; 
 align-items: center; 

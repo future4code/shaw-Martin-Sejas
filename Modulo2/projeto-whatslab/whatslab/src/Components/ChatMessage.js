@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+// ChatMessageContainer é o div completo se a mensagem for de alguem com nome
+// A mensagem terá um nome de usuario, e será jogado para a esquerda
 const ChatMessageContainer = styled.div`
 display: flex; 
 flex-direction: column; 
@@ -37,6 +39,8 @@ p {
 }
 `
 
+// OwnMessageContainer é o div completo se a mensagem for de eu mesmo
+// A mensagem será jogada para a direita, com caixinha verde de usuario
 const OwnMessageContainer = styled.div`
 display: flex; 
 flex-direction: column; 
@@ -84,7 +88,7 @@ export default class ChatMessage extends React.Component {
        // se showMessage for true
        if (this.state.showMessage) 
             {
-                // se tiver usuario, mostra nome e joga pra esquerda
+                // se tiver usuario, mostra nome e joga pra esquerda chamando container certo
                 if (this.props.userName!== "") 
                 {
                     return (
@@ -94,7 +98,7 @@ export default class ChatMessage extends React.Component {
                         </ChatMessageContainer>
                     )
                 }
-                // se nao tiver, a mensagem eh minha, joga para direita sem usuario
+                // se nao tiver, a mensagem eh minha, joga para direita sem usuario, chamando container de usuario
                 else 
                 {
                     return (
@@ -105,7 +109,7 @@ export default class ChatMessage extends React.Component {
                     )
                 }    
             }
-        else{ // se showMessage for falso, mostra nada
+        else{ // se showMessage for falso, mostrar nada
             return(
                 <span></span>
             )
