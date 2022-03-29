@@ -12,24 +12,29 @@ const MsgAbertaContainer = styled.div`
         width: 13vw; 
     }
 
+    #error {
+        color: red;  
+        padding-top: 3%; 
+        width: 25vw; 
+        text-align: center;
+    }
+
 `
 
 export default class MensagemAberta extends React.Component 
 {
-    state = {
-        inputText: "", 
-    }
-    
     render () 
     {
         
         return(
             <MsgAbertaContainer>
                 <p>{this.props.pergunta} </p>
+                {this.props.showErrorText ? <p id = "error">{this.props.errorText}</p>:<span></span>}
                 <input type={this.props.tipo} 
-                onChange= { (event) => this.setState({inputText: event.target.value})}
-                value = {this.state.inputText}
+                onChange= {this.props.getText}
+                value = {this.props.inputText}
                 />
+               
             </MsgAbertaContainer>
         );
     }
