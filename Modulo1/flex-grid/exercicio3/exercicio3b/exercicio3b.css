@@ -1,0 +1,160 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    color: white;
+}
+
+#main-container
+{
+    display: grid; 
+    grid-template-rows: 10vh 50vh 30vh 10vh;
+    grid-template-columns: repeat(4, 1fr);
+
+}
+#top-container
+{
+    grid-row: 1 /2;
+    grid-column: 1 / 5;
+    display: grid; 
+    grid-template-rows: 1fr;
+    grid-template-columns: 25vw 1fr;
+    
+    
+}
+#middle-container
+{
+   
+}
+
+.footer
+{
+    grid-row: 4/5;
+    grid-column: 1/5;
+    
+    align-items: center;
+}
+
+
+
+.green-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    height: 100%;
+    width: 100%;
+    grid-column: 1/2;
+    grid-row: 1 ; 
+    
+    
+    
+    
+    
+}
+
+.yellow-background {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: yellow;
+    grid-column: 2/3;
+    grid-row: 1 ; 
+  
+    
+}
+
+.pink-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: fuchsia;
+    grid-row: 2 /3;
+    grid-column: 1/5;
+    
+}
+
+#middle-container
+{
+    grid-row: 3 / 4; 
+    grid-column: 1 / 5;
+    display: grid;
+
+    grid-template-rows: 1fr ;
+    grid-template-columns: 1fr 0.5fr 0.5fr;
+    
+}
+
+#blank
+{
+    grid-row: 1;
+    grid-column: 2/3;
+    height: 100%;
+  
+}
+
+#content2
+{
+  
+}
+
+.blue-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    grid-row: 1;
+    grid-column: 1/3;
+    height: 100%;
+    
+    
+    
+}
+
+#vertical-middle-container
+{
+    grid-row: 1;
+    grid-column: 3 /4;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  
+}
+
+.red-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    height: 100%;
+    grid-row: 1/2;
+    grid-column: 1;
+    
+}
+
+.lightgreen-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgreen;
+    height: 100%;
+    grid-row: 2/3;
+    grid-column: 1;
+}
+
+.purple-background {
+    background-color: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    justify-items: center;
+
+   
+}
+

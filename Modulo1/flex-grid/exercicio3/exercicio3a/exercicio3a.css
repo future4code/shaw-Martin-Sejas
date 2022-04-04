@@ -1,0 +1,143 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    color: white;
+}
+
+#main-container
+{
+    display:flex; 
+    flex-direction: column;
+    width: 100vw;
+    height:100vh;
+}
+
+#top-container
+{
+    display:flex;
+    height: 5vh; 
+    flex-grow: 0;
+    
+}
+.green-background {
+    display: flex;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    width: 20%; 
+}
+
+.yellow-background {
+    display: flex;
+    background-color: yellow;
+    justify-content: center;
+    align-items: center;
+    flex-grow:1;
+}
+
+.pink-background {
+    background-color: fuchsia;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow:2;
+
+}
+
+#middle-container
+{
+    display: flex;
+    flex-direction: row;
+    flex-grow:1;
+    justify-items: flex-start;
+    width: 100%; 
+   
+}
+
+#content2
+{
+    display: flex;
+    flex-grow: 2;
+    height: 100%; 
+    align-content: center;
+    width:50vw; 
+
+}
+#vertical-middle-container
+{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 100%; 
+    width:25vw;  
+}
+
+.blue-background {
+    display: flex;
+    background-color: blue;
+    width: 100%; 
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#blank
+{
+    display: flex; 
+    flex-grow: 1;
+    height: 100%; 
+    width:25vw;
+}
+
+#image
+{
+    display: flex;
+    flex-grow: 1;
+    width: 100%; 
+    align-items: center;
+    justify-content: center;
+
+}
+
+#extra
+{
+    display: flex;
+    flex-grow: 1;
+    width: 100%; 
+    
+
+}
+
+.red-background {
+    display:flex;
+    width:100%;
+    height:100%; 
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+.lightgreen-background {
+    display:flex;
+    background-color: lightgreen;
+    height:100%; 
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.purple-background {
+    background-color: purple;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh; 
+    flex-grow: 0;
+    
+}
