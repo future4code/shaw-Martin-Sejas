@@ -63,9 +63,6 @@ export default class Cadastro extends React.Component{
                 </div>
                 <br></br>
                 
-
-
-
             </CadastroContainer>
         )
     }

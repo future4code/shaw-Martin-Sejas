@@ -12,7 +12,6 @@ align-items: center;
 width: 100vw; 
 
 
-
 button {
   align-self: center; 
   width: 15%; 

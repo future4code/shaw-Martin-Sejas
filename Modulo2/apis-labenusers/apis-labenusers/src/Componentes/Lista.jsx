@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import DetalheUsuario from "./DetalheUsuario";
+
 
 let ListaContainer = styled.div`
 display: flex; 
@@ -8,6 +10,15 @@ flex-direction: column;
 align-items: center; 
 width: 100%; 
 height: 100%; 
+
+`
+
+let Busca = styled.div`
+    display: flex; 
+
+    button {
+        width: 5vw; 
+    }
 
 `
 
@@ -38,11 +49,14 @@ let header =  {
 export default class Lista extends React.Component{
 
     state = {
-        usuarios: [],       
+        usuarios: [],  
+        telaDetalheUsuario: false,   
+        detalheUsuarioId: "",  
+        searchBar: "",
+        filtrarUsuario: false,
     }
 
     deletarUsuario = (id) => {
-
         if(window.confirm("Tem certeza que quer deletar?")) {
             let url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/";
            
@@ -53,8 +67,11 @@ export default class Lista extends React.Component{
                 alert(`Erro: ${error.response.data}`)
             })
         }
+
+        this.setState({detalheUsuarioId: "", telaDetalheUsuario: false})
     }
 
+    //API Get all Users
     mostrarUsuarios() {
         let url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
         
@@ -66,28 +83,80 @@ export default class Lista extends React.Component{
         })
     }
 
-
     componentDidMount()
     {
        this.mostrarUsuarios()
     }
 
+    voltarLista = () =>
+    {
+        this.mostrarUsuarios(); 
+        this.setState({telaDetalheUsuario: false, detalheUsuarioId: ""})
+    }
+
+    irParaDetalheUsuario = (id) => {
+     this.setState({telaDetalheUsuario: true, detalheUsuarioId: id})
+    }
+
+    
+
 
     render() {
 
-        let showUsers = this.state.usuarios.map( (user) => {
-        return ( <UserListItem> 
-                <li key={user.id}>{user.name}</li> 
-                <button onClick={() => this.deletarUsuario(user.id)}>Deletar Usuario</button>
-                </UserListItem>
-        )}); 
+        //variavel de pagina renderizada
+       
+        let renderedPage
+        //se nao tiver que mostrar tela detalhada, mostra lista normal
+        if(this.state.telaDetalheUsuario === false) {
+            let optionalRenderedPage = this.state.usuarios.map( (user) => {
+            return ( <UserListItem onClick={() => this.irParaDetalheUsuario(user.id)} > 
+                    <li key={user.id} >{user.name}</li> 
+                    <button onClick={() => this.deletarUsuario(user.id)}>Deletar</button>
+                    </UserListItem>
+            )});
 
+              
+                if(this.state.searchBar !== "" )
+                {
+                  
+                  let filteredpage = this.state.usuarios.filter( (user) => {
+                        
+                        return user.name.toLowerCase().includes(this.state.searchBar.toLowerCase()) })
+                    .map( (user) => {
+                       
+                        return ( <UserListItem onClick={() => this.irParaDetalheUsuario(user.id)} > 
+                                <li key={user.id} >{user.name}</li> 
+                                <button onClick={() => this.deletarUsuario(user.id)}>Deletar</button>
+                                </UserListItem>
+                        )});
+                        renderedPage = [...filteredpage]        
+                }
+
+                
+            else {
+                renderedPage = [...optionalRenderedPage];
+            }
+        } 
+
+         else
+        {
+            renderedPage = <DetalheUsuario 
+                            voltarPagina = {this.voltarLista} 
+                            deletarUsuario = { (id) => {this.deletarUsuario(id)}}
+                            id = {this.state.detalheUsuarioId}/>
+        }
+
+        let busca = <Busca> <input placeholder="Pesquisar usuarios" onChange={(event) => this.setState({searchBar: event.target.value})} value={this.state.searchBar}/> 
+                             </Busca>
+
+    
 
         return(
             <ListaContainer>
-                <h2>Lista de Usuarios</h2>
+                <h2>{this.state.telaDetalheUsuario ? "Detalhes do Usuario": "Lista de Usuarios"}</h2>
+                {this.state.telaDetalheUsuario ? <span></span> : busca}
                 <div>
-               <ul>{showUsers}</ul>
+               <ul>{renderedPage}</ul>
                 </div>
                 
             </ListaContainer>
