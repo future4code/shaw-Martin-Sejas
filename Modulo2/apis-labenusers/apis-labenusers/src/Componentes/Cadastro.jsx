@@ -11,7 +11,7 @@ height: 100%;
 align-items: center; 
 
 button {
-    max-width: 15%;
+    width: 50%;
 }
 
 div {

@@ -12,7 +12,7 @@ align-items: center;
 width: 100vw; 
 
 
-button {
+#cadastro {
   align-self: center; 
   width: 15%; 
 }
@@ -40,7 +40,7 @@ export default class App extends React.Component {
       <MainContainer>
 
       {showPage}
-      <button onClick={ () => {this.setState({loggedIn: !this.state.loggedIn})}}>{buttonText}</button>
+      <button id= "cadastro" onClick={ () => {this.setState({loggedIn: !this.state.loggedIn})}}>{buttonText}</button>
       </MainContainer>
     );
 

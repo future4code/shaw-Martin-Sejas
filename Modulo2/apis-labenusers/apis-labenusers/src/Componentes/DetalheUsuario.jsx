@@ -10,7 +10,7 @@ align-items: center;
 
 button {
     width: 15vw;
-    height: 3vh; 
+    height: 5vh; 
 }
 `
 
@@ -66,7 +66,13 @@ export default class DetalheUsuario extends React.Component{
 
         axios.put(`${url}${id}`,body,header)
         .then( (response) => { 
-            alert("usuario editado com sucesso!")})
+            if(body.name === this.state.body.name && body.email === this.state.body.email)
+            {
+                alert("Nenhuma mudanca feita")
+            }
+            else {
+            alert("usuario editado com sucesso!") }
+        })
         .catch( (err) => {
             alert("Erro ao editar usuario")
         })
