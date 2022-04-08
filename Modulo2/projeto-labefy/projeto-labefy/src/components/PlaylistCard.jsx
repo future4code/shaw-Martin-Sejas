@@ -12,7 +12,7 @@ export default class PlaylistCard extends React.Component {
     render(){
         return(
 
-            <div></div>
+            <div> {this.props.name} </div>
         )
     }
 
