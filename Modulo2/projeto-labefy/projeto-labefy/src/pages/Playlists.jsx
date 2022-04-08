@@ -14,8 +14,12 @@ background-color: ${COLORS.secondary};
 
 `
 
-const PlaylistsHeaeder = styled.div`
-color: ${COLORS.fontSecondary}
+const PlaylistsHeader = styled.div`
+display: flex; 
+color: ${COLORS.fontSecondary};
+height: 20%;
+width: 100%; 
+justify-content: center;
 `
 
 
@@ -27,6 +31,9 @@ export default class Playlists extends React.Component {
         return(
 
             <PlaylistsContainer>
+                <PlaylistsHeader>
+                    <h2>My Playlists</h2>
+                </PlaylistsHeader>
 
             </PlaylistsContainer>
         )
