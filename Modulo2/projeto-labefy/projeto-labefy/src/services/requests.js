@@ -33,9 +33,36 @@ export const getAllPlaylists = (savePlaylist) =>
 
 export const deleteThisPlaylist = (id) => 
 {
-    console.log("my id is", id)
+    
     axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`, header)
     .then( )
-    .catch( (err) => alert(`${err}, please try again`))
-
+    .catch( (err) => alert(`${err}, please try again`));
 }
+
+export const addTrackToPlaylist = ( id, body ) => 
+{
+    axios.post(`${BASE_URL}${id}/tracks`,body, header)
+    .then( (response) => {
+        alert("Song added to playlist successfully")
+    }).catch( (err) => alert(`${err}, please check input info`))
+}
+
+export const getPlaylistTracks = (id, savePlaylistSongs) => 
+{
+    axios.get(`${BASE_URL}${id}/tracks`, header )
+    .then( (response) => {
+        savePlaylistSongs(response.data.result.tracks);
+    }).catch( (err) => alert(`${err}, please check input info`));
+}
+
+export const removeTrackFromPlaylist = (playlistId, songId) => 
+{
+    axios.delete(`${BASE_URL}${playlistId}/tracks/${songId}`, header)
+    .then( (response) => {
+        alert("Song deleted")
+    }).catch((err) => alert(`${err}, please try again`))
+}
+
+
+
+

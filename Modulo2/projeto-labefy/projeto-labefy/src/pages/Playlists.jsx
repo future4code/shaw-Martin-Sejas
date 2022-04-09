@@ -7,6 +7,7 @@ import PlaylistCard from "../components/PlaylistCard";
 import { getAllPlaylists } from "../services/requests";
 import { deleteThisPlaylist } from "../services/requests";
 
+//styling main container
 const PlaylistsContainer = styled.div`
 display: flex; 
 flex-direction: column;
@@ -20,7 +21,7 @@ hr {
 }
 
 `
-
+//styling container header
 const PlaylistsHeader = styled.div`
 display: flex; 
 flex-direction: row;
@@ -38,7 +39,7 @@ button {
     height: 50%;
 }
 `
-
+//styling of pop-up add playlist container
 const AddPlaylistContainer = styled.div`
 display: flex; 
 justify-self: center; 
@@ -61,8 +62,13 @@ input {
     height: 15%; 
     width: 80%; 
 }
-`
 
+p 
+{
+    color: red; 
+}
+`
+//styling of container holding cards
 const PlaylistCardContainer = styled.div`
     display: flex; 
     flex-direction: column;
@@ -86,6 +92,7 @@ export default class Playlists extends React.Component {
         playlists: [],
         playlistLength: 0,
         playlistDeleted: false,
+        validPlaylistName: true, 
     }
 
     //local update after API request
@@ -100,6 +107,7 @@ export default class Playlists extends React.Component {
 
     }
 
+    //need to update if playlist got deleted
     componentDidUpdate(prevState) 
     {
         if(prevState.playlistDeleted !== this.state.playlistDeleted)
@@ -111,34 +119,42 @@ export default class Playlists extends React.Component {
     //function handling create new playlist button
     addNewPlaylist = () => 
     {
+        if(this.state.newPlaylistInput !== "")
+        {
+        this.setState({validPlaylistName: true})
         createPlaylist(this.state.newPlaylistInput);
         getAllPlaylists(this.updatePlaylists);  
         this.addPlaylistButton();
+        }
+
+        else 
+        {
+            this.setState({validPlaylistName: false})
+        }
     }
 
+    //logic for add playlist button
     addPlaylistButton = () => 
     {
-        this.setState({makingPlaylist: !this.state.makingPlaylist, newPlaylistInput:""})
+        this.setState({makingPlaylist: !this.state.makingPlaylist, newPlaylistInput:"", validPlaylistName: true})
         getAllPlaylists(this.updatePlaylists)
     }
 
+    //delete playlist button
     deletePlaylist = (playlistId) => {
-       if( window.confirm("Tem certeza que quer deletar?")) {
-          
+       if( window.confirm("Tem certeza que quer deletar?")) {    
            deleteThisPlaylist(playlistId); 
            this.setState({playlistDeleted: !this.state.playlistDeleted})
        }
-        
 
     }
-
-    
+   
     render(){ 
     //div que aparece quando o usuario apertar em add, para fazer o request
         let addPlaylistDiv = 
                            ( <AddPlaylistContainer> 
                             <h3>Create New Playlist</h3>
-
+                            {this.state.validPlaylistName? <span></span> : <p>* Playlist name can't be empty</p>}
                             <input placeholder="Playlist Name" 
                             onChange={(event) => {this.setState({newPlaylistInput: event.target.value})}}
                             value={this.state.newPlaylistInput} /> 
@@ -151,7 +167,12 @@ export default class Playlists extends React.Component {
         
         if(this.state.playlists) {
             playlistNames = this.state.playlists.map ( (playlist) => {
-                return <PlaylistCard name= {playlist.name} key={playlist.id} playlistID = {playlist.id} deletePlaylist = {(id) => this.deletePlaylist(id)}/>
+                return <PlaylistCard name= {playlist.name} 
+                                    key={playlist.id} 
+                                    playlistID = {playlist.id} 
+                                    deletePlaylist = {(id) => this.deletePlaylist(id)}
+                                    processClick= {() => {this.props.selectPlaylist(playlist.id, playlist.name)}}
+                                    />
             })
         }
 

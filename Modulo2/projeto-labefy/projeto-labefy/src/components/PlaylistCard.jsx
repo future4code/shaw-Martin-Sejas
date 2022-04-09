@@ -44,7 +44,7 @@ export default class PlaylistCard extends React.Component {
     render(){
         return(
 
-            <PlaylistCardContainer> {this.props.name} <button onClick={() => this.props.deletePlaylist(this.props.playlistID)}>X</button> </PlaylistCardContainer>
+            <PlaylistCardContainer onClick= {this.props.processClick}> {this.props.name} <button onClick={() => this.props.deletePlaylist(this.props.playlistID)}>X</button> </PlaylistCardContainer>
         )
     }
 
