@@ -30,3 +30,12 @@ export const getAllPlaylists = (savePlaylist) =>
     .then( (response) => {  savePlaylist(response.data.result.list) })
     .catch( (err) => alert(`${err}, please try a different name`))
 }
+
+export const deleteThisPlaylist = (id) => 
+{
+    console.log("my id is", id)
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`, header)
+    .then( )
+    .catch( (err) => alert(`${err}, please try again`))
+
+}

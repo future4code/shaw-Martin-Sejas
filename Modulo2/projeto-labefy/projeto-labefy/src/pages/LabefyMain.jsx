@@ -9,8 +9,8 @@ import PlaylistContent from "./PlaylistContent";
 const LabMainContainer = styled.div`
 
 display: flex; 
-flex-grow: 1; 
 width: 100%; 
+height: 84%;
 background-color: ${COLORS.secondary};
 `
 

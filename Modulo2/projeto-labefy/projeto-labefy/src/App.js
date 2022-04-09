@@ -19,7 +19,6 @@ const Header = styled.div`
 height: 10%; 
 width: 100%;
 display: flex; 
-flex-grow: 0; 
 background-color: ${COLORS.primary}; 
 align-items: center; 
 justify-content: center; 
@@ -31,10 +30,10 @@ const Footer = styled.div`
 height: 6%; 
 width: 100%;
 display: flex; 
-flex-grow: 0; 
 background-color: ${COLORS.primary}; 
 align-items: center; 
 justify-content: center; 
+border-top: solid white 0.1vh;
 color: ${COLORS.fontPrimary}; 
 
 `

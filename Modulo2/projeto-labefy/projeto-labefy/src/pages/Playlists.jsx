@@ -5,21 +5,26 @@ import { COLORS } from "../constants/styling";
 import { createPlaylist } from "../services/requests";
 import PlaylistCard from "../components/PlaylistCard";
 import { getAllPlaylists } from "../services/requests";
+import { deleteThisPlaylist } from "../services/requests";
 
 const PlaylistsContainer = styled.div`
 display: flex; 
 flex-direction: column;
 width: 20%; 
 flex-grow: 0;
-height:100%;
+max-height:100%;
 background-color: ${COLORS.secondary}; 
+
+hr {
+    width: 80%;
+}
 
 `
 
 const PlaylistsHeader = styled.div`
 display: flex; 
 flex-direction: row;
-color: ${COLORS.fontSecondary};
+color: ${COLORS.fontPrimary};
 background-color: ${COLORS.secondary};
 
 height: 15%;
@@ -29,8 +34,8 @@ align-items: center;
 
 
 button {
-    width: 25%; 
-    height: 25%;
+    width: 20%; 
+    height: 50%;
 }
 `
 
@@ -45,8 +50,10 @@ background-color: ${COLORS.primary};
 border: groove black 0.2vw;
 box-shadow: 5% 5% 5%; 
 border-radius: 5% 5% 5% 5%; 
-width: 90%; 
-height: 23%;
+width: 95%; 
+height: 25%;
+margin-bottom: 5%; 
+padding-bottom: 3%; 
 color: ${COLORS.fontPrimary};
 
 input {
@@ -61,6 +68,9 @@ const PlaylistCardContainer = styled.div`
     flex-direction: column;
     width: 100%; 
     overflow-y: auto;
+    align-items: center; 
+    padding-bottom: 2.5%; 
+    padding-top: 2.5%; 
 
 `
 
@@ -75,6 +85,7 @@ export default class Playlists extends React.Component {
         newPlaylistInput: "",
         playlists: [],
         playlistLength: 0,
+        playlistDeleted: false,
     }
 
     //local update after API request
@@ -83,24 +94,19 @@ export default class Playlists extends React.Component {
        
     }
 
-    
-
-
     // get initial playlists
     componentDidMount() {
         getAllPlaylists(this.updatePlaylists); 
 
     }
 
-    componentDidUpdate(prevState)
+    componentDidUpdate(prevState) 
     {
-        if(prevState.playlistLength !== this.state.playlistLength)
+        if(prevState.playlistDeleted !== this.state.playlistDeleted)
         {
-           getAllPlaylists(this.updatePlaylists)
-
+            getAllPlaylists(this.updatePlaylists);
         }
     }
-
 
     //function handling create new playlist button
     addNewPlaylist = () => 
@@ -112,11 +118,21 @@ export default class Playlists extends React.Component {
 
     addPlaylistButton = () => 
     {
-        this.setState({makingPlaylist: !this.state.makingPlaylist})
+        this.setState({makingPlaylist: !this.state.makingPlaylist, newPlaylistInput:""})
+        getAllPlaylists(this.updatePlaylists)
+    }
+
+    deletePlaylist = (playlistId) => {
+       if( window.confirm("Tem certeza que quer deletar?")) {
+          
+           deleteThisPlaylist(playlistId); 
+           this.setState({playlistDeleted: !this.state.playlistDeleted})
+       }
+        
+
     }
 
     
-
     render(){ 
     //div que aparece quando o usuario apertar em add, para fazer o request
         let addPlaylistDiv = 
@@ -135,7 +151,7 @@ export default class Playlists extends React.Component {
         
         if(this.state.playlists) {
             playlistNames = this.state.playlists.map ( (playlist) => {
-                return <PlaylistCard name= {playlist.name} key={playlist.id}/>
+                return <PlaylistCard name= {playlist.name} key={playlist.id} playlistID = {playlist.id} deletePlaylist = {(id) => this.deletePlaylist(id)}/>
             })
         }
 
@@ -149,7 +165,7 @@ export default class Playlists extends React.Component {
                 </PlaylistsHeader>
 
                 {this.state.makingPlaylist ? addPlaylistDiv: <span></span>}
-
+                <hr/>
                 <PlaylistCardContainer>
                     {this.state.playlists ? playlistNames: <div>Carregando..</div>}
                 </PlaylistCardContainer>
