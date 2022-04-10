@@ -11,7 +11,7 @@ import { deleteThisPlaylist } from "../services/requests";
 const PlaylistsContainer = styled.div`
 display: flex; 
 flex-direction: column;
-width: 20%; 
+width: 21%; 
 flex-grow: 0;
 max-height:100%;
 background-color: ${COLORS.secondary}; 
@@ -35,8 +35,16 @@ align-items: center;
 
 
 button {
-    width: 20%; 
-    height: 50%;
+    width: 15%; 
+    height: 45%;
+    font-size: 2.1rem;
+    background-color: ${COLORS.primary}; 
+    color: ${COLORS.fontPrimary};
+    border-radius: 25% 25%; 
+}
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 `
 //styling of pop-up add playlist container
@@ -56,6 +64,7 @@ height: 25%;
 margin-bottom: 5%; 
 padding-bottom: 3%; 
 color: ${COLORS.fontPrimary};
+font-weight: 800;
 
 input {
     margin-bottom: 4%; 
@@ -182,7 +191,7 @@ export default class Playlists extends React.Component {
             <PlaylistsContainer>
                 <PlaylistsHeader>
                     <h2>My Playlists</h2>
-                    <button onClick={() => this.addPlaylistButton()}>Add +</button>
+                    <button onClick={() => this.addPlaylistButton()}>+</button>
                 </PlaylistsHeader>
 
                 {this.state.makingPlaylist ? addPlaylistDiv: <span></span>}

@@ -14,7 +14,7 @@ margin-top: 0.5%;
 border-top: white 0.15vh groove;
 background-color: ${COLORS.primary};
 color: ${COLORS.fontPrimary};
-
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 &:hover 
 {
     background-color: ${COLORS.primary};

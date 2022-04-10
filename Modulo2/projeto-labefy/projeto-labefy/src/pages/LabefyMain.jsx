@@ -10,7 +10,7 @@ const LabMainContainer = styled.div`
 
 display: flex; 
 width: 100%; 
-height: 84%;
+height: 89%;
 background-color: ${COLORS.secondary};
 `
 
@@ -27,7 +27,6 @@ export default class LabefyMain extends React.Component {
 
     processPlaylistSelection = (id, name) => 
     {
-        console.log("clicked on", name, " id: ", id); 
         this.setState({selectedPlaylist: true, selectedPlaylistName: name, selectedPlaylistId: id})
     }
 
@@ -35,8 +34,6 @@ export default class LabefyMain extends React.Component {
 
 
     render(){
-
-
 
         return(
 

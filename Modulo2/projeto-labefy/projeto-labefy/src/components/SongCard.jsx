@@ -15,7 +15,7 @@ const SongCardContainer = styled.div`
 `
 const SongNameContainer = styled.div`
     display:flex; 
-    width: 40%;
+    width: 30%;
     height: 100%; 
     justify-self: flex-start;
     align-items: center; 
@@ -34,14 +34,19 @@ const ArtistNameContainer = styled.div`
 
 const ButtonsContainer = styled.div`
     display: flex; 
-    width: 30%; 
+    width: 40%; 
     height: 100%; 
     align-items: center; 
     justify-content: space-between;
 
     button {
-        height: 80%; 
-       
+        height: 90%; 
+    }
+
+    audio {
+        height: 80%;
+        background-color: ${COLORS.primary}; 
+        color: ${COLORS.fontPrimary}; 
     }
 `
 export default class SongCard extends React.Component {
@@ -54,14 +59,18 @@ export default class SongCard extends React.Component {
         isBeingPlayed: false,
     }
 
+    processPlayClick = () => {
+        this.setState({isBeingPlayed: !this.state.isBeingPlayed})
+    }
+
     render(){
         return(
 
             <SongCardContainer>
                 <SongNameContainer>   {this.props.name} </SongNameContainer>
-                <ArtistNameContainer>{this.props.artist}</ArtistNameContainer>
+                <ArtistNameContainer> By - {this.props.artist}</ArtistNameContainer>
                 <ButtonsContainer>
-                    <button onClick={() => this.setState({isBeingPlayed: !this.state.isBeingPlayed})}>{this.state.isBeingPlayed? "Pause" : "Play"}</button>
+                    <button onClick={()=> this.props.playSong(this.props.url)}>Play</button>
                     <button onClick = {() => this.props.deleteSong(this.props.id)}>Remove</button>
                 </ButtonsContainer>
             </SongCardContainer>

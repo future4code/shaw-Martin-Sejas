@@ -8,10 +8,9 @@ import SongCard from "../components/SongCard";
 const PlaylistContentContainer = styled.div`
 display: flex; 
 flex-direction: column;
-height: 100%; 
 flex-grow: 1;  
-overflow-y: auto;
-border-left: solid ${COLORS.primary} 0.5vw; 
+border-left: solid ${COLORS.fontPrimary} 0.1vw; 
+
 background-color: ${COLORS.secondary}; 
 `
 
@@ -21,12 +20,15 @@ flex-direction: column;
 width: 100%; 
 height: 15%; 
 color: ${COLORS.fontPrimary};
+margin-bottom:6%; 
 
 
 h1 
 {
     align-self: center; 
     padding-top: 2%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem; 
 }
 
 `
@@ -36,19 +38,28 @@ const PlaylistOptions = styled.div`
     align-self: flex-end; 
     align-items: center;
     justify-content: space-around;
-    width: 50%; 
+    width: 100%; 
     padding-top: 1%; 
     
     button 
     {
-        padding: 0.5% 5%;
+        padding: 0.5% 01%;
         font-size: 1.1rem; 
+        background-color: ${COLORS.primary}; 
+        color: ${COLORS.fontPrimary}; 
+        font-weight: 700;
     }
 
     input {
-        width: 45%; 
+        width:20%; 
         padding: 0.5% 0.5%;
         font-size: 1.2rem;
+    }
+
+    audio 
+    {
+        width:60%;
+        height: 2rem; 
     }
 
 `
@@ -61,7 +72,7 @@ const SongCardContainer = styled.div`
     overflow-y: auto;
     align-items: center; 
     padding-bottom: 2.5%; 
-    padding-top: 5%; 
+    
 
     h2 
     {
@@ -76,7 +87,7 @@ flex-direction: column;
 align-self: center; 
 justify-self: center; 
 width: 30%; 
-margin-top: 1%; 
+margin-bottom: 3%;
 padding: 1.5% 1.5%; 
 border: ${COLORS.primary} double 0.5vh; 
 
@@ -114,6 +125,10 @@ export default class PlaylistContent extends React.Component {
         artistInput: "", 
         songURLinput: "",
         addingSong: false,
+        deletedSong: true,
+        searchSongInput: "", 
+        currentSongUrl: "",
+        songPlaying: false, 
     }
 
     savePlaylistSongs= (data) => {
@@ -132,7 +147,12 @@ export default class PlaylistContent extends React.Component {
             getPlaylistTracks(this.props.playlistId, this.savePlaylistSongs);
         }
 
-        if(prevState.songs.length !== this.state.songs.length)
+        if(prevState.addingSong !== this.state.addingSong)
+        {
+            getPlaylistTracks(this.props.playlistId, this.savePlaylistSongs);
+        }
+
+        if(prevState.deletedSong !== this.state.deletedSong)
         {
             getPlaylistTracks(this.props.playlistId, this.savePlaylistSongs);
         }
@@ -143,14 +163,13 @@ export default class PlaylistContent extends React.Component {
         if(window.confirm("Are you sure you want to delete this song?"))
         {
             removeTrackFromPlaylist(playlist, song);
+            this.setState({deletedSong: !this.state.deletedSong})
+            getPlaylistTracks(this.props.playlistId, this.savePlaylistSongs)
             
-        }
-
-        getPlaylistTracks(this.props.playlistId, this.savePlaylistSongs)
+        }  
     }
 
     addNewTrack = () => {
-
         let body = {
             name: this.state.songNameInput, 
             artist: this.state.artistInput,
@@ -158,8 +177,15 @@ export default class PlaylistContent extends React.Component {
           }
 
           addTrackToPlaylist(this.props.playlistId, body);
+          this.setState({songNameInput: "", artistInput: "", songURLinput: ""})
           this.addSongButton(); 
        
+
+    }
+
+    playSong = (songUrl) => {
+        console.log("clicado", songUrl)
+        this.setState({currentSongUrl: songUrl, songPlaying: true});
 
     }
 
@@ -185,43 +211,71 @@ export default class PlaylistContent extends React.Component {
                            <button onClick={() => {this.addNewTrack()}}>Submit</button>
                           </AddSongContainer>
 
-       console.log("songs:", this.state.songs)
 
-       let displaySongs; 
+       let displaySongs = []; 
 
+       //controlling song
        if(this.state.songs.length !== 0)
        {
-           displaySongs = this.state.songs.map( (track) => {
-              return ( <SongCard key={track.id} 
-               id = {track.id}
-               name = {track.name} 
-               artist={track.artist} 
-               url= {track.url}
-               deleteSong = { (songId) => this.deleteSong(songId, this.props.playlistId)}
-               />)
-           })
+           
+           if(this.state.searchSongInput === "") {
+               displaySongs = this.state.songs.map( (track) => {
+                  return ( <SongCard key={track.id} 
+                   id = {track.id}
+                   name = {track.name} 
+                   artist={track.artist} 
+                   url= {track.url}
+                   deleteSong = { (songId) => this.deleteSong(songId, this.props.playlistId)}
+                   playSong = { (songUrl) => { this.playSong(songUrl)}}
+                   />)
+               })
+           } else {
+               let myFilter; 
+                myFilter = this.state.songs.filter( (track) => {
+                    return track.name.toLowerCase().includes(this.state.searchSongInput.toLocaleLowerCase())
+                }).map( (track) => 
+                {
+                    return ( <SongCard key={track.id} 
+                        id = {track.id}
+                        name = {track.name} 
+                        artist={track.artist} 
+                        url= {track.url}
+                        deleteSong = { (songId) => this.deleteSong(songId, this.props.playlistId)}
+                        playSong = { (songUrl) => { this.playSong(songUrl)}}
+                        />)
+                }); 
+
+                if (myFilter.length > 0)
+                {
+                    displaySongs = [...myFilter]; 
+                }            
+           }
        }
+
+       
+       
         return(
 
             <PlaylistContentContainer>
 
                 <PlaylistContentHeader>
-
+                    
                     <PlaylistOptions>
+                       <audio controls src= {this.state.currentSongUrl} autoPlay></audio>
                         <button onClick={() => this.addSongButton()}>+ Add Song</button>
-                        <input placeholder="search song..."/>
+                        <input placeholder="search song..." value={this.state.searchSongInput} onChange={(event) => {this.setState({searchSongInput: event.target.value})}}/>
                     </PlaylistOptions>
-                    {this.state.addingSong ? addSongForm:  <span></span>}
+                    
 
-                {this.props.playlistName.length === 0 ? <h1>Welcome to Labefy! To get started, select a playlist or create one.</h1>: <h1>{this.props.playlistName}</h1>}
+                 {this.props.playlistName.length === 0 ? <h1>Welcome to Labefy! To get started, select a playlist or create one.</h1>: <h1>{this.props.playlistName}</h1>}
                
                 </PlaylistContentHeader>
 
-                <SongCardContainer>
-                    <br/>
-                {this.state.songs.length === 0 && this.props.playlistName.length > 0 && this.state.addingSong === false? <div><h2>[No songs around here...   press (+ Add Song) to add new songs!]</h2> </div> : <span></span> }
-                {displaySongs}
-                </SongCardContainer>
+                 <SongCardContainer>
+                 {this.state.addingSong ? addSongForm:  <span></span>}
+                  {this.state.songs.length === 0 && this.props.playlistName.length > 0 && this.state.addingSong === false? <div><h2>[No songs around here...   press (+ Add Song) to add new songs!]</h2> </div> : <span></span> }
+                  {displaySongs}
+                 </SongCardContainer>
 
             </PlaylistContentContainer>
         )

@@ -16,7 +16,7 @@ width: 100vw;
 `
 
 const Header = styled.div`
-height: 10%; 
+height: 7%; 
 width: 100%;
 display: flex; 
 background-color: ${COLORS.primary}; 
@@ -27,7 +27,7 @@ color: ${COLORS.fontPrimary};
 `
 
 const Footer = styled.div`
-height: 6%; 
+height: 4%; 
 width: 100%;
 display: flex; 
 background-color: ${COLORS.primary}; 
@@ -59,7 +59,7 @@ export default class App extends React.Component
         </LabefyMain>
 
         <Footer>
-          <h3>I'm the footer</h3>
+          <h3>Created by Martin Sejas @ 2022</h3>
         </Footer>
         
       </MainAppContainer>
