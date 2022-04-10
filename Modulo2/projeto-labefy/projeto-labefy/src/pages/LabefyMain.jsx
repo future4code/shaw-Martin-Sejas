@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { COLORS } from "../constants/styling";
 import Playlists from "./Playlists";
 import PlaylistContent from "./PlaylistContent";
