@@ -9,8 +9,8 @@ let MainAppContainer = styled.div`
 display: flex; 
 height: 100vh; 
 width:100vw; 
-background-color: yellow; 
 align-items: center; 
+background-color: whitesmoke ; 
 justify-content: center; 
 `
 

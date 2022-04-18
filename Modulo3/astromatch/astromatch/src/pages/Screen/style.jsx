@@ -4,7 +4,8 @@ export const ScreenContainer = styled.div`
     height: 80%; 
     width: 32%; 
    
-    background-color: teal; 
+   
+    border: black double 6px; 
 
     @media (max-width: 720px ) {
         height: 85%; 
