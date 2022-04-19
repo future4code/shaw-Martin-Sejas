@@ -6,6 +6,7 @@ export const ScreenContainer = styled.div`
    
    
     border: black double 6px; 
+    border-radius: 9px 9px 9px ; 
 
     @media (max-width: 720px ) {
         height: 85%; 

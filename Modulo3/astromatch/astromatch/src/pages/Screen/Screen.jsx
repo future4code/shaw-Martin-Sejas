@@ -44,7 +44,7 @@ export default function Screen() {
 
   return (
     <ScreenContainer>
-        <Header/>
+        <Header page= {currentPage} changePage = {changePage}/>
         {renderedPage}
     <button onClick={changePage}>Limpar Swipes e Matches</button>
     </ScreenContainer>
