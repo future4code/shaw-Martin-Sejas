@@ -15,8 +15,8 @@ export default function Screen() {
     let [profile, setProfile] = useState([]); 
 
     useEffect( () => {
-       
-    })
+       getProfileToChoose(setProfile)
+    }, [])
 
     let changePage = () => {
         if(currentPage === "HomeScreen") 
@@ -34,7 +34,7 @@ export default function Screen() {
     switch (currentPage) {
         case "HomeScreen" : 
         {
-            renderedPage = <HomeScreen/>; 
+            renderedPage = <HomeScreen profile= {profile}/>; 
             break; 
         }
 

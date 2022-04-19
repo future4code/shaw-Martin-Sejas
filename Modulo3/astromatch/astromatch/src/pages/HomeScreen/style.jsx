@@ -7,14 +7,28 @@ export const HomeScreenContainer = styled.div`
     
     color: white; 
     
-    background-color: #540a0a; 
+    
 `
 
 export const MainCardContainer = styled.div`
 width: 100%; 
 height: 80%; 
+display: flex; 
+flex-direction: column; 
+justify-content: flex-end; 
 
-background-color: grey; 
+color: white; 
+
+div {
+    padding: 5%; 
+    width: 100%; 
+    align-items: center; 
+
+    p {
+        font-size: 1.2rem; 
+    }
+}
+
    
 `
 
@@ -32,8 +46,5 @@ export const SwipeContainer = styled.div`
     button {
         height: 60%; 
         width: 30%;
-    }
-
-  
-    
+    }  
 `
