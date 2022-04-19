@@ -3,6 +3,7 @@ import HomeScreen from "../HomeScreen/HomeScreen";
 import MatchesScreen from "../MatchesScreen/MatchesScreen";
 import { ScreenContainer } from "./style";
 import Header from "../../components/Header/Header";
+import { getProfileToChoose } from "../../services/requests";
 
 
 
@@ -11,6 +12,11 @@ import Header from "../../components/Header/Header";
 export default function Screen() {
 
     let [currentPage, setCurrentPage] = useState("HomeScreen")
+    let [profile, setProfile] = useState([]); 
+
+    useEffect( () => {
+       
+    })
 
     let changePage = () => {
         if(currentPage === "HomeScreen") 
@@ -42,11 +48,12 @@ export default function Screen() {
         renderedPage = <HomeScreen/> 
     }
 
+    console.log(profile)
   return (
     <ScreenContainer>
         <Header page= {currentPage} changePage = {changePage}/>
         {renderedPage}
-    <button onClick={changePage}>Limpar Swipes e Matches</button>
+    <button>Limpar Swipes e Matches</button>
     </ScreenContainer>
   )
 }

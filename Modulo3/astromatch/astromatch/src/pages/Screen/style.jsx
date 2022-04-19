@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ScreenContainer = styled.div`
     height: 80%; 
-    width: 32%; 
+    width: 25%; 
    
    
     border: black double 6px; 
