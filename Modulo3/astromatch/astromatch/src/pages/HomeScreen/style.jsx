@@ -17,6 +17,7 @@ display: flex;
 flex-direction: column; 
 justify-content: flex-end; 
 
+text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 color: white; 
 
 div {

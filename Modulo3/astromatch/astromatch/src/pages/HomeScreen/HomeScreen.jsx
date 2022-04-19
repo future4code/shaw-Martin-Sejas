@@ -14,7 +14,7 @@ import { HomeScreenContainer, MainCardContainer, SwipeContainer } from "./style"
       <MainCardContainer 
       style = {{
         backgroundImage: `url(${props.profile.photo})`,
-        backgroundSize: "cover"
+        backgroundSize: "100% 100%"
       }}
       >
        
@@ -28,8 +28,8 @@ import { HomeScreenContainer, MainCardContainer, SwipeContainer } from "./style"
       </MainCardContainer>
 
       <SwipeContainer>
-      <button>Deny</button>
-      <button>Match</button>
+      <button onClick={() =>props.denyMatch()}>Deny</button>
+      <button onClick={() =>props.acceptMatch()}>Match</button>
       </SwipeContainer>
         
     </HomeScreenContainer>

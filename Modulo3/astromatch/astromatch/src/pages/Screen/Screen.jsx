@@ -3,7 +3,7 @@ import HomeScreen from "../HomeScreen/HomeScreen";
 import MatchesScreen from "../MatchesScreen/MatchesScreen";
 import { ScreenContainer } from "./style";
 import Header from "../../components/Header/Header";
-import { getProfileToChoose } from "../../services/requests";
+import { getProfileToChoose, choosePerson, clearMatches } from "../../services/requests";
 
 
 
@@ -17,6 +17,18 @@ export default function Screen() {
     useEffect( () => {
        getProfileToChoose(setProfile)
     }, [])
+
+    let processMatch = (id, choice) => {
+        choosePerson(id,choice);
+        getProfileToChoose(setProfile);
+    }
+
+    let clearEverything = () => {
+       if( window.confirm("Você vai resetar o seu perfil completamente! \n \n Tem certeza que deseja resetar?"))
+       {
+         clearMatches(); 
+       }
+    }
 
     let changePage = () => {
         if(currentPage === "HomeScreen") 
@@ -34,7 +46,10 @@ export default function Screen() {
     switch (currentPage) {
         case "HomeScreen" : 
         {
-            renderedPage = <HomeScreen profile= {profile}/>; 
+            renderedPage = <HomeScreen profile= {profile}
+                                       denyMatch= {() =>processMatch(profile.id, false)}
+                                       acceptMatch = {() => processMatch(profile.id,true)}
+                            />
             break; 
         }
 
@@ -53,7 +68,7 @@ export default function Screen() {
     <ScreenContainer>
         <Header page= {currentPage} changePage = {changePage}/>
         {renderedPage}
-    <button>Limpar Swipes e Matches</button>
+    <button onClick={() => clearEverything()}>Resetar Perfil</button>
     </ScreenContainer>
   )
 }

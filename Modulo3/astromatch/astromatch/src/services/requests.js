@@ -17,3 +17,25 @@ export const getMatches = (saveMatches) => {
     }).catch((err) => alert(`${err}`))
 }
 
+export const choosePerson = (id, choice) => {
+
+    let body = {
+        "id": id, 
+        "choice": choice
+    }
+
+    axios.post(`${BASE_URL}/choose-person`, body)
+    .then( (response) => {
+        if(response.data.isMatch) alert("Deu Match!")
+       
+    })
+    .catch( (err) => alert(`${err} dando ruim`))
+}
+
+export const clearMatches = () => {
+    axios.put(`${BASE_URL}/clear`)
+    .then( (response) => {
+        alert("Perfil resetado com sucesso!")
+    }).catch( (err) => alert(`${err}`))
+}
+
