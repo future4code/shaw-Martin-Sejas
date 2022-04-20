@@ -8,16 +8,16 @@ export const HeaderContainer = styled.div`
     
 
     div {
-        width: 80%;
+        width: 60%;
         display: flex; 
         justify-content: flex-start; 
         padding-left: 4%;  
     }
 
-    button {
-        
-        width: 15%; 
-        margin: 2%;
+    Button {
+        height:90%; 
+        width: 30%; 
+        margin: 1%;
     }
     
 `

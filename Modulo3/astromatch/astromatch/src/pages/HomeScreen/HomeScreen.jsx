@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { HomeScreenContainer, MainCardContainer, SwipeContainer } from "./style";
+import deny from "../../assets/deny-emoji.svg";
+import accept from "../../assets/accept-emoji.svg"
 
 
 //receive from props card id
@@ -28,8 +30,8 @@ import { HomeScreenContainer, MainCardContainer, SwipeContainer } from "./style"
       </MainCardContainer>
 
       <SwipeContainer>
-      <button onClick={() =>props.denyMatch()}>Deny</button>
-      <button onClick={() =>props.acceptMatch()}>Match</button>
+      <img src= {deny} alt= "X" onClick={() =>props.denyMatch()}></img>
+      <img src= {accept} alt= "heart" onClick={() =>props.acceptMatch()}></img>
       </SwipeContainer>
         
     </HomeScreenContainer>

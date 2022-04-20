@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ScreenContainer = styled.div`
-    height: 80%; 
-    width: 25%; 
+    height: 95%; 
+    width: 30%; 
     background-color: white; 
    
     border: #c8c5c5 solid 1px; 

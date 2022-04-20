@@ -41,11 +41,31 @@ export const SwipeContainer = styled.div`
     align-items: center; 
     justify-content: space-around;
 
-    /* padding-left: 15%; 
-    padding-right: 15%;  */
-
-    button {
+   @keyframes expand {
+       from {
         height: 60%; 
         width: 30%;
-    }  
+       }
+
+       to {
+        height: 70%; 
+        width: 40%;
+       }
+   }
+
+   
+
+    img {
+        
+        height: 60%; 
+        width: 30%;
+
+        &:hover {
+            animation-name: expand; 
+            animation-duration: 1s; 
+            height: 70%; 
+            width: 40%;
+        }
+     
+    }
 `

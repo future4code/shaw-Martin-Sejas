@@ -2,7 +2,8 @@ import React from "react";
 import { HeaderContainer } from "./style";
 import { Button } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
-import {BsPeopleFill} from 'react-icons/bs'
+import {BsPeopleFill} from 'react-icons/bs'; 
+import {MdSwipe} from 'react-icons/md';
 
 
 
@@ -10,17 +11,17 @@ import {BsPeopleFill} from 'react-icons/bs'
  
   let buttonText; 
 
-  let matchesButton = <Button leftIcon={<Icon as= {BsPeopleFill}/>}  onClick = {props.changePage}>Matches</Button>; 
-  let homeButton; 
+  let matchesButton = <Button leftIcon={<Icon as= {BsPeopleFill}/>} onClick = {props.changePage}>Matches</Button>; 
+  let homeButton = <Button leftIcon={<Icon as= {MdSwipe}/>}  onClick = {props.changePage}>Profiles</Button>; 
 
-  if (props.page === "HomeScreen") buttonText = "Matches"; 
-  else buttonText = "Home"; 
+  let renderedButton; 
+  if (props.page === "HomeScreen") renderedButton = matchesButton; 
+  else renderedButton = homeButton; 
   
   return (
     <HeaderContainer>
         <div><h2>AstroMatch</h2></div>
-        {/* <button onClick={props.changePage}>{buttonText}</button> */}
-        {matchesButton}
+        {renderedButton}
         
     </HeaderContainer>
   )
