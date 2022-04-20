@@ -4,6 +4,8 @@ import MatchesScreen from "../MatchesScreen/MatchesScreen";
 import { ScreenContainer } from "./style";
 import Header from "../../components/Header/Header";
 import { getProfileToChoose, choosePerson, clearMatches, getMatches } from "../../services/requests";
+import { Button } from "@chakra-ui/react";
+import {DeleteIcon} from '@chakra-ui/icons'
 
 
 export default function Screen() {
@@ -77,7 +79,7 @@ export default function Screen() {
     <ScreenContainer>
         <Header page= {currentPage} changePage = {changePage}/>
         {renderedPage}
-    <button onClick={() => clearEverything()}>Resetar Perfil</button>
+    <Button colorScheme='red' leftIcon={<DeleteIcon />} onClick={() => clearEverything()}>Deletar Perfil</Button>
     </ScreenContainer>
   )
 }

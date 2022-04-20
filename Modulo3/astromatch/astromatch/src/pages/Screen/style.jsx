@@ -3,9 +3,11 @@ import styled from "styled-components";
 export const ScreenContainer = styled.div`
     height: 80%; 
     width: 25%; 
-    padding-bottom: 0.1%;
+    background-color: white; 
    
-    border: black solid 3px; 
+    border: #c8c5c5 solid 1px; 
+    border-bottom: none;
+    /* box-shadow: 1px 1px 1px;  */
     border-radius: 9px 9px 9px ; 
 
     @media (max-width: 720px ) {
@@ -13,8 +15,11 @@ export const ScreenContainer = styled.div`
         width: 90%; 
     }
 
-    button {
-        border-radius: 9px 9px 9px ; 
+    Button {
+      height: 100%;
+      padding-bottom: 0.1%;
+     
+      
     }
 
     display: grid;
