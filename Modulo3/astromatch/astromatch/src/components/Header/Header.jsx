@@ -4,6 +4,7 @@ import { Button } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import {BsPeopleFill} from 'react-icons/bs'; 
 import {MdSwipe} from 'react-icons/md';
+import {GiGlassHeart} from 'react-icons/gi'
 
 
 
@@ -20,7 +21,7 @@ import {MdSwipe} from 'react-icons/md';
   
   return (
     <HeaderContainer>
-        <div><h2>AstroMatch</h2></div>
+        <div> <span> <Icon as = {GiGlassHeart}/> </span> <h2>Astro<span id= "match">Match</span> </h2>  </div>
         {renderedButton}
         
     </HeaderContainer>

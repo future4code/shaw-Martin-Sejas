@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { HomeScreenContainer, MainCardContainer, SwipeContainer } from "./style";
 import deny from "../../assets/deny-emoji.svg";
-import accept from "../../assets/accept-emoji.svg"
+import accept from "../../assets/accept-emoji.svg";
+import { Heading } from "@chakra-ui/react";
+
 
 
 //receive from props card id
@@ -22,7 +24,7 @@ import accept from "../../assets/accept-emoji.svg"
        
         
        <div> 
-         <h1>{props.profile.name}, {props.profile.age}</h1>
+         <Heading size='lg'>{props.profile.name}, {props.profile.age}</Heading>
         <p>{props.profile.bio}</p>
         </div>
        

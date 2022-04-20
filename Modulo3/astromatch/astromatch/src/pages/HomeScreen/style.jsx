@@ -19,6 +19,7 @@ justify-content: flex-end;
 border-radius: 3% 3%; 
 text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 color: white; 
+font-family: Roboto, sans-serif;
 
 div {
     padding: 5%; 
@@ -37,7 +38,7 @@ export const SwipeContainer = styled.div`
     display: flex; 
     width: 100%; 
     height: 20%; 
-
+    
     align-items: center; 
     justify-content: space-around;
 

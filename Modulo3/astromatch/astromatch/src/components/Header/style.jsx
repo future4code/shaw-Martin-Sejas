@@ -1,23 +1,57 @@
 import styled from "styled-components";
+import {COLORS} from '../../constants/colors'
 
 export const HeaderContainer = styled.div`
     display: flex; 
     align-items: center; 
     justify-content: space-between;
-    border-bottom: solid black 1px; 
+    border-bottom: solid #a19f9f 1px; 
     
 
     div {
-        width: 60%;
+        display: flex; 
+        align-items: center; 
+        width: 40%;
+        height: 100%; 
+        
         display: flex; 
         justify-content: flex-start; 
-        padding-left: 4%;  
+        margin-left: 1%;
+        padding-left: 2%;  
+        h2 {
+        font-family: Helvetica,  sans-serif;
+        color: #3f3d3d; 
+        font-size: 1.4rem;
+        font-weight: 700;
+        padding-left: 5%; 
+        }
+
+        span {
+           
+            font-size: 1.4rem; 
+        }
+
+        #match {
+            color: ${COLORS.primary}; 
+        }
     }
 
     Button {
-        height:90%; 
+        height:100%; 
         width: 30%; 
-        margin: 1%;
+        border-radius: 2px 2px;
+        background-color: ${COLORS.primary};
+        color: white; 
+
+        &:hover{
+            background-color: #d632ab
+        }
+
+        &:active{
+            border: none;
+            outline: 0px; 
+        }
     }
+
     
 `
