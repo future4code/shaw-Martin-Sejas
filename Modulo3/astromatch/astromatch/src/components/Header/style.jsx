@@ -4,7 +4,7 @@ export const HeaderContainer = styled.div`
     display: flex; 
     align-items: center; 
     justify-content: space-between;
-    background-color: pink; 
+    border-bottom: solid black 1px; 
     
 
     div {

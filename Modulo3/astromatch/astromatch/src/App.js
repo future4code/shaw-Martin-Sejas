@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import GlobalStyle from "./constants/globalStyles";
 import Screen from "./pages/Screen/Screen";
-
+import {ChakraProvider} from '@chakra-ui/react'; 
 
 
 let MainAppContainer = styled.div`
@@ -19,11 +19,12 @@ justify-content: center;
 function App() {
 
   return (
+    <ChakraProvider>
+    <GlobalStyle/>
     <MainAppContainer>
-      <GlobalStyle/>
-      <Screen/>
-      
+      <Screen/>  
     </MainAppContainer>
+    </ChakraProvider>
   );
 }
 

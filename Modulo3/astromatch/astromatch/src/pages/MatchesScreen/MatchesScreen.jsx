@@ -1,30 +1,34 @@
 import React, {useState, useEffect} from "react"
-import { getMatches } from "../../services/requests";
+import MatchCard from "../../components/MatchCard/MatchCard";
 import { MatchesScreenContainer } from "./style"
 
 
 
-export default function MatchesScreen() {
 
-  let [matches, setMatches] = useState({}); 
+ const MatchesScreen = (props) => {
 
-  useEffect( ()=> {
-    getMatches(setMatches)
-  }, [])
+  let [matches, setMatches] = useState([...props.matches]); 
+
+  useEffect( () => {
+    setMatches([...props.matches])
+  }, [props.matches])
+
+  
 
   let renderMatches; 
 
   if (matches.length > 0)
   {
    renderMatches = matches.map( (match) => {
-      return( <li key={match.id}>{match.name}</li>)
+      return( <MatchCard match = {match} key={match.id}></MatchCard>)
     })
   }
 
   return (
     <MatchesScreenContainer>
-        <ul>{renderMatches}</ul>
+        {renderMatches}
     </MatchesScreenContainer>
   )
 }
 
+export default MatchesScreen;

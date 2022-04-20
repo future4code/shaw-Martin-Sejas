@@ -3,33 +3,44 @@ import HomeScreen from "../HomeScreen/HomeScreen";
 import MatchesScreen from "../MatchesScreen/MatchesScreen";
 import { ScreenContainer } from "./style";
 import Header from "../../components/Header/Header";
-import { getProfileToChoose, choosePerson, clearMatches } from "../../services/requests";
-
-
-
+import { getProfileToChoose, choosePerson, clearMatches, getMatches } from "../../services/requests";
 
 
 export default function Screen() {
 
+    //state variables
     let [currentPage, setCurrentPage] = useState("HomeScreen")
     let [profile, setProfile] = useState([]); 
+    let [matches, setMatches] = useState([]); 
+    let [matchNumber, setMatchNumber] = useState(0); 
 
+    //initialisation with API GET requests
     useEffect( () => {
-       getProfileToChoose(setProfile)
+       getProfileToChoose(setProfile);
+       getMatches(setMatches)
     }, [])
 
+    //Re-send match list to matches screen if new match is made
+    useEffect ( ()=> {
+        getMatches(setMatches);
+    }, [matchNumber])
+
+    //function to process match
     let processMatch = (id, choice) => {
-        choosePerson(id,choice);
+        choosePerson(id,choice,matchNumber, setMatchNumber);
         getProfileToChoose(setProfile);
     }
 
+    //function to reset profile
     let clearEverything = () => {
-       if( window.confirm("Você vai resetar o seu perfil completamente! \n \n Tem certeza que deseja resetar?"))
+       if(window.confirm("Você vai resetar o seu perfil completamente! \n \n Tem certeza que deseja resetar?"))
        {
-         clearMatches(); 
+         clearMatches(setMatches); 
+         setMatchNumber(0);
        }
     }
 
+    //function to change page
     let changePage = () => {
         if(currentPage === "HomeScreen") 
         {
@@ -40,8 +51,7 @@ export default function Screen() {
         }
     }
 
-
-
+    //function to decide what page will be rendered
     let renderedPage; 
     switch (currentPage) {
         case "HomeScreen" : 
@@ -55,7 +65,7 @@ export default function Screen() {
 
         case "MatchesScreen":  
         {
-            renderedPage = <MatchesScreen/> 
+            renderedPage = <MatchesScreen matches = {matches}/> 
             break; 
         }
 
@@ -63,7 +73,6 @@ export default function Screen() {
         renderedPage = <HomeScreen/> 
     }
 
-    console.log(profile)
   return (
     <ScreenContainer>
         <Header page= {currentPage} changePage = {changePage}/>

@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 export const MatchesScreenContainer = styled.div`
     display: flex; 
-    background-color: #060689; 
-    justify-content: center; 
-    color: white; 
+    flex-direction: column; 
+    
+    justify-content: flex-start; 
+    
+    height: 100%; 
+    width: 100%; 
+    overflow-y: auto; 
 `
