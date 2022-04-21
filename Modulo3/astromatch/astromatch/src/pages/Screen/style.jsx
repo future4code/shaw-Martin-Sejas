@@ -11,8 +11,9 @@ export const ScreenContainer = styled.div`
     border-radius: 9px 9px 9px ; 
     padding-bottom: 0.05%;
     @media (max-width: 720px ) {
-        height: 85%; 
-        width: 90%; 
+        height: 100%; 
+        width: 100%; 
+        border-radius: 0px 0px 0px; 
     }
 
     Button {
