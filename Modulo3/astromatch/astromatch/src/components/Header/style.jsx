@@ -39,7 +39,7 @@ export const HeaderContainer = styled.div`
     Button {
         height:100%; 
         width: 30%; 
-        border-radius: 2px 2px;
+        border-radius: 0px 9px 0px 0px;
         background-color: ${COLORS.primary};
         color: white; 
 

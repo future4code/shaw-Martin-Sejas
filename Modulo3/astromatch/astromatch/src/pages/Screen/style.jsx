@@ -6,10 +6,10 @@ export const ScreenContainer = styled.div`
     background-color: white; 
    
     border: #c8c5c5 solid 2px; 
-    border-bottom: none;
-    /* box-shadow: 1px 1px 1px;  */
+   
+    
     border-radius: 9px 9px 9px ; 
-
+    padding-bottom: 0.05%;
     @media (max-width: 720px ) {
         height: 85%; 
         width: 90%; 
@@ -17,7 +17,8 @@ export const ScreenContainer = styled.div`
 
     Button {
       height: 100%;
-      padding-bottom: 0.1%;
+      padding-bottom: 1%;
+      margin-bottom: 0.2%;
      
       
     }
