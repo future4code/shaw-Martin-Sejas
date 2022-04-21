@@ -1,8 +1,7 @@
-import styled, {keyframes} from "styled-components";
-import { fadeOutLeft} from "react-animations";
-import { fadeOutRight } from "react-animations";
+import styled from "styled-components";
 
-const fadeLeft = keyframes`${fadeOutLeft}`; 
+
+
 
 export const HomeScreenContainer = styled.div`
     display: flex; 

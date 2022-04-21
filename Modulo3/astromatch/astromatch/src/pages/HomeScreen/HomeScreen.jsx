@@ -4,7 +4,7 @@ import denyPic from "../../assets/deny-emoji.svg";
 import acceptPic from "../../assets/accept-emoji.svg";
 import { Heading } from "@chakra-ui/react";
 import { fadeOutLeft, fadeOutRight} from "react-animations";
-import styled, {keyframes} from "styled-components";
+import  {keyframes} from "styled-components";
 
 
 

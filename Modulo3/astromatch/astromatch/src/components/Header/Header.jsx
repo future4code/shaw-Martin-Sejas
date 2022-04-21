@@ -10,7 +10,7 @@ import {GiGlassHeart} from 'react-icons/gi'
 
  const Header = (props) => {
  
-  let buttonText; 
+
 
   let matchesButton = <Button leftIcon={<Icon as= {BsPeopleFill}/>} onClick = {props.changePage}>Matches</Button>; 
   let homeButton = <Button leftIcon={<Icon as= {MdSwipe}/>}  onClick = {props.changePage}>Profiles</Button>; 
