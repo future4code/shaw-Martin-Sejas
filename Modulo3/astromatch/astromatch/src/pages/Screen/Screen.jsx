@@ -29,6 +29,7 @@ export default function Screen() {
 
     //function to process match
     let processMatch = (id, choice) => {
+        setTimeout(()=>{}, 3000)
         choosePerson(id,choice,matchNumber, setMatchNumber);
         getProfileToChoose(setProfile);
     }
@@ -61,6 +62,8 @@ export default function Screen() {
             renderedPage = <HomeScreen profile= {profile}
                                        denyMatch= {() =>processMatch(profile.id, false)}
                                        acceptMatch = {() => processMatch(profile.id,true)}
+                                       denyStatus = {false}
+                                       acceptStatus = {false}
                             />
             break; 
         }

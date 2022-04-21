@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 //!!!!!!!!!!!!CONTROLAR NULL RESPONSES (PERFIS ACABAM)!!!!!!!!
 toast.configure()
 
-const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/martin-sejas";
+const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/martin-s";
 
 export const getProfileToChoose = (saveProfile) => 
 {

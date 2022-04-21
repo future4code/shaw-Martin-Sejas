@@ -18,6 +18,7 @@ import { MatchCardContainer } from "./style";
   
   return (
     <MatchCardContainer>
+      
         <img src={props.match.photo} alt= "profile pic"></img>
        <h3>{props.match.name}</h3>
     </MatchCardContainer>

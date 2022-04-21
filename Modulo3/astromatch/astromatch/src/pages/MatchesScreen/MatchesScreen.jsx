@@ -15,7 +15,7 @@ import { MatchesScreenContainer } from "./style"
 
   
 
-  let renderMatches; 
+  let renderMatches = []; 
 
   if (matches.length > 0)
   {
@@ -26,7 +26,8 @@ import { MatchesScreenContainer } from "./style"
 
   return (
     <MatchesScreenContainer>
-        {renderMatches}
+      <h2>Matches ({renderMatches.length})</h2>
+        {renderMatches.length > 0 ? (renderMatches): <p>Olhe os perfis e ache o seu proximo amor!</p>}
     </MatchesScreenContainer>
   )
 }

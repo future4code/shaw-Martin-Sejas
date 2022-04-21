@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../constants/colors";
 
 export const MatchCardContainer = styled.div`
 
@@ -6,13 +7,23 @@ display: flex;
 align-items: center; 
 color: black; 
 width: 100%; 
-min-height: 15%; 
-height: 15%;
-margin: 2% 0%; 
+min-height: 12%; 
+height: 10.5%;
+margin: 1.5% 0%; 
+padding: 1% 0%; 
+background-color: #eeeeee;
+
+/* border-top: solid #bfbfbf  1px; 
+border-bottom: solid #bfbfbf 1px;  */
+
+
+&:hover{
+    background-color: #e6e2e2;
+}
 
 
 img {
-    height: 70%; 
+    height: 100%; 
     width: 15%;
     margin-left: 3%; 
     border-radius: 55% 55%; 

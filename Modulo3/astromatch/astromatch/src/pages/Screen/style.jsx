@@ -5,7 +5,7 @@ export const ScreenContainer = styled.div`
     width: 30%; 
     background-color: white; 
    
-    border: #c8c5c5 solid 1px; 
+    border: #c8c5c5 solid 2px; 
     border-bottom: none;
     /* box-shadow: 1px 1px 1px;  */
     border-radius: 9px 9px 9px ; 

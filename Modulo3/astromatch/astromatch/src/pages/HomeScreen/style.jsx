@@ -1,10 +1,16 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+import { fadeOutLeft} from "react-animations";
+import { fadeOutRight } from "react-animations";
+
+const fadeLeft = keyframes`${fadeOutLeft}`; 
 
 export const HomeScreenContainer = styled.div`
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     color: white; 
+
+    
     
     
 `
@@ -30,6 +36,13 @@ div {
         font-size: 1.1rem; 
     }
 }
+
+
+
+
+    animation: ${props => (props.shouldAnimate ? (`2s`) : (`0s`) )} ${props => props.deny ? (props.fadeLeft):(props.fadeRight)};
+   
+    animation-iteration-count: infinite;
 
    
 `
