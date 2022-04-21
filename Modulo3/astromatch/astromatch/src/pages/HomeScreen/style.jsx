@@ -40,7 +40,7 @@ div {
 
 
 
-    animation: ${props => (props.shouldAnimate ? (`2s`) : (`0s`) )} ${props => props.deny ? (props.fadeLeft):(props.fadeRight)};
+    animation: ${props => (props.shouldAnimate ? (`5s`) : (`0s`) )} ${props => props.deny ? (props.fadeLeft):(props.fadeRight)};
    
     animation-iteration-count: infinite;
 

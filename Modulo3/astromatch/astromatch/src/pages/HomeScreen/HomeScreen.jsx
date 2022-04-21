@@ -14,21 +14,22 @@ import styled, {keyframes} from "styled-components";
 //props = profile
 
  const HomeScreen = (props) => {
-   let [accept, setAccept] = useState(props.deny); 
-  let  [deny, setDeny] = useState(props.deny);
-  let [animation, setAnimation] = useState(props.deny);
+   let [accept, setAccept] = useState(props.acceptStatus); 
+  let  [deny, setDeny] = useState(props.denyStatus);
+  let [animation, setAnimation] = useState(props.denyStatus);
+  let [animationCount, setAnimationCount] = useState(1)
  
 
   useEffect( () => {
     setDeny(false)
     setAnimation(false)
-    setAccept(true)
+    setAccept(false)
+    setAnimationCount(animation+1)
   }, [props])
 
   const fadeLeft = keyframes`${fadeOutLeft}`; 
   const fadeRight = keyframes`${fadeOutRight}`; 
 
-console.log(fadeLeft)
   return (
     <HomeScreenContainer>
 
@@ -43,6 +44,7 @@ console.log(fadeLeft)
       shouldAnimate = {animation}
       fadeLeft = {fadeLeft}
       fadeRight = {fadeRight}
+      animationCount = {animationCount}
       >
        
         
@@ -54,8 +56,8 @@ console.log(fadeLeft)
       
       </MainCardContainer>
       <SwipeContainer>
-      <img  src= {denyPic} alt= "X" onClick={() =>  {setDeny(true); setAnimation(true);  props.denyMatch(); }}></img>
-      <img  src= {acceptPic} alt= "heart" onClick={() =>{setAccept(true); setAnimation(true); props.acceptMatch()}}></img>
+      <img  src= {denyPic} alt= "X" onClick={() =>  {setDeny(true); setAnimation(true);  setTimeout(() => {props.denyMatch()},2000 )}}></img>
+      <img  src= {acceptPic} alt= "heart" onClick={() =>{setAccept(true); setAnimation(true); setTimeout(() => {props.acceptMatch()},2000 )}}></img>
       </SwipeContainer>
         
     </HomeScreenContainer>

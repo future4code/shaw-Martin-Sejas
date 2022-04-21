@@ -29,7 +29,7 @@ export default function Screen() {
 
     //function to process match
     let processMatch = (id, choice) => {
-        setTimeout(()=>{}, 3000)
+       
         choosePerson(id,choice,matchNumber, setMatchNumber);
         getProfileToChoose(setProfile);
     }

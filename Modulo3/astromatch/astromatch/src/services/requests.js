@@ -7,15 +7,18 @@ import 'react-toastify/dist/ReactToastify.css';
 //!!!!!!!!!!!!CONTROLAR NULL RESPONSES (PERFIS ACABAM)!!!!!!!!
 toast.configure()
 
-const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/martin-s";
+const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/martin-sejas";
 
-export const getProfileToChoose = (saveProfile) => 
+export const getProfileToChoose = async (saveProfile) => 
 {
-    axios.get(`${BASE_URL}/person`)
-    .then( (response) => {
-       
+  try {
+      
+    const response = await axios.get(`${BASE_URL}/person`)
+         
         saveProfile(response.data.profile);
-    }).catch( (err) => alert(`${err}`))
+    
+}
+    catch (err) {  resetMatches()  /*alert(`${err}`)*/}
 }
 
 
@@ -27,6 +30,7 @@ export const getMatches = (saveMatches) => {
 
 export const choosePerson = (id, choice, matchNumber, setMatchNumber) => {
 
+    
     let body = {
         "id": id, 
         "choice": choice
@@ -38,6 +42,9 @@ export const choosePerson = (id, choice, matchNumber, setMatchNumber) => {
             toast.success("Deu Match!"); 
             setMatchNumber(matchNumber+1); 
         }
+        else{
+             setMatchNumber(matchNumber)
+        }
        
     })
     .catch( (err) => alert(`${err} dando ruim`))
@@ -48,6 +55,15 @@ export const clearMatches = (setMatches) => {
     .then( (response) => {
         toast.info("Perfil resetado com sucesso!")
         setMatches([]);
+    }).catch( (err) => alert(`${err}`))
+}
+
+
+export const resetMatches = () => {
+    axios.put(`${BASE_URL}/clear`)
+    .then( (response) => {
+       
+        
     }).catch( (err) => alert(`${err}`))
 }
 
