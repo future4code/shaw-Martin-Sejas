@@ -13,11 +13,15 @@ export const getProfileToChoose = async (saveProfile) =>
   try {
       
     const response = await axios.get(`${BASE_URL}/person`)
-         
+        if (response.data.profile === null)
+        {
+            resetMatches();
+        }
+        else {
         saveProfile(response.data.profile);
-    
+        }
 }
-    catch (err) {  resetMatches()  /*alert(`${err}`)*/}
+    catch (err) { alert(`${err}`)}
 }
 
 
