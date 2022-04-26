@@ -2,6 +2,8 @@ import React from "react";
 import {theme} from './constants/theme'
 import {ChakraProvider} from '@chakra-ui/react'
 import GlobalStyle from "./constants/globalStyles";
+import AppRoutes from "./services/Routes/AppRoutes";
+
 
 function App() {
 
@@ -10,9 +12,8 @@ function App() {
     <ChakraProvider theme={theme}>
       <GlobalStyle/>
       
-      <App>
-
-      </App>
+      <AppRoutes/>
+      
      
     </ChakraProvider>
   );
