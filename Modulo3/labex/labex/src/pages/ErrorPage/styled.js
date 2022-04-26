@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLORS, MYFONTS,HEADER } from "../../constants/theme";
 
-export const LogInPageDiv = styled.div`
+export const ErrorPageDiv = styled.div`
     display: grid; 
     height: 100vh;
     grid-template-rows: ${HEADER.size} 1fr; 
