@@ -1,23 +1,40 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { goToHomePage, goToLastPage } from '../../services/Routes/coordinator';
-import { LogInPageDiv } from './styled';
+import { goToHomePage, goToListTripsPage } from '../../services/Routes/coordinator';
+import { LogInPageCoreDiv, LogInPageDiv } from './styled';
 import Header from '../../components/Header/Header';
-import { Button } from '@chakra-ui/react';
+import { Button, Input, InputGroup } from '@chakra-ui/react';
 
 function LoginPage() {
   const navigate = useNavigate(); 
 
   return (
     <LogInPageDiv>
-    <Header left = "Voltar" leftButton={() => goToLastPage(navigate)}
+    <Header left = "Missões" leftButton={() => goToListTripsPage(navigate)}
             right = "Home" rightButton={() =>goToHomePage(navigate)}/>
 
-           <div>
+           <LogInPageCoreDiv>
+             <p>Login</p>
+
              
-             <p>Login (Application Form Page)</p>
-             <Button colorScheme="secondary"  >Submit</Button>
-           </div>
+             <Input 
+             colorScheme="secondary" 
+             variant='filled' 
+             placeholder='Email' 
+             _placeholder={{opacity: 1, color: 'white'}}
+             type="email"
+             />
+             <Input 
+             colorScheme="primary" 
+             variant="filled"
+             placeholder='Password' 
+              _placeholder={{opacity: 1, color: 'white'}}
+              type= "password"
+              />
+             <Button  colorScheme="secondary"  >Entrar</Button>
+             
+            
+           </LogInPageCoreDiv>
     </LogInPageDiv>
   )
 }

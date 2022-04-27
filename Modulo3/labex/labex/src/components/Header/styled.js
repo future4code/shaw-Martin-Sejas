@@ -10,8 +10,10 @@ align-items: center;
 
 
 
+
 h1 {
     font-size: 2rem;
+    padding-left: 0.7%
    
    
 }
