@@ -15,15 +15,15 @@ display: flex;
 align-items: center; 
 justify-content: flex-end;
 
-margin-right: 2%; 
 
 Button {
-    font-size: 1.2rem;
+    font-size: 1.2rem; 
+    width: 12vw;
+    margin-right: 2%;
 
     @media (max-width:720px) {
-        padding: 2%;
+        width: auto;
     }
-     
 }
 
 `

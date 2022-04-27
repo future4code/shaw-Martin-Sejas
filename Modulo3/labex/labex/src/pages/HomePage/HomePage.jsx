@@ -8,16 +8,9 @@ import { LoggedIn } from '../../components/hooks/LoggedIn';
 function HomePage() {
 
   let loggedIn = LoggedIn(); 
-  // let [tokenExists, setTokenExists] = useState(false);
   const navigate = useNavigate(); 
 
-  // useEffect( () => {
-    
-  //   if (window.localStorage.getItem('token') !== null)
-  //   {
-  //     setTokenExists(true)
-  //   }
-  // }, [])
+
   
 
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { goToHomePage, goToListTripsPage } from '../../services/Routes/coordinator';
+import { goToHomePage, goToLastPage, goToListTripsPage } from '../../services/Routes/coordinator';
 import { LogInPageCoreDiv, LogInPageDiv } from './styled';
 import Header from '../../components/Header/Header';
 import { Button, Input, InputGroup } from '@chakra-ui/react';
@@ -11,7 +11,7 @@ function LoginPage() {
   let [email, setEmail] = useState(""); 
   let [password, setPassword] = useState(""); 
   let [failedLogin, setFailedLogin] = useState(false);
-  let [response, setResponse] = useState({})
+  let [sendingResponse, setSendingResponse] = useState(false)
   const navigate = useNavigate(); 
 
 
@@ -32,10 +32,10 @@ function LoginPage() {
         "password": password
       }
       let myResponse = Login(body); 
-     
+      setSendingResponse(true)
       myResponse.then( (answer)=> 
       {
-       
+        setSendingResponse(false)
         if(answer.success) 
         {
           setEmail(""); 
@@ -46,7 +46,10 @@ function LoginPage() {
           navigate("/", {replace: true}); 
         }
   
-      }).catch( () => setFailedLogin(true))
+      }).catch( () => {
+        setSendingResponse(false)
+        setFailedLogin(true)
+      })
     
         
   }
@@ -69,7 +72,7 @@ function LoginPage() {
 
   return (
     <LogInPageDiv onKeyDown={(event) => handleKeyDown(event)}>
-    <Header left = "Missões" leftButton={() => goToListTripsPage(navigate)}
+    <Header left = "Voltar" leftButton={() => goToLastPage(navigate)}
             right = "Home" rightButton={() =>goToHomePage(navigate)}/>
 
            <LogInPageCoreDiv >
@@ -95,7 +98,7 @@ function LoginPage() {
               onChange={ (event) => setPassword(event.target.value)}
               isInvalid = {failedLogin}
               />
-             <Button  colorScheme="secondary" onClick={() => attemptLogin()} >Entrar</Button>
+             <Button isLoading={sendingResponse} colorScheme="secondary" onClick={() => attemptLogin()} >Entrar</Button>
              
             
            </LogInPageCoreDiv>
