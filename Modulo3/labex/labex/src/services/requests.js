@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 
 const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/futureX/martin-sejas/";
-
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkladGUxdmVGaHdRb0hnZ2tUbWlwIiwiZW1haWwiOiJtYXJ0aW5AbGFiZW51LmNvbSIsImlhdCI6MTY1MTA5NjMxOX0.7KR_rJx5ts_6aLDbuw5ILyZnYvrh9X0MFFvN4nOcrwA'
   //martin@labenu.com
   //12345
 
@@ -23,6 +23,27 @@ export function useRequestData(url) {
 
         useEffect( () => {
             axios.get(`${BASE_URL}${url}`).then( (response) => {      
+                setData(response.data)
+            }).catch( (error) => {
+                alert(error)
+            })
+        }, [])
+
+        return data; 
+
+}
+
+export function useRequestDataAuth(url, token) {
+    let instance = axios.create
+    let [data, setData] = useState(undefined)
+        console.log(token)
+        console.log(`${BASE_URL}${url}`)
+        useEffect( () => {
+            axios.get(`${BASE_URL}${url}`, {
+                headers: { 
+                    'auth': TOKEN
+                  }
+            }).then( (response) => {      
                 setData(response.data)
             }).catch( (error) => {
                 alert(error)

@@ -32,7 +32,6 @@ function AdminHomePage() {
   }
 
   let showTrips = (trips && trips.trips.map( (trip) => {
-    console.log(trip)
     return(<TripCard key= {trip.id} name={trip.name} id={trip.id} />)
   }))
 
