@@ -24,13 +24,25 @@ margin-top: 8%;
         margin-top: 25%;
     }
 
-p{
+h1{
     margin-bottom: 2.5rem;
     font-size: 3rem; 
 
     @media(max-width:750px) {
         font-size: 2.5rem;  
         margin-bottom: 2rem;
+    }
+}
+
+p{
+    color: red; 
+    font-size: 1.5rem; 
+    margin-top: -1.5%;
+    margin-bottom: 1.5rem; 
+
+    @media(max-width:750px) {
+        font-size: 1rem;  
+       
     }
 }
 
