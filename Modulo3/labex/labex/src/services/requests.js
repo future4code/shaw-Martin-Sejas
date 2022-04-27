@@ -34,23 +34,27 @@ export function useRequestData(url) {
 }
 
 
-export const Login = async(body, setResponse) => {
+export const Login = async(body) => {
 
+  
+    try { 
+    const response = await axios.post(`${BASE_URL}login`,body);
     let loginResponse = {
         success: false,
         token: ""
     }
-    try { 
-    const response = await axios.post(`${BASE_URL}login`,body);
         loginResponse['success'] = response.data.success; 
         loginResponse['token']= response.data.token; 
-        console.log(loginResponse);
-        setResponse(loginResponse); 
+        return(loginResponse)
     }
     catch(error)  {
+        let loginResponse = {
+            success: false,
+            token: ""
+        }
         loginResponse.success = false;
         loginResponse.token = ""; 
-        setResponse(loginResponse)
+        
     }
 
   

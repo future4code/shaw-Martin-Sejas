@@ -1,5 +1,6 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {LoggedIn} from '../../components/hooks/LoggedIn'
 import { goToHomePage, goToLastPage } from '../../services/Routes/coordinator';
 import { ApplicationFormPageDiv } from './styled';
 import Header from '../../components/Header/Header';
@@ -8,11 +9,12 @@ import { Button } from '@chakra-ui/react';
 function ApplicationFormPage() {
   
 const navigate = useNavigate(); 
+const loggedIn = LoggedIn(); 
 
   return (
     <ApplicationFormPageDiv>
     <Header left = "Voltar" leftButton={() => goToLastPage(navigate)}
-            right = "Home" rightButton={() =>goToHomePage(navigate)}/>
+            right = "Login" rightButton={() =>goToHomePage(navigate)}/>
 
            <div>
              

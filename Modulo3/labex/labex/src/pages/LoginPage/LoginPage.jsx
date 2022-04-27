@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { goToHomePage, goToListTripsPage } from '../../services/Routes/coordinator';
@@ -14,6 +14,10 @@ function LoginPage() {
   let [response, setResponse] = useState({})
   const navigate = useNavigate(); 
 
+
+
+
+
  const handleKeyDown = (event) => {
    if (event.key === 'Enter')
    {
@@ -27,24 +31,24 @@ function LoginPage() {
         "email": email, 
         "password": password
       }
-
-      Login(body, setResponse); 
-      
-      if(response.success) 
+      let myResponse = Login(body); 
+     
+      myResponse.then( (answer)=> 
       {
-        setEmail(""); 
-        setPassword(""); 
-        console.log(response.token); 
-        setFailedLogin(false)
-        //push to local storage
-        window.localStorage.setItem("token", response.token)
-        navigate("/", {replace: true}); 
-      }
-
-      else 
-      {
-        setFailedLogin(true); 
-      }
+       
+        if(answer.success) 
+        {
+          setEmail(""); 
+          setPassword(""); 
+          setFailedLogin(false)
+          //push to local storage
+          window.localStorage.setItem("token", answer.token)
+          navigate("/", {replace: true}); 
+        }
+  
+      }).catch( () => setFailedLogin(true))
+    
+        
   }
 
 
@@ -64,7 +68,7 @@ function LoginPage() {
 
 
   return (
-    <LogInPageDiv onKeyDown={handleKeyDown}>
+    <LogInPageDiv onKeyDown={(event) => handleKeyDown(event)}>
     <Header left = "Missões" leftButton={() => goToListTripsPage(navigate)}
             right = "Home" rightButton={() =>goToHomePage(navigate)}/>
 

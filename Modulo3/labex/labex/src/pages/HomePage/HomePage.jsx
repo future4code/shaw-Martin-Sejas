@@ -3,24 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { HomePageDiv, HomePageHeader, HomePageMain } from './styled';
 import { Button } from '@chakra-ui/react';
 import { goToAdminHomePage, goToListTripsPage, goToLoginPage } from '../../services/Routes/coordinator';
+import { LoggedIn } from '../../components/hooks/LoggedIn';
 
 function HomePage() {
-  let [tokenExists, setTokenExists] = useState(false);
+
+  let loggedIn = LoggedIn(); 
+  // let [tokenExists, setTokenExists] = useState(false);
   const navigate = useNavigate(); 
 
-  useEffect( () => {
+  // useEffect( () => {
     
-    if (window.localStorage.getItem('token') !== null)
-    {
-      setTokenExists(true)
-    }
-  }, [])
+  //   if (window.localStorage.getItem('token') !== null)
+  //   {
+  //     setTokenExists(true)
+  //   }
+  // }, [])
   
 
   return (
     <HomePageDiv>
       <HomePageHeader>
-        <Button colorScheme="primary" textColor="main.font" onClick={tokenExists? () => goToAdminHomePage(navigate):() => goToLoginPage(navigate)}> {tokenExists? "Admin Area" : "Login"}</Button>
+        <Button colorScheme="primary" textColor="main.font" onClick={loggedIn? () => goToAdminHomePage(navigate):() => goToLoginPage(navigate)}> {loggedIn? "Admin Area" : "Login"}</Button>
 
       </HomePageHeader>
       
