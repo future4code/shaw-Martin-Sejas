@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { goToHomePage, goToLastPage, goToLoginPage, goToCreateTripPage } from '../../services/Routes/coordinator';
+import { goToHomePage, goToLastPage, goToLoginPage, goToCreateTripPage, goToAdminHomePage } from '../../services/Routes/coordinator';
 import { AdminHomePageDiv, AdminHomePageCoreDiv, MissionNameList } from './styled';
 import Header from '../../components/Header/Header';
 import { Button } from '@chakra-ui/react';
 import { LoggedIn } from '../../components/hooks/LoggedIn';
-import { useRequestData } from '../../services/requests';
+import { DeleteTrip, useRequestData } from '../../services/requests';
 import TripCard from '../../components/TripCard/TripCard';
 
 function AdminHomePage() {
   
+  let {loading, setLoading} = useState(true);
+  let {change, setChange} = useState(0);
   const navigate = useNavigate();
   
 
   useEffect( ()=> {
     let token = window.localStorage.getItem('token'); 
+    loading = true;
     if(token === null)
     {
+     
       goToLoginPage(navigate)
     }
 
   },[])
 
-  const trips = useRequestData("trips");
+  let trips = useRequestData("trips");
+
+ 
+
  
  
 
@@ -31,9 +38,25 @@ function AdminHomePage() {
     goToHomePage(navigate); 
   }
 
+  const deleteTrips = (id) => {
+    let token = window.localStorage.getItem('token'); 
+    if (window.confirm("Tem certeza que deseja deletar a missão?"))
+    {
+      DeleteTrip(`trips/${id}`,token);
+   
+    }
+     
+
+
+  }
+
   let showTrips = (trips && trips.trips.map( (trip) => {
-    return(<TripCard key= {trip.id} name={trip.name} id={trip.id} />)
+    return(<TripCard key= {trip.id} name={trip.name} id={trip.id}  deleteTrip ={ (id) => deleteTrips(id) }/>)
   }))
+
+  useEffect( ()=> {
+
+  },[showTrips])
 
  
   return (

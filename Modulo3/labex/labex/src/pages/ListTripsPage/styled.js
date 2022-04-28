@@ -26,7 +26,7 @@ export const ListTripsPageCoreDiv = styled.div`
     display: flex; 
     flex-direction: column; 
     color: ${COLORS.font}; 
-    
+    height: max-content;
     align-items: center;
     margin-top: 4%; 
 

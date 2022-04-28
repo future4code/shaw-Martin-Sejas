@@ -1,5 +1,10 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import { goToAdminHomePage } from "./Routes/coordinator";
+toast.configure()
 
 
 
@@ -95,8 +100,33 @@ export const CreateTrip = async(url, body, token) => {
     try { 
     const response = await axios.post(`${BASE_URL}${url}`,body, HEADER);
    
-        console.log("in requests response", response)
+        toast.success("Viagem creada com successo!")
         return(response.data)
+    }
+    catch(error)  {
+        alert("Erro:", error)
+        
+    }
+
+  
+}
+
+export const DeleteTrip = async(url,token, trips) => {
+
+    const HEADER = {
+    headers: { 
+        'auth': token
+      }
+    };
+
+   
+  
+    try { 
+    const response = await axios.delete(`${BASE_URL}${url}`, HEADER);
+        
+        toast.success("Viagem deletada com successo!");
+        
+        
     }
     catch(error)  {
         alert("Erro:", error)

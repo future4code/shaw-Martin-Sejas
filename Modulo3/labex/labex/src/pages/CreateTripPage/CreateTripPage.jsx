@@ -9,6 +9,7 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import { CreateTrip } from '../../services/requests';
 
+
 function CreateTripPage() {
   const navigate = useNavigate(); 
   
@@ -38,7 +39,7 @@ function CreateTripPage() {
 
            <CreateTripPageCoreDiv>
              
-             <h1>Create Trip </h1>
+             <h1>Criar Viagem</h1>
 
             <Formik
               initialValues={ {name: "",  planet: "", date: "", description: "", durationInDays: 0}}
@@ -71,7 +72,6 @@ function CreateTripPage() {
               onSubmit = { (values, actions) => {
                 setTimeout( ()=> {
                   let body = values; 
-                  console.log(body)
                
                  
                   let token = window.localStorage.getItem('token'); 
