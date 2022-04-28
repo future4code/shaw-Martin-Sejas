@@ -16,7 +16,7 @@ function HomePage() {
   return (
     <HomePageDiv>
       <HomePageHeader>
-        <Button colorScheme="primary" textColor="main.font" onClick={loggedIn? () => goToAdminHomePage(navigate):() => goToLoginPage(navigate)}> {loggedIn? "Admin Area" : "Login"}</Button>
+        <Button colorScheme="primary" textColor="main.font" onClick={loggedIn? () => goToAdminHomePage(navigate):() => goToLoginPage(navigate)}> {loggedIn? "Admin" : "Login"}</Button>
 
       </HomePageHeader>
       

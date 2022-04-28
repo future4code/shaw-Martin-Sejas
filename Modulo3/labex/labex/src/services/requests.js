@@ -17,6 +17,12 @@ const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/futureX/m
 //     }
 // }
 
+// const HEADER = {
+//     headers: { 
+//         'auth': token
+//       }
+//     };
+
 
 export function useRequestData(url) {
     let [data, setData] = useState(undefined)
@@ -72,6 +78,28 @@ export const Login = async(body) => {
         }
         loginResponse.success = false;
         loginResponse.token = ""; 
+        
+    }
+
+  
+}
+
+export const CreateTrip = async(url, body, token) => {
+
+    const HEADER = {
+    headers: { 
+        'auth': token
+      }
+    };
+  
+    try { 
+    const response = await axios.post(`${BASE_URL}${url}`,body, HEADER);
+   
+        console.log("in requests response", response)
+        return(response.data)
+    }
+    catch(error)  {
+        alert("Erro:", error)
         
     }
 

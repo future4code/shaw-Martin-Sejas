@@ -18,7 +18,7 @@ export const AdminHomePageCoreDiv = styled.div`
     align-items: center;
     margin-top: 4%; 
 
-    @media(max-width:750px) {
+    @media(max-width:750px) { 
             margin-top: 25%;
         }
 
