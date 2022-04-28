@@ -22,11 +22,11 @@ function ListTripsPage() {
   return (
     <ListTripsPageDiv>
       <Header left = "Voltar" leftButton={() => goToLastPage(navigate)}
-              right = {loggedIn? "Admin Area" : "Login"} rightButton={loggedIn? ()=> goToAdminHomePage(navigate) :() =>goToLoginPage(navigate)}/>
+              right = {loggedIn? "Admin" : "Login"} rightButton={loggedIn? ()=> goToAdminHomePage(navigate) :() =>goToLoginPage(navigate)}/>
 
              <ListTripsPageCoreDiv>
                
-               <h1>Missões Disponiveis (List Trips Page)</h1>
+               <h1>Missões Disponiveis</h1>
                <Button colorScheme="secondary" onClick={() => goToApplicationFormPage(navigate)} >Inscrever-se</Button>
 
                <MissionListDiv>

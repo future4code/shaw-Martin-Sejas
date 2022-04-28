@@ -9,20 +9,15 @@ export const ListTripsPageDiv = styled.div`
     background-color: ${COLORS.background}; 
     font-family: ${MYFONTS.title};
 
-    div {
+    @media (max-width: 750px)
+    {
         
-        display: flex;
-        justify-content: center; 
-        align-items: center; ; 
-        color: ${COLORS.font}; 
-        font-size: 2rem; 
-
-       
+        height: auto;
+        
     }
 
-    Button {
-        margin-left: 5%; 
-    }
+   
+  
     
 `
 
@@ -36,7 +31,8 @@ export const ListTripsPageCoreDiv = styled.div`
     margin-top: 4%; 
 
     @media(max-width:750px) {
-            margin-top: 25%;
+            padding-top: 15%;
+            height: max-content;
         }
 
     h1{
@@ -67,6 +63,7 @@ export const ListTripsPageCoreDiv = styled.div`
 export const MissionListDiv = styled.div`
     display: flex; 
     flex-direction: row; 
+    justify-content: center; 
     margin-top: 3%; 
     width: 100%; 
     height: 100%;
