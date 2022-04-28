@@ -3,7 +3,7 @@ import { COLORS, MYFONTS,HEADER } from "../../constants/theme";
 
 export const AdminHomePageDiv = styled.div`
     display: grid; 
-    height: 100vh;
+    min-height: 100vh;
     grid-template-rows: ${HEADER.size} 1fr; 
     background-color: ${COLORS.background}; 
     font-family: ${MYFONTS.title};
@@ -27,7 +27,7 @@ export const AdminHomePageCoreDiv = styled.div`
         font-size: 3rem; 
 
         @media(max-width:750px) {
-            font-size: 2.5rem;  
+            font-size: 1.8rem;  
             margin-bottom: 2rem;
         }
     }
@@ -38,7 +38,8 @@ export const AdminHomePageCoreDiv = styled.div`
     padding: 1.5% 1.5%;
 
     @media(max-width:750px) {
-        
+        margin-top: 0rem;
+        margin-bottom: 0.5rem;
         font-size: 1.25rem;
         padding: 1.5% 5%;
     }
@@ -53,6 +54,11 @@ export const MissionNameList = styled.div`
     margin-top: 3%; 
     overflow-y: auto; 
     width: 40%; 
+
+    @media(max-width:750px) {
+        margin-top: 10%;
+        width: 85%;
+    }
     
    
 `

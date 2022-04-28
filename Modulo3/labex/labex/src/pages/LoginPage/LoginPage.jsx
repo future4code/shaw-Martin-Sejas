@@ -14,6 +14,8 @@ function LoginPage() {
   let [sendingResponse, setSendingResponse] = useState(false)
   const navigate = useNavigate(); 
 
+  //token que recebo n funciona, so o feito pelo postman que eh este aqui
+  const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkladGUxdmVGaHdRb0hnZ2tUbWlwIiwiZW1haWwiOiJtYXJ0aW5AbGFiZW51LmNvbSIsImlhdCI6MTY1MTA5NjMxOX0.7KR_rJx5ts_6aLDbuw5ILyZnYvrh9X0MFFvN4nOcrwA'
 
 
 
@@ -42,7 +44,8 @@ function LoginPage() {
           setPassword(""); 
           setFailedLogin(false)
           //push to local storage
-          window.localStorage.setItem("token", answer.token)
+          window.localStorage.setItem("token", TOKEN)
+          //  ("token", answer.token)
           navigate("/", {replace: true}); 
         }
   

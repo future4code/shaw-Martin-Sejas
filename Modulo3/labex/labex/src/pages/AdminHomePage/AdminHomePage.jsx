@@ -35,7 +35,7 @@ function AdminHomePage() {
     return(<TripCard key= {trip.id} name={trip.name} id={trip.id} />)
   }))
 
-
+ 
   return (
     <AdminHomePageDiv>
     <Header left = "Voltar" leftButton={() => goToLastPage(navigate)}
@@ -48,7 +48,7 @@ function AdminHomePage() {
              <Button colorScheme="secondary" onClick={() => { goToCreateTripPage(navigate)}}>Criar Viagem</Button>
 
              <MissionNameList>
-                {showTrips}
+                {showTrips ? showTrips: <Button isLoading= {true} colorScheme="primary" size="lg" variant= 'ghost'>Loading</Button>}
               </MissionNameList>
              
             
