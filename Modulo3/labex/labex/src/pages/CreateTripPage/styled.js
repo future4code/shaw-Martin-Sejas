@@ -66,7 +66,7 @@ Form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 50%;
     @media(max-width:750px) {
         width:85%;
        

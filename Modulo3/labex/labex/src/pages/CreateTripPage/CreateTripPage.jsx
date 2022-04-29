@@ -77,13 +77,12 @@ function CreateTripPage() {
                   let token = window.localStorage.getItem('token'); 
                   let answer = CreateTrip("trips", body,token);
 
-                  // answer.then( (response) => {
-                    // console.log("response", response)
+                  
                     actions.resetForm();
                     actions.setSubmitting(false);
                    
                   
-                  // }).error( (error) => alert("erro"))
+                
 
 
                  

@@ -43,7 +43,7 @@ export const ApplicationFormPageCoreDiv = styled.div`
     background-color: ${COLORS.primary};
     font-family: ${MYFONTS.body};
     color: ${COLORS.font}; 
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 100%;
     
     @media(max-width:750px) {
@@ -67,11 +67,30 @@ Form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 50%;
     @media(max-width:750px) {
         width:85%;
        
     }
+
+    #applicationText {
+        background-color: ${COLORS.primary};
+        font-family: ${MYFONTS.body};
+        font-size: 1rem;
+    }
+
+    Select {
+        background-color: ${COLORS.primary};
+        font-family: ${MYFONTS.body};
+        font-size: 1rem;
+        option{
+            background-color: ${COLORS.primaryPalette[300]};
+           
+        }
+
+    }
+
+  
 
     .field{
         padding-bottom: 2%;
