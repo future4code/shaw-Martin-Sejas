@@ -23,7 +23,7 @@ let trips = useRequestData("trips");
 
 let countries =  COUNTRIES.map( (country) => 
 {
-  return(<option key={country.ordem} value={country.ordem}>{`- ${country.nome}`}</option>)
+  return(<option key={country.ordem} value={country.nome}>{`- ${country.nome}`}</option>)
 }); 
 
 let tripsList = (trips && trips.trips.map( (trip, index) => {
@@ -75,13 +75,15 @@ let tripsList = (trips && trips.trips.map( (trip, index) => {
               onSubmit = { (values, actions) => {
                 setTimeout( ()=> {
                   let body = values; 
+
+                  console.log(body)
                
                  
                   let token = window.localStorage.getItem('token'); 
                   // let answer = CreateTrip("trips", body,token);
 
-                    // actions.resetForm();
-                    // actions.setSubmitting(false);
+                    actions.resetForm();
+                    actions.setSubmitting(false);
                    
                   
                  //name, mission, age, applicationText, profession, cou

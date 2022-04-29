@@ -34,8 +34,8 @@ export const ApplicationFormPageCoreDiv = styled.div`
         font-size: 2.5rem; 
 
         @media(max-width:750px) {
-            font-size: 1.8rem;  
-            margin-bottom: 0.5rem;
+            font-size: 1.6rem;  
+            margin-bottom: 3rem;
         }
     }
 
@@ -48,7 +48,7 @@ export const ApplicationFormPageCoreDiv = styled.div`
     
     @media(max-width:750px) {
         width:100%;
-        font-size: 1rem;  
+        font-size: 0.9rem;  
     }
     padding: 1.5% 1.5%;
    
@@ -69,7 +69,8 @@ Form {
     align-items: center;
     width: 50%;
     @media(max-width:750px) {
-        width:85%;
+      
+        width:80%;
        
     }
 
@@ -77,17 +78,39 @@ Form {
         background-color: ${COLORS.primary};
         font-family: ${MYFONTS.body};
         font-size: 1rem;
+
+        @media(max-width:750px) {
+             font-size: 0.8em;
+    }
     }
 
     Select {
         background-color: ${COLORS.primary};
         font-family: ${MYFONTS.body};
         font-size: 1rem;
+
+        @media(max-width:750px) {
+             font-size: 0.8em;
+    }
+       
+    }
         option{
             background-color: ${COLORS.primaryPalette[300]};
+
+         
            
         }
 
+    }
+
+    #country {
+        @media(max-width:750px) {
+             font-size: 0.8em;
+
+             &:focus{
+                 margin-bottom:60vh;
+             }
+    }
     }
 
   
@@ -104,6 +127,9 @@ Form {
 
     .formLabel{
         font-size: 1.1rem;
+        @media(max-width:750px) {
+             font-size: 1rem;
+    }
     }
     
 }
