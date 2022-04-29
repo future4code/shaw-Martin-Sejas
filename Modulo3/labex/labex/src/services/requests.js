@@ -145,8 +145,32 @@ export const DeleteTrip = async(url,token, trips) => {
     try { 
     const response = await axios.delete(`${BASE_URL}${url}`, HEADER);
         
+              
+    }
+    catch(error)  {
+        alert("Erro:", error)
         
-        
+    }
+
+  
+}
+
+export const DecideCandidate = async(url, body, token) => {
+
+    const HEADER = {
+    headers: { 
+        'auth': token
+      }
+    };
+
+    console.log(`${BASE_URL}${url}`);
+  
+    try { 
+    const response = await axios.put(`${BASE_URL}${url}`,body, HEADER);
+   
+        return(response)
+    
+       
     }
     catch(error)  {
         alert("Erro:", error)

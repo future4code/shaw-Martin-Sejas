@@ -43,6 +43,15 @@ export const TripDetailsPageCoreDiv = styled.div`
         margin-bottom: 2.5rem;
         font-size: 2rem; 
 
+        span{
+           
+            font-size: 2.4rem;
+            @media(max-width:750px) {
+            font-size: 1.6rem;  
+            
+        }
+        }
+
         @media(max-width:750px) {
             font-size: 1.3rem;  
             margin-bottom: 2rem;
@@ -73,4 +82,62 @@ export const TripDetailsPageCoreDiv = styled.div`
   
 
 }
+`
+
+
+export const ApprovedCandidateDiv = styled.div`
+
+background-color: ${COLORS.primary}; 
+color: ${COLORS.font}; 
+font-family: ${MYFONTS.body}; 
+display: flex; 
+flex-direction: column; 
+font-size: 1.5rem;  
+width: 25%;
+box-shadow: 3px 3px 3px black; 
+border-radius: 12px; 
+padding: 1% 0%;
+margin-top: -1%;
+margin-bottom: 1%;
+
+align-items: center;
+
+#emptyMessage {
+    font-style: italic;
+    color: ${COLORS.secondaryPalette[700]};
+
+    @media(max-width: 750px) 
+    {
+      font-size:1rem;
+    }
+}
+
+@media(max-width: 750px) 
+{
+    font-size: 1rem;
+    width: auto;
+    margin-top: -2%; 
+    max-width: 90%; 
+    padding: 5% 3%; 
+    margin-bottom: 5%; 
+}
+
+
+`
+
+export const CandidateListDiv = styled.div`
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    margin-top: 2%;
+    width: 100%; 
+    height: max-content;
+
+    flex-wrap: wrap;
+
+    @media(max-width:750px) {
+        margin-top: 5%;
+        width: 85%;
+    }
+    
 `
