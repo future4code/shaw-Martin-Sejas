@@ -97,6 +97,7 @@ width: 25%;
 box-shadow: 3px 3px 3px black; 
 border-radius: 12px; 
 padding: 1% 0%;
+padding-left: 3%;
 margin-top: -1%;
 margin-bottom: 1%;
 
