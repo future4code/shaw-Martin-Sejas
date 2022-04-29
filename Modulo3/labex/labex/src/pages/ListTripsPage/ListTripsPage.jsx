@@ -14,7 +14,7 @@ function ListTripsPage() {
   let trips = useRequestData("trips"); 
   let loggedIn = LoggedIn(); 
 
-  console.log(trips)
+
   let myTrips = (trips && trips.trips.map( (trip) => {
     return( <MissionCard trip={trip} key={trip.id}></MissionCard>)
   }))

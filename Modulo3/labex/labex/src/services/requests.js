@@ -119,8 +119,7 @@ export const DeleteTrip = async(url,token, trips) => {
       }
     };
 
-   
-  
+
     try { 
     const response = await axios.delete(`${BASE_URL}${url}`, HEADER);
         
