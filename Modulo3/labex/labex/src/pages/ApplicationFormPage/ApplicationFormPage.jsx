@@ -5,7 +5,7 @@ import {  goToLastPage, goToAdminHomePage, goToLoginPage } from '../../services/
 import { ApplicationFormPageCoreDiv, ApplicationFormPageDiv } from './styled';
 import Header from '../../components/Header/Header';
 import COUNTRIES from "../../assets/countries.json"
-import { DeleteTrip, useRequestData } from '../../services/requests';
+import { ApplyToTrip, useRequestData } from '../../services/requests';
 import { Button, Input, Textarea, Select } from '@chakra-ui/react';
 import {FormControl, FormLabel, FormErrorMessage, FormHelperText} from '@chakra-ui/react'
 import {Formik, Form, Field} from 'formik';
@@ -74,13 +74,20 @@ let tripsList = (trips && trips.trips.map( (trip, index) => {
               //actions on submit
               onSubmit = { (values, actions) => {
                 setTimeout( ()=> {
-                  let body = values; 
+                  let body = {
+                    name: values.name,
+                    age: values.age,
+                    applicationText: values.applicationText,
+                    profession: values.profession,
+                    country: values.country
+                  }; 
 
                   console.log(body)
-               
-                 
+                  
+                 //trips/:id/apply
                   let token = window.localStorage.getItem('token'); 
                   // let answer = CreateTrip("trips", body,token);
+                   let answer = ApplyToTrip(`trips/${values.mission}/apply`,body,token)
 
                     actions.resetForm();
                     actions.setSubmitting(false);
