@@ -107,9 +107,7 @@ Form {
         @media(max-width:750px) {
              font-size: 0.8em;
 
-             &:focus{
-                 margin-bottom:60vh;
-             }
+            
     }
     }
 

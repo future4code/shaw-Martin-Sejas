@@ -163,7 +163,6 @@ export const DecideCandidate = async(url, body, token) => {
       }
     };
 
-    console.log(`${BASE_URL}${url}`);
   
     try { 
     const response = await axios.put(`${BASE_URL}${url}`,body, HEADER);

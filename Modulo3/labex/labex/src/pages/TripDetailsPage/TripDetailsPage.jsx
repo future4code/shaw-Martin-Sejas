@@ -10,7 +10,7 @@ import Header from '../../components/Header/Header';
 import CandidateCard from '../../components/CandidateCard/CandidateCard';
 function TripDetailsPage() {
 
- 
+  let [change, setChange] = useState(0);
   const navigate = useNavigate(); 
   const params = useParams();
   
@@ -39,24 +39,39 @@ function TripDetailsPage() {
         />)
    }); 
    let approved = trip && trip.trip.approved.map ( (candidate) => {
-     console.log("candidate", candidate)
+    
      return(<li key={candidate.id}>{candidate.name}</li>)
    });
 
-
+  
    let decideCandidate = (candidateId, approve) => {
+
+   
+   
+    let newCandidates = trip.trip.candidates.filter( (candidate) => {
+      if(approve && candidate.id === candidateId) 
+      {
+        trip.trip.approved = [...trip.trip.approved, candidate]
+      }
+      return (candidate.id !== candidateId);
+    }); 
+
+    trip.trip.candidates = [...newCandidates];
       
     let body = {
       "approve": approve
-    }
+    };
 
+    
+
+    (change > 100 ? (setChange(0)) : (setChange(change+1)));
     DecideCandidate(`trips/${params.id}/candidates/${candidateId}/decide`, body, myToken);
      
    }
 
-   useEffect( ()=> {}, [decideCandidate])
+   useEffect( ()=> {}, [change])
   
-  console.log(approved)
+  
 
   return (
     <TripDetailsPageDiv>

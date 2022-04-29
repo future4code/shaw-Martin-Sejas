@@ -100,7 +100,7 @@ padding: 1% 0%;
 margin-top: -1%;
 margin-bottom: 1%;
 
-align-items: center;
+
 
 #emptyMessage {
     font-style: italic;
@@ -136,7 +136,7 @@ export const CandidateListDiv = styled.div`
     flex-wrap: wrap;
 
     @media(max-width:750px) {
-        margin-top: 5%;
+        margin-top: 0%;
         width: 85%;
     }
     
