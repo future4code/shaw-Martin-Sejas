@@ -61,7 +61,7 @@ let tripsList = (trips && trips.trips.map( (trip, index) => {
                 .integer("Tem que ser um numero"),
                 applicationText: Yup.string()
                 .min(5, "Minimo 5 caracteres")
-                .max(140, "Maximo 140 caracteres")
+                .max(85, "Maximo 85 caracteres")
                 .required("Campo Obrigatorio"),
                 profession: Yup.string()
                 .min(3, "Minimo 3 caracteres")
@@ -82,7 +82,7 @@ let tripsList = (trips && trips.trips.map( (trip, index) => {
                     country: values.country
                   }; 
 
-                  console.log(body)
+
                   
                  //trips/:id/apply
                   let token = window.localStorage.getItem('token'); 

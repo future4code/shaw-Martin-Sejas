@@ -4,7 +4,8 @@ import { LoggedIn } from '../../components/hooks/LoggedIn';
 import { Button } from '@chakra-ui/react';
 import { useRequestDataAuth } from '../../services/requests';
 import { goToLoginPage, goToLastPage } from '../../services/Routes/coordinator';
-import { TripDetailsPageDiv } from './styled';
+import { TripDetailsPageCoreDiv, TripDetailsPageDiv } from './styled';
+import MissionCard from '../../components/MissionCard/MissionCard';
 import Header from '../../components/Header/Header';
 function TripDetailsPage() {
 
@@ -37,8 +38,21 @@ function TripDetailsPage() {
             right = "Logout" rightButton={() =>{}}/>
 
       
-      <div>{trip ? trip.trip.name: <Button isLoading= {true} colorScheme="primary" size="lg" variant= 'ghost'>Loading</Button>}</div>
+      
+        {trip ? (
+          <TripDetailsPageCoreDiv>
+           <h1>{"Gerenciamento de Missão:"}</h1>
+           <MissionCard id= "missionCard" trip={trip.trip}/>
+
+           <h2 className='tituloCandidato'>Candidatos Aprovados</h2>
+
+           <h2 className='tituloCandidato'>Candidatos Pendentes</h2>
+          </TripDetailsPageCoreDiv>
+        )
+        : <Button isLoading= {true} colorScheme="primary" size="lg" variant= 'ghost'>Loading</Button>}
+       
       </TripDetailsPageDiv>
+       
   )
 }
 

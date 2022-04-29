@@ -100,14 +100,13 @@ export const CreateTrip = async(url, body, token) => {
     try { 
     const response = await axios.post(`${BASE_URL}${url}`,body, HEADER);
    
-        toast.success("Viagem creada com successo!")
+        toast.success("Viagem criada com successo!")
         return(response.data)
     }
     catch(error)  {
         alert("Erro:", error)
         
     }
-
   
 }
 
@@ -123,7 +122,7 @@ export const ApplyToTrip = async(url, body, token) => {
     const response = await axios.post(`${BASE_URL}${url}`,body, HEADER);
    
         toast.success("Obrigado por se candidatar!");
-        console.log(response.data)
+    
         return(response.data)
     }
     catch(error)  {
@@ -146,7 +145,6 @@ export const DeleteTrip = async(url,token, trips) => {
     try { 
     const response = await axios.delete(`${BASE_URL}${url}`, HEADER);
         
-        toast.success("Viagem deletada com successo!");
         
         
     }

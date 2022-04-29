@@ -7,17 +7,17 @@ import { Button } from '@chakra-ui/react';
 import { LoggedIn } from '../../components/hooks/LoggedIn';
 import { DeleteTrip, useRequestData } from '../../services/requests';
 import TripCard from '../../components/TripCard/TripCard';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 function AdminHomePage() {
   
-  let {loading, setLoading} = useState(true);
-  let {change, setChange} = useState(0);
+  let [change, setChange] = useState(0);
   const navigate = useNavigate();
-  
+  let trips = useRequestData("trips");
 
   useEffect( ()=> {
     let token = window.localStorage.getItem('token'); 
-    loading = true;
     if(token === null)
     {
      
@@ -26,15 +26,20 @@ function AdminHomePage() {
 
   },[])
 
-  let trips = useRequestData("trips");
+  
 
- 
+  let showTrips = (trips && trips.trips.map( (trip) => {
+   
+    return(<TripCard key= {trip.id} name={trip.name} id={trip.id}  deleteTrip ={ (id) => deleteTrips(id) }/>)
+  }))
 
- 
+
+
  
 
   const logOut = () => {
     window.localStorage.clear(); 
+    toast.info("Logged Out")
     goToHomePage(navigate); 
   }
 
@@ -42,7 +47,13 @@ function AdminHomePage() {
     let token = window.localStorage.getItem('token'); 
     if (window.confirm("Tem certeza que deseja deletar a missão?"))
     {
-      DeleteTrip(`trips/${id}`,token);
+      let newTrips = trips.trips.filter( (trip) => {
+        return (trip.id !== id)
+      }); 
+
+      trips.trips = [...newTrips];
+      (change > 100 ? (setChange(0)) : (setChange(change+1)));
+       DeleteTrip(`trips/${id}`,token);
    
     }
      
@@ -50,13 +61,8 @@ function AdminHomePage() {
 
   }
 
-  let showTrips = (trips && trips.trips.map( (trip) => {
-    return(<TripCard key= {trip.id} name={trip.name} id={trip.id}  deleteTrip ={ (id) => deleteTrips(id) }/>)
-  }))
+  
 
-  useEffect( ()=> {
-
-  },[showTrips])
 
  
   return (

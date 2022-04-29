@@ -59,7 +59,7 @@ function CreateTripPage() {
                 .required("Campo Obrigatorio"),
                 description: Yup.string()
                 .min(5, "Minimo 5 caracteres")
-                .max(80, "Maximo 80 caracteres")
+                .max(85, "Maximo 85 caracteres")
                 .required("Campo Obrigatorio"),
                 durationInDays: Yup.number()
                 .required("Campo Obrigatorio")
