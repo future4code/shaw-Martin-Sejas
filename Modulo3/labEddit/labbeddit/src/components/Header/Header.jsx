@@ -1,8 +1,22 @@
-import React from 'react'
+import { Button } from '@chakra-ui/react';
+import React from 'react';
+import labenu from '../../assets/logo.svg';
+import { HeaderMainDiv } from './styled';
 
-function Header() {
+function Header(props) {
+  //props 
+  //showLeftButton
+  //leftButtonText
+  //leftButtonClick
+  //rightButtonText
+  //rightButtonClick
+
   return (
-    <div>Header</div>
+    <HeaderMainDiv>
+      {props.showLeftButton ? <Button id= "leftButton" onClick={()=> props.leftButtonClick()}>{props.leftButtonText}</Button> : <span>{props.rightButtonText}</span>} 
+      <img alt='logo' src={labenu} /> 
+      <Button id= "rightButton" variant='link' onClick={()=> props.rightButtonClick()}>{props.rightButtonText}</Button>
+      </HeaderMainDiv>
   )
 }
 

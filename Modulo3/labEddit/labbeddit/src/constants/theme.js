@@ -70,7 +70,7 @@ export const COLORS = {
 }
 
 export const HEADER = {
-    size: "10vh"
+    size: "50px"
 }
 
 export const MYFONTS = {
