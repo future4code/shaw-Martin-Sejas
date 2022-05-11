@@ -7,6 +7,7 @@ import GlobalStyle from "./constants/globalStyles";
 import AppRoutes from "./services/Routes/AppRoutes";
 
 function App() {
+ 
   return (
     <ChakraProvider theme={theme}>
       <GlobalStyle/> 

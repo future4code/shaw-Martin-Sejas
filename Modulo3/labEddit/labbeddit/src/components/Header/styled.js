@@ -21,10 +21,21 @@ Button {
     font-family: ${MYFONTS.body}; 
     font-weight: 600; 
     font-size: 18px; 
+
+    @media (min-width: 750px)
+    {
+        font-size: 1.8rem; 
+    }
+
+    
 }
 
 #rightButton{
     margin-right: 29px; 
+    @media (min-width: 750px)
+    {
+        margin-right: 5%; 
+    }
 }
 
 span {
@@ -33,6 +44,12 @@ span {
     font-family: ${MYFONTS.body}; 
     font-weight: 600; 
     font-size: 18px; 
+
+    @media (min-width: 750px)
+    {
+        font-size: 1.8rem; 
+        margin-left: 5%; 
+    }
     
 }
 

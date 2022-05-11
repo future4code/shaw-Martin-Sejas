@@ -1,16 +1,28 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header'
-import { goToLastPage } from '../../services/Routes/coordinates';
+import { goToFeed, goToLastPage } from '../../services/Routes/coordinates';
 import { SignUpContentDiv, SignUpMainDiv, SignUpFormDiv } from './styled';
 import { Button, Input} from '@chakra-ui/react';
 import {FormControl, FormErrorMessage, Checkbox} from '@chakra-ui/react'
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
+import { Register } from '../../services/requests';
 
 
 function SignUp() {
   const navigate = useNavigate(); 
+
+  useEffect(() => {
+   let myToken = window.localStorage.getItem('token'); 
+
+   if(myToken) {
+     goToFeed(navigate); 
+   }
+  
+   
+  }, [])
+  
 
   return (
     <SignUpMainDiv>
@@ -45,15 +57,27 @@ function SignUp() {
 
         //actions on Submit
         onSubmit = { (values, actions) => {
-          setTimeout( () => {
+         
+            let body = {
+              username: values.username, 
+              email: values.email, 
+              password: values.password
+            }
 
-
-            actions.resetForm(); 
-            actions.setSubmitting(false);
+            let answer = Register(body); 
+            answer.then( (response) => {
+              actions.resetForm(); 
+              actions.setSubmitting(false);
+              window.localStorage.setItem("token", response.token);
+              goToFeed(navigate); 
+            }).catch( (error) => {
+              alert("Erro ao se cadastrar, tente de novo")
+            })
+            
            
             
 
-          }, 2000)
+         
         }}
       >
         { (props) => {
@@ -88,7 +112,7 @@ function SignUp() {
               </Field>
 
               <p>Ao continuar, você concorda com o nosso <span>Contrato de usuário </span>e nossa <span>Política de Privacidade.</span></p>
-              <Checkbox> <span id = 'checkbox'>Eu concordo em receber emails sobre coisas legais no Labeddit</span></Checkbox>
+              <Checkbox > <span id = 'checkbox'>Eu concordo em receber emails sobre coisas legais no Labeddit</span></Checkbox>
               <Button id="loginButton" variant='solid' isLoading={props.isSubmitting} type='submit' >Cadastrar</Button>
 
               

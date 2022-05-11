@@ -5,7 +5,7 @@ export const goToLogin = (navigate) => {
 }
 
 export const goToFeed = (navigate) => {
-    navigate("../feed"); 
+    navigate("../feed", {replace:true}); 
 }
 
 export const goToPost = (navigate, postId) => {

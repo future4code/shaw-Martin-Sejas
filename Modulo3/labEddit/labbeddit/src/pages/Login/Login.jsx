@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import labenu from '../../assets/logo.svg';
 import { MainLoginPageDiv, LoginFormDiv } from './styled';
-import { goToSignUp } from '../../services/Routes/coordinates';
+import { goToFeed, goToSignUp } from '../../services/Routes/coordinates';
 import { Button, Input} from '@chakra-ui/react';
 import {FormControl, FormErrorMessage} from '@chakra-ui/react'
 import {Formik, Form, Field} from 'formik';
@@ -14,6 +14,16 @@ function Login() {
 
   const navigate = useNavigate(); 
   let [failedLogin, setFailedLogin] = useState(false); 
+
+  useEffect(() => {
+    let myToken = window.localStorage.getItem('token'); 
+ 
+    if(myToken) {
+      goToFeed(navigate); 
+    }
+   
+    
+   }, [])
 
   return (
     <MainLoginPageDiv>
@@ -41,21 +51,22 @@ function Login() {
 
         //actions on Submit
         onSubmit = { (values, actions) => {
-          setTimeout( () => {
 
             let body = {
-              email: values.email,
+              email: values.username,
               password: values.password
             }
 
-            attemptLogin(body,setFailedLogin); 
-
+          let answer =  attemptLogin(body,setFailedLogin); 
+          answer.then( (response) => {
             actions.resetForm(); 
             actions.setSubmitting(false);
+            window.localStorage.setItem("token", response.token)
+            goToFeed(navigate); 
            
-            
+          }).catch( (error) => {})
 
-          }, 2000)
+      
         }}
       >
         { (props) => {

@@ -9,6 +9,11 @@ export const SignUpMainDiv = styled.div`
 display: grid; 
 grid-template-rows: ${HEADER.size} 1fr; 
 
+@media (min-width: 750px)
+    {
+        grid-template-rows: 10vh 1fr; 
+    }
+
 `
 
 export const SignUpContentDiv = styled.div`
@@ -33,7 +38,15 @@ h1 {
 
     @media (min-height: 750px)
     {
-      margin-bottom: 194px; 
+      margin-bottom: 14vh; 
+    }
+
+    @media (min-width: 750px)
+    {
+       text-align: center; 
+       font-size: 3.5rem; 
+       margin-top: 10vh; 
+       margin-bottom: 5vh; 
     }
 }
 
@@ -68,6 +81,11 @@ p{
     {
      margin-top: 65px; 
     }
+
+    @media (min-width: 750px)
+    {
+        font-size: 1rem;  
+    }
 }
 
     span{
@@ -85,6 +103,11 @@ p{
     font-size: 14px; 
     font-weight: 400;
     max-width: 100%; 
+
+      @media (min-width: 750px)
+    {
+        font-size: 1rem;  
+    }
    
     
 }
