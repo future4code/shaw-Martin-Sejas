@@ -74,10 +74,6 @@ function SignUp() {
               alert("Erro ao se cadastrar, tente de novo")
             })
             
-           
-            
-
-         
         }}
       >
         { (props) => {

@@ -73,9 +73,8 @@ height: auto;
 
 @media (min-width: 750px)
     {
-       justify-content: center;
-       align-items: center;
-      
+       
+       width: 30%; 
        margin-top: 20px; 
     }
 

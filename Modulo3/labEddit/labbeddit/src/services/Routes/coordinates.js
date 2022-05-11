@@ -19,3 +19,9 @@ export const goToSignUp = (navigate) => {
 export const goToLastPage = (navigate) => {
     navigate(-1); 
 }
+
+export const performLogout = (navigate) => {
+    window.localStorage.clear(); 
+
+    navigate('/',{replace: true}); 
+}
