@@ -1,23 +1,42 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import {goToLogin, performLogout} from '../../services/Routes/coordinates'
-import { FeedContentDiv, FeedMainDiv, FeedSubmitPostDiv } from './styled';
-import { Button, Input} from '@chakra-ui/react';
-import {FormControl, FormErrorMessage, Textarea} from '@chakra-ui/react'
+import { FeedContentDiv, FeedMainDiv, FeedPostsDiv, FeedSubmitPostDiv } from './styled';
+import {Button, Input, FormControl, FormErrorMessage, Textarea} from '@chakra-ui/react'
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
+import ReactPaginate from 'react-paginate';
+import { GetPosts } from '../../services/requests';
+import PostBox from '../../components/PostBox/PostBox';
 
 function Feed() {
   const navigate = useNavigate(); 
   
+  let [postsOnScreen, setPostsOnScreen] = useState(null); 
+  let [pageCount, setPageCount] = useState(1); 
+
+  //
+  const [postOffset, setPostOffset] = useState(0); 
+  
   useEffect(() => {
+    //check if loggedIn
     if (window.localStorage.length === 0) 
     {
        goToLogin(navigate)
     }
+
+    let token = window.localStorage.getItem('token'); 
+
+    //get posts from API
+     GetPosts(`posts?page=${pageCount}`, token, setPostsOnScreen)
+
   
   }, [])
+
+  let posts = postsOnScreen && postsOnScreen.length>0  && postsOnScreen.map( (post)=> {
+    return( <PostBox key={post.id} post={post} />)
+  })
 
   return (
     <FeedMainDiv>
@@ -86,6 +105,10 @@ function Feed() {
           <hr/>
 
         </FeedSubmitPostDiv>
+
+        <FeedPostsDiv>
+            {(posts && posts.length > 0) ? posts: <Button isLoading={true} variant="ghost"></Button>}
+        </FeedPostsDiv>
        
       </FeedContentDiv>
     </FeedMainDiv>

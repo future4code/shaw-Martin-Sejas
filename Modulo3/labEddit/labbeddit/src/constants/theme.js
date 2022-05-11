@@ -36,6 +36,8 @@ export const COLORS = {
     
         background: "#FFFFFF",
         backgroundSecondary: "#EDEDED", 
+        backgroundPost: "#FBFBFB",
+        borderPost: "#E0E0E0",
         primary: "#FE7E02",
         secondary: "#E57810",
         gradientFirst: "#FF6489", 

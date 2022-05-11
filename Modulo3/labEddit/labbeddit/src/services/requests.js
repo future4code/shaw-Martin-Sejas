@@ -39,5 +39,24 @@ export const  Register = async ( body, navigate) =>  {
     }
 }
 
+export const  GetPosts = async (url, token, setPostsOnScreen) =>  {
+
+let Header = {
+    headers: {
+        Authorization: token
+    }
+}
+    
+    try{
+         const response = await axios.get(`${BASE_URL}${url}`,Header);
+         setPostsOnScreen(response.data)
+        
+
+    }
+    catch(error){
+      
+    }
+}
+
 // demo_email: demo.email@gmail.com
 // demo_pass: demo.password

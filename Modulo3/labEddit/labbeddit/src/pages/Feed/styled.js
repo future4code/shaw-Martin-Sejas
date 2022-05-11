@@ -89,3 +89,15 @@ hr {
 }
 
 `
+
+export const FeedPostsDiv = styled.div`
+width: 85%;
+height: auto; 
+
+display: flex; 
+flex-direction: column; 
+margin: 0 auto; 
+margin-top: 36px;
+
+
+`
