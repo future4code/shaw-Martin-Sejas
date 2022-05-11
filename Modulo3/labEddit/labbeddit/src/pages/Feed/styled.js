@@ -19,8 +19,10 @@ grid-template-rows: ${HEADER.size} 1fr;
 
 
 export const FeedContentDiv = styled.div`
-display: grid; 
-grid-template-rows: 30vh 1fr; 
+
+
+display: flex;
+flex-direction: column; 
 
 `
 
@@ -30,7 +32,6 @@ display: flex;
 flex-direction: column; 
 width: 85%; 
 margin: 0 auto; 
-
 
  
 
