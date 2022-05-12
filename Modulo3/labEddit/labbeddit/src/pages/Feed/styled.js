@@ -24,6 +24,32 @@ export const FeedContentDiv = styled.div`
 display: flex;
 flex-direction: column; 
 
+#verPosts{
+    margin: 0 auto; 
+    margin-top: 12px; 
+    width: 50%; 
+    padding: 12px 145px; 
+    justify-self: center; 
+    background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
+    border-radius: 12px;
+    color: ${COLORS.font.buttonAlternative}; 
+    margin-bottom: 18px; 
+
+    &:focus{
+        background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
+        opacity: 0.8; 
+    }
+
+    @media (min-width: 750px)
+    {
+         
+        align-self: center; 
+        justify-self: center; 
+       
+    }
+
+}
+
 `
 
 export const FeedSubmitPostDiv = styled.div`
@@ -101,4 +127,9 @@ margin: 0 auto;
 margin-top: 36px;
 
 
+`
+
+export const FeedChoosePagesDiv = styled.div`
+display: flex; 
+width: 100%; 
 `

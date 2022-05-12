@@ -1,24 +1,34 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import {goToLogin, performLogout} from '../../services/Routes/coordinates'
-import { FeedContentDiv, FeedMainDiv, FeedPostsDiv, FeedSubmitPostDiv } from './styled';
-import {Button, Input, FormControl, FormErrorMessage, Textarea} from '@chakra-ui/react'
+import { FeedChoosePagesDiv, FeedContentDiv, FeedMainDiv, FeedPostsDiv, FeedSubmitPostDiv } from './styled';
+import {Button, Input, FormControl, FormErrorMessage, Textarea} from '@chakra-ui/react';
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
-import ReactPaginate from 'react-paginate';
+import { Pagination } from '@mui/material';
 import { CreatePost, GetPosts } from '../../services/requests';
 import PostBox from '../../components/PostBox/PostBox';
+import {GlobalContext} from '../../contexts/GlobalContext/GlobalContext';
+
 
 function Feed() {
   const navigate = useNavigate(); 
   
-  let [postsOnScreen, setPostsOnScreen] = useState(null); 
-  let [pageCount, setPageCount] = useState(1); 
-  let [createdPost, setCreatedPost] = useState(false)
+  const {states,setters,requests} = useContext(GlobalContext); 
+
+  let {postsOnDisplay, pageCount} = states; 
+
+
+  let {setPostsOnDisplay, setPageCount} = setters; 
+
+  let {loadPostsToDisplay} = requests; 
+
+  // let [pageCount, setPageCount] = useState(1); 
+  
 
   //
-  const [postOffset, setPostOffset] = useState(0); 
+ 
   
   useEffect(() => {
     //check if loggedIn
@@ -27,21 +37,21 @@ function Feed() {
        goToLogin(navigate)
     }
 
-    let token = window.localStorage.getItem('token'); 
-
-    //get posts from API
-     GetPosts(`posts?page=${pageCount}`, token, setPostsOnScreen)
+   loadPostsToDisplay(); 
 
   
   }, [])
 
 
   useEffect(() => {
-    
-  }, [postsOnScreen])
+    loadPostsToDisplay(); 
+  }, [postsOnDisplay,pageCount])
+
+
+ 
   
 
-  let posts = postsOnScreen && postsOnScreen.length>0  && postsOnScreen.map( (post)=> {
+  let posts = postsOnDisplay && postsOnDisplay.length>0  && postsOnDisplay.map( (post)=> {
     return( <PostBox key={post.id} post={post} />)
   })
 
@@ -82,7 +92,7 @@ function Feed() {
 
             let answer = CreatePost(requestBody,token)
             answer.then( (response) => {
-              GetPosts(`posts?page=${pageCount}`, token, setPostsOnScreen);
+              GetPosts(`posts?page=1`, token, setPostsOnDisplay);
               actions.resetForm(); 
               actions.setSubmitting(false)
             })
@@ -126,6 +136,8 @@ function Feed() {
         <FeedPostsDiv>
             {(posts && posts.length > 0) ? posts: <Button isLoading={true} variant="ghost"></Button>}
         </FeedPostsDiv>
+       
+          <Button id="verPosts" isLoading={(posts.length < (pageCount*10))? true: false} onClick={()=> setPageCount(pageCount+1)}>Ver Mais Posts</Button>
        
       </FeedContentDiv>
     </FeedMainDiv>

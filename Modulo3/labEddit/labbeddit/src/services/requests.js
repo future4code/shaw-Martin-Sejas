@@ -69,12 +69,61 @@ export const  CreatePost= async ( body, token) =>  {
         try{
              const response = await axios.post(`${BASE_URL}posts`,body,Header);
              return(response)
-             
-            
-    
         }
         catch(error){
           
         }
     }
 
+    export const  CreatePostVote = async (url, body, token) =>  {
+
+        let Header = {
+            headers: {
+                Authorization: token
+            }
+        }
+            
+            try{
+                 const response = await axios.post(`${BASE_URL}${url}`,body,Header);
+                 console.log(response)
+                 console.log(body)
+                 return(response)
+            }
+            catch(error){
+              
+            }
+        }
+
+        export const  ChangePostVote = async (url, body, token) =>  {
+
+            let Header = {
+                headers: {
+                    Authorization: token
+                }
+            }
+                
+                try{
+                     const response = await axios.put(`${BASE_URL}${url}`,body,Header);
+                     return(response)
+                }
+                catch(error){
+                  
+                }
+            }
+        
+            export const  DeletePostVote = async (url,  token) =>  {
+
+                let Header = {
+                    headers: {
+                        Authorization: token
+                    }
+                }
+                    
+                    try{
+                         const response = await axios.delete(`${BASE_URL}${url}`,Header);
+                         return(response)
+                    }
+                    catch(error){
+                      
+                    }
+                }

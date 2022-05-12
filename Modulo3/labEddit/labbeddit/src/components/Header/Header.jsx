@@ -13,7 +13,7 @@ function Header(props) {
 
   return (
     <HeaderMainDiv>
-      {props.showLeftButton ? <Button id= "leftButton" onClick={()=> props.leftButtonClick()}>{props.leftButtonText}</Button> : <span>{props.rightButtonText}</span>} 
+      {props.showLeftButton ? <Button id= "leftButton" variant='link' onClick={()=> props.leftButtonClick()}>{props.leftButtonText}</Button> : <span>{props.rightButtonText}</span>} 
       <img alt='logo' src={labenu} /> 
       <Button id= "rightButton" variant='link' onClick={()=> props.rightButtonClick()}>{props.rightButtonText}</Button>
       </HeaderMainDiv>

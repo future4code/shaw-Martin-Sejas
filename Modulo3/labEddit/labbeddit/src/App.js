@@ -5,14 +5,21 @@ import {theme} from './constants/theme';
 import {ChakraProvider} from '@chakra-ui/react';
 import GlobalStyle from "./constants/globalStyles";
 import AppRoutes from "./services/Routes/AppRoutes";
+import GlobalState from "./contexts/GlobalContext/GlobalState";
 
 function App() {
  
   return (
     <ChakraProvider theme={theme}>
+
       <GlobalStyle/> 
-      <AppRoutes/> 
-    
+
+      <GlobalState>
+
+        <AppRoutes/> 
+
+      </GlobalState>
+
     </ChakraProvider>
   );
 }

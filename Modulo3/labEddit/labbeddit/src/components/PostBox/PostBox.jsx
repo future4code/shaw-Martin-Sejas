@@ -7,6 +7,7 @@ import commentIcon from '../../assets/commentLogo.svg';
 import { PostBoxCommentDiv, PostBoxInteractionDiv, PostBoxMainDiv, PostBoxTitleDiv, PostBoxUpvoteDiv, PostBoxUserNameDiv } from './styled'
 import { useNavigate } from 'react-router-dom';
 import {goToPost} from '../../services/Routes/coordinates';
+import { CreatePostVote, ChangePostVote, DeletePostVote } from '../../services/requests';
 
 function PostBox(props) {
     //receive props post
@@ -21,8 +22,103 @@ function PostBox(props) {
     
      
     }, [upvoted,downvoted])
+
+    const handleUpvote = () => {
+        //if no downvote or upvote registered, make new vote
+        let token = window.localStorage.getItem('token'); 
+        if (!upvoted && !downvoted)
+        {
+            console.log("CREATING A VOTE!")
+            //request (POST) new vote creation with direction 1
+            let body = {
+                direction: 1
+            }
+            let answer = CreatePostVote(`posts/${props.post.id}/votes`,body, token);
+            answer.then( (response) => {
+                setUpvoted(true); 
+            }).catch( (error) => alert("Erro ao dar upvote no post!"))
+            // setUpvoted to true
+        }
+
+        //if downvoted but actually upvoting now
+        else if( !upvoted && downvoted) 
+        {
+            console.log("CHANGING FROM DOWNVOTE TO UPVOTE!")
+            //request (PUT) direction 1 
+             let body = {
+                direction: 1
+            }
+            let answer = ChangePostVote(`posts/${props.post.id}/votes`,body, token);
+            answer.then( (response) => {
+                setUpvoted(true); 
+                setDownvoted(false); 
+            }).catch( (error) => alert("Erro ao dar upvote no post!"))
+            // setUpvoted to true, downvoted to false
+        } 
+
+        //else we are already upvoted, we are going to remove the upvote
+        else {
+            //request (DELETE) post vote
+            console.log("CHANGING FROM UPVOTE TO NO UPVOTE!")
+            let answer = DeletePostVote(`posts/${props.post.id}/votes`, token);
+            answer.then( (response) => {
+                setUpvoted(false);  
+            }).catch( (error) => alert("Erro ao dar upvote no post!"))
+            //set Upvoted to false
+        }
+    }
+
+
+    const handleDownvote = () => {
+        //if no downvote or upvote registered, make new downvote
+        let token = window.localStorage.getItem('token'); 
+        if (!upvoted && !downvoted)
+        {
+            console.log("CREATING A DOWNVOTE!")
+            //request (POST) new vote creation with direction 1
+            let body = {
+                direction: -1
+            }
+            let answer = CreatePostVote(`posts/${props.post.id}/votes`,body, token);
+            answer.then( (response) => {
+                setDownvoted(true); 
+            }).catch( (error) => alert("Erro ao dar downvote no post!"))
+            // setUpvoted to true
+        }
+
+        //if upvoted but actually downvoting now
+        else if( upvoted && !downvoted) 
+        {
+            console.log("CHANGING FROM UPVOTE TO DOWNVOTE!")
+            //request (PUT) direction 1 
+             let body = {
+                direction: -1
+            }
+            let answer = ChangePostVote(`posts/${props.post.id}/votes`,body, token);
+            answer.then( (response) => {
+                setUpvoted(false); 
+                setDownvoted(true); 
+            }).catch( (error) => alert("Erro ao dar upvote no post!"))
+            // setUpvoted to true, downvoted to false
+        } 
+
+        //else we are already downvoted, we are going to remove the downvote
+        else {
+            //request (DELETE) post vote
+            console.log("CHANGING FROM DOWNVOTE TO NO DOWNVOTE!")
+            let answer = DeletePostVote(`posts/${props.post.id}/votes`, token);
+            answer.then( (response) => {
+                setDownvoted(false);  
+            }).catch( (error) => alert("Erro ao dar upvote no post!"))
+            //set Downvoted to false
+        }
+    }
     
-  
+//   if(props.post.id === "4f3f4da7-46a2-4b1c-b1e0-cd7c6d11d5db")
+//   {
+//       console.log(upvoted, "upvoted status")
+//       console.log(downvoted, "downvoted status")
+//   }
 
   return (
     <PostBoxMainDiv>
@@ -36,13 +132,13 @@ function PostBox(props) {
 
         <PostBoxInteractionDiv>
             <PostBoxUpvoteDiv>
-                {upvoted ? <img alt="green upvote icon" src={greenUpvote} id="upvoteIcon" onClick={()=> {setUpvoted(!upvoted)}}/>
-                :<img alt="upvote icon" src={upvoteIcon} id="upvoteIcon" onClick={()=> {setUpvoted(!upvoted)}}/> }
+                {upvoted ? <img alt="green upvote icon" src={greenUpvote} id="upvoteIcon" onClick={()=> {handleUpvote()}}/>
+                :<img alt="upvote icon" src={upvoteIcon} id="upvoteIcon" onClick={()=> {handleUpvote()}}/> }
 
             <p> {` ${props.post.voteSum === null ? 0: (Number(props.post.voteSum) + ( (downvoted*-1) + (upvoted))) }`}</p>  
 
-            {downvoted? <img alt=" reddownvote icon" src={redDownvote} id="downvoteIcon" onClick={()=> {setDownvoted(!downvoted)}}/> : 
-            <img alt="downvote icon" src={downvoteIcon} id="downvoteIcon" onClick={()=> {setDownvoted(!downvoted)}}/>}
+            {downvoted? <img alt=" reddownvote icon" src={redDownvote} id="downvoteIcon" onClick={()=> {handleDownvote()}}/> : 
+            <img alt="downvote icon" src={downvoteIcon} id="downvoteIcon" onClick={()=> {handleDownvote()}}/>}
 
             </PostBoxUpvoteDiv>
             

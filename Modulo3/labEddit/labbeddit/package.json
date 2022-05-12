@@ -8,6 +8,7 @@
     "@emotion/styled": "^11.8.1",
     "@fontsource/ibm-plex-sans": "^4.5.10",
     "@fontsource/noto-sans": "^4.5.9",
+    "@mui/material": "^5.7.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",

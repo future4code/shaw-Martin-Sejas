@@ -38,6 +38,16 @@ Button {
     }
 }
 
+#leftButton{
+    margin-left: 29px; 
+    font-size: 1.5rem; 
+    color: #A3A3A3; 
+    @media (min-width: 750px)
+    {
+        margin-right: 5%; 
+    }
+}
+
 span {
     margin-left: 29px; 
     color: ${COLORS.backgroundSecondary}; 
