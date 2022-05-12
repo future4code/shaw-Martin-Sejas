@@ -52,7 +52,7 @@ function Feed() {
   
 
   let posts = postsOnDisplay && postsOnDisplay.length>0  && postsOnDisplay.map( (post)=> {
-    return( <PostBox key={post.id} post={post} />)
+    return( <PostBox key={post.id} post={post} fromFeed={true} />)
   })
 
   return (

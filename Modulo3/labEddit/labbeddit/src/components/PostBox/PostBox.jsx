@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import upvoteIcon from '../../assets/upvote.svg';
 import greenUpvote from '../../assets/greenUpvote.svg'
 import downvoteIcon from '../../assets/downvote.svg';
@@ -8,13 +8,17 @@ import { PostBoxCommentDiv, PostBoxInteractionDiv, PostBoxMainDiv, PostBoxTitleD
 import { useNavigate } from 'react-router-dom';
 import {goToPost} from '../../services/Routes/coordinates';
 import { CreatePostVote, ChangePostVote, DeletePostVote } from '../../services/requests';
+import {GlobalContext} from '../../contexts/GlobalContext/GlobalContext';
 
 function PostBox(props) {
     //receive props post
     // id, body, commentCount, createdAt, title, userId, userVote, username, voteSum
     const [upvoted, setUpvoted] = useState(false); 
     const [downvoted, setDownvoted] = useState(false); 
+    const {states, setters} = useContext(GlobalContext); 
 
+    let {detailedPost} = states; 
+    let {setDetailedPost} = setters; 
     const navigate = useNavigate(); 
 
     useEffect(() => {
@@ -28,7 +32,7 @@ function PostBox(props) {
         let token = window.localStorage.getItem('token'); 
         if (!upvoted && !downvoted)
         {
-            console.log("CREATING A VOTE!")
+           
             //request (POST) new vote creation with direction 1
             let body = {
                 direction: 1
@@ -43,7 +47,7 @@ function PostBox(props) {
         //if downvoted but actually upvoting now
         else if( !upvoted && downvoted) 
         {
-            console.log("CHANGING FROM DOWNVOTE TO UPVOTE!")
+            
             //request (PUT) direction 1 
              let body = {
                 direction: 1
@@ -59,7 +63,7 @@ function PostBox(props) {
         //else we are already upvoted, we are going to remove the upvote
         else {
             //request (DELETE) post vote
-            console.log("CHANGING FROM UPVOTE TO NO UPVOTE!")
+          
             let answer = DeletePostVote(`posts/${props.post.id}/votes`, token);
             answer.then( (response) => {
                 setUpvoted(false);  
@@ -74,7 +78,7 @@ function PostBox(props) {
         let token = window.localStorage.getItem('token'); 
         if (!upvoted && !downvoted)
         {
-            console.log("CREATING A DOWNVOTE!")
+            
             //request (POST) new vote creation with direction 1
             let body = {
                 direction: -1
@@ -89,7 +93,7 @@ function PostBox(props) {
         //if upvoted but actually downvoting now
         else if( upvoted && !downvoted) 
         {
-            console.log("CHANGING FROM UPVOTE TO DOWNVOTE!")
+           
             //request (PUT) direction 1 
              let body = {
                 direction: -1
@@ -105,7 +109,7 @@ function PostBox(props) {
         //else we are already downvoted, we are going to remove the downvote
         else {
             //request (DELETE) post vote
-            console.log("CHANGING FROM DOWNVOTE TO NO DOWNVOTE!")
+            
             let answer = DeletePostVote(`posts/${props.post.id}/votes`, token);
             answer.then( (response) => {
                 setDownvoted(false);  
@@ -120,13 +124,18 @@ function PostBox(props) {
 //       console.log(downvoted, "downvoted status")
 //   }
 
+const handlePostClick = () => {
+    setDetailedPost(props.post); 
+    goToPost(navigate, props.post.id)
+}
+
   return (
     <PostBoxMainDiv>
         <PostBoxUserNameDiv>
             <p>{`Enviado por: ${props.post.username}`}</p>
         </PostBoxUserNameDiv>
         
-        <PostBoxTitleDiv onClick={()=> {goToPost(navigate, props.post.id)}}>
+        <PostBoxTitleDiv onClick={props.fromFeed? ()=> {handlePostClick()} : null}>
             <h2>{props.post.title}</h2>
         </PostBoxTitleDiv>
 
@@ -135,14 +144,14 @@ function PostBox(props) {
                 {upvoted ? <img alt="green upvote icon" src={greenUpvote} id="upvoteIcon" onClick={()=> {handleUpvote()}}/>
                 :<img alt="upvote icon" src={upvoteIcon} id="upvoteIcon" onClick={()=> {handleUpvote()}}/> }
 
-            <p> {` ${props.post.voteSum === null ? 0: (Number(props.post.voteSum) + ( (downvoted*-1) + (upvoted))) }`}</p>  
+            <p> {` ${props.post.voteSum === null ? 0: (Number(props.post.voteSum)) }`}</p>  
 
             {downvoted? <img alt=" reddownvote icon" src={redDownvote} id="downvoteIcon" onClick={()=> {handleDownvote()}}/> : 
             <img alt="downvote icon" src={downvoteIcon} id="downvoteIcon" onClick={()=> {handleDownvote()}}/>}
 
             </PostBoxUpvoteDiv>
             
-           <PostBoxCommentDiv>
+           <PostBoxCommentDiv onClick={props.fromFeed? ()=> {handlePostClick()} : null}>
            <img alt=" comment icon" src={commentIcon} />
            <p> {` ${props.post.commentCount === null ? 0: props.post.commentCount}`}</p>
            </PostBoxCommentDiv>

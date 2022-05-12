@@ -15,13 +15,14 @@ function GlobalState( {children} ) {
     // //post offset for pagination
     // let [postOffset, setPostOffset] = useState(0)
 
-    // //all posts 
-     let [allPosts, setAllPosts] = useState([]); 
+
+    let [detailedPost, setDetailedPost] = useState({}); 
 
 
     const loadPostsToDisplay = () => {
         let token = window.localStorage.getItem('token'); 
 
+        //add posts to PostsInteractions if they are not there
         if(token && token.length > 0) 
         {
             GetPosts(`posts?page=1&size=${10*pageCount}`, token, setPostsOnDisplay); 
@@ -42,8 +43,8 @@ function GlobalState( {children} ) {
     }, [])
 
 
-    let states = {postsOnDisplay, postsInteractions, pageCount}; 
-    let setters = {setPostsOnDisplay, setPostsInteractions, setPageCount}; 
+    let states = {postsOnDisplay, postsInteractions, pageCount, detailedPost}; 
+    let setters = {setPostsOnDisplay, setPostsInteractions, setPageCount, setDetailedPost}; 
     let requests = {loadPostsToDisplay}; 
 
    return (
