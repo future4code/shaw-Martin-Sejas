@@ -7,7 +7,7 @@ import {Button, Input, FormControl, FormErrorMessage, Textarea} from '@chakra-ui
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import ReactPaginate from 'react-paginate';
-import { GetPosts } from '../../services/requests';
+import { CreatePost, GetPosts } from '../../services/requests';
 import PostBox from '../../components/PostBox/PostBox';
 
 function Feed() {
@@ -15,6 +15,7 @@ function Feed() {
   
   let [postsOnScreen, setPostsOnScreen] = useState(null); 
   let [pageCount, setPageCount] = useState(1); 
+  let [createdPost, setCreatedPost] = useState(false)
 
   //
   const [postOffset, setPostOffset] = useState(0); 
@@ -33,6 +34,12 @@ function Feed() {
 
   
   }, [])
+
+
+  useEffect(() => {
+    
+  }, [postsOnScreen])
+  
 
   let posts = postsOnScreen && postsOnScreen.length>0  && postsOnScreen.map( (post)=> {
     return( <PostBox key={post.id} post={post} />)
@@ -66,10 +73,20 @@ function Feed() {
 
           //actions on Submit
           onSubmit = { (values, actions) => {
+            
             let requestBody = {
               title: values.title,
               body: values.body
             }
+            let token = window.localStorage.getItem('token'); 
+
+            let answer = CreatePost(requestBody,token)
+            answer.then( (response) => {
+              GetPosts(`posts?page=${pageCount}`, token, setPostsOnScreen);
+              actions.resetForm(); 
+              actions.setSubmitting(false)
+            })
+            .catch( (error)=> {})
 
             //CODE API REQUEST AND WAIT FOR ANSWER
           }}

@@ -58,5 +58,23 @@ let Header = {
     }
 }
 
-// demo_email: demo.email@gmail.com
-// demo_pass: demo.password
+export const  CreatePost= async ( body, token) =>  {
+
+    let Header = {
+        headers: {
+            Authorization: token
+        }
+    }
+        
+        try{
+             const response = await axios.post(`${BASE_URL}posts`,body,Header);
+             return(response)
+             
+            
+    
+        }
+        catch(error){
+          
+        }
+    }
+
