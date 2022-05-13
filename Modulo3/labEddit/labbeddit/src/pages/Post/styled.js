@@ -75,7 +75,7 @@ Button {
     color: ${COLORS.font.buttonAlternative}; 
     margin-bottom: 18px; 
 
-    &:focus{
+    &:hover{
         background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
         opacity: 0.8; 
     }

@@ -128,7 +128,7 @@ function CommentBox(props) {
                 {upvoted ? <img alt="green upvote icon" src={greenUpvote} id="upvoteIcon" onClick={()=> {handleUpvote()}}/>
                 :<img alt="upvote icon" src={upvoteIcon} id="upvoteIcon" onClick={()=> {handleUpvote()}}/> }
 
-            <p> {` ${props.comment.voteSum === null ? 0 : (Number(props.comment.voteSum)) }`}</p>  
+            <p> {` ${props.comment.voteSum === null ? (0 + (upvoted*1) + (downvoted*-1)) : (Number(props.comment.voteSum) + (upvoted*1) + (downvoted*-1)) }`}</p>  
 
             {downvoted? <img alt=" reddownvote icon" src={redDownvote} id="downvoteIcon" onClick={()=> {handleDownvote()}}/> : 
             <img alt="downvote icon" src={downvoteIcon} id="downvoteIcon" onClick={()=> {handleDownvote()}}/>}

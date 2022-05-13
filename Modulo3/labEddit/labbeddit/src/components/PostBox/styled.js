@@ -50,6 +50,10 @@ p {
     padding-top: 15px; 
 }
 
+&:hover{
+        cursor: pointer
+    }
+
 `
 
 export const PostBoxInteractionDiv = styled.div`
@@ -79,11 +83,18 @@ p {
 #upvoteIcon{
     align-self: flex-start; 
     padding-left: 5px;
+
+    &:hover{
+        cursor: pointer
+    }
 }
 
 #downvoteIcon{
     align-self: flex-end; 
     padding-right: 5px;
+    &:hover{
+        cursor: pointer
+    }
 }
 
 `
@@ -104,4 +115,8 @@ p {
 img {
     padding-left: 5px;
 }
+
+&:hover{
+        cursor: pointer
+    }
 `
