@@ -14,9 +14,6 @@ function CommentBox(props) {
     // id, body, commentCount, createdAt, title, userId, userVote, username, voteSum
     const [upvoted, setUpvoted] = useState(false); 
     const [downvoted, setDownvoted] = useState(false); 
-    const {states, setters} = useContext(GlobalContext); 
-    const navigate = useNavigate(); 
-
     useEffect(() => {
       
     }, [upvoted,downvoted])

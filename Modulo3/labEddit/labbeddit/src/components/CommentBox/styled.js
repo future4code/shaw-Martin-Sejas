@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, HEADER, MYFONTS } from "../../constants/theme";
+import { COLORS, MYFONTS } from "../../constants/theme";
 import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/700.css";

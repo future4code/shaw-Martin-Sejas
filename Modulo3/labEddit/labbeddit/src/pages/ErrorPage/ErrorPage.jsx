@@ -16,7 +16,7 @@ function ErrorPage() {
     }
   
    
-  }, [])
+  }, [navigate])
   
   return (
     <div>ErrorPage</div>
