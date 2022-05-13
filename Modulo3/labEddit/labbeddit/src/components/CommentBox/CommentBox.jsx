@@ -3,41 +3,34 @@ import upvoteIcon from '../../assets/upvote.svg';
 import greenUpvote from '../../assets/greenUpvote.svg'
 import downvoteIcon from '../../assets/downvote.svg';
 import redDownvote from '../../assets/redDownvote.svg';
-import commentIcon from '../../assets/commentLogo.svg';
-import { PostBoxCommentDiv, PostBoxInteractionDiv, PostBoxMainDiv, PostBoxTitleDiv, PostBoxUpvoteDiv, PostBoxUserNameDiv } from './styled'
+import {  CommentInteractionDiv, CommentMainDiv, CommentBodyDiv, CommentUpvoteDiv, CommentUserNameDiv } from './styled'
 import { useNavigate } from 'react-router-dom';
-import {goToPost} from '../../services/Routes/coordinates';
 import { CreatePostVote, ChangePostVote, DeletePostVote } from '../../services/requests';
 import {GlobalContext} from '../../contexts/GlobalContext/GlobalContext';
 
-function PostBox(props) {
-    //receive props post
+
+function CommentBox(props) {
+   //receive props comment
     // id, body, commentCount, createdAt, title, userId, userVote, username, voteSum
     const [upvoted, setUpvoted] = useState(false); 
     const [downvoted, setDownvoted] = useState(false); 
     const {states, setters} = useContext(GlobalContext); 
-
-    let {detailedPost} = states; 
-    let {setDetailedPost} = setters; 
     const navigate = useNavigate(); 
 
     useEffect(() => {
       
-    
-     
     }, [upvoted,downvoted])
 
     const handleUpvote = () => {
         //if no downvote or upvote registered, make new vote
         let token = window.localStorage.getItem('token'); 
         if (!upvoted && !downvoted)
-        {
-           
+        {       
             //request (POST) new vote creation with direction 1
             let body = {
                 direction: 1
             }
-            let answer = CreatePostVote(`posts/${props.post.id}/votes`,body, token);
+            let answer = CreatePostVote(`comments/${props.comment.id}/votes`,body, token);
             answer.then( (response) => {
                 setUpvoted(true); 
             }).catch( (error) => alert("Erro ao dar upvote no post!"))
@@ -52,7 +45,7 @@ function PostBox(props) {
              let body = {
                 direction: 1
             }
-            let answer = ChangePostVote(`posts/${props.post.id}/votes`,body, token);
+            let answer = ChangePostVote(`comments/${props.comment.id}/votes`,body, token);
             answer.then( (response) => {
                 setUpvoted(true); 
                 setDownvoted(false); 
@@ -64,7 +57,7 @@ function PostBox(props) {
         else {
             //request (DELETE) post vote
           
-            let answer = DeletePostVote(`posts/${props.post.id}/votes`, token);
+            let answer = DeletePostVote(`comments/${props.comment.id}/votes`, token);
             answer.then( (response) => {
                 setUpvoted(false);  
             }).catch( (error) => alert("Erro ao dar upvote no post!"))
@@ -83,7 +76,7 @@ function PostBox(props) {
             let body = {
                 direction: -1
             }
-            let answer = CreatePostVote(`posts/${props.post.id}/votes`,body, token);
+            let answer = CreatePostVote(`comments/${props.comment.id}/votes`,body, token);
             answer.then( (response) => {
                 setDownvoted(true); 
             }).catch( (error) => alert("Erro ao dar downvote no post!"))
@@ -98,7 +91,7 @@ function PostBox(props) {
              let body = {
                 direction: -1
             }
-            let answer = ChangePostVote(`posts/${props.post.id}/votes`,body, token);
+            let answer = ChangePostVote(`comments/${props.comment.id}/votes`,body, token);
             answer.then( (response) => {
                 setUpvoted(false); 
                 setDownvoted(true); 
@@ -110,7 +103,7 @@ function PostBox(props) {
         else {
             //request (DELETE) post vote
             
-            let answer = DeletePostVote(`posts/${props.post.id}/votes`, token);
+            let answer = DeletePostVote(`comments/${props.comment.id}/votes`, token);
             answer.then( (response) => {
                 setDownvoted(false);  
             }).catch( (error) => alert("Erro ao dar upvote no post!"))
@@ -118,53 +111,38 @@ function PostBox(props) {
         }
     }
     
-//   if(props.post.id === "4f3f4da7-46a2-4b1c-b1e0-cd7c6d11d5db")
-//   {
-//       console.log(upvoted, "upvoted status")
-//       console.log(downvoted, "downvoted status")
-//   }
-
-const handlePostClick = () => {
-    setDetailedPost(props.post); 
-    goToPost(navigate, props.post.id)
-}
-
   return (
-    <PostBoxMainDiv>
+    <CommentMainDiv>
+        <CommentUserNameDiv>
+            <p>{`Enviado por: ${props.comment.username}`}</p>
+        </CommentUserNameDiv>
 
-        <PostBoxUserNameDiv>
-            <p>{`Enviado por: ${props.post.username}`}</p>
-        </PostBoxUserNameDiv>
+        <CommentBodyDiv>
+            <p>{props.comment.body}</p>
+        </CommentBodyDiv>
         
-        <PostBoxTitleDiv onClick={props.fromFeed? ()=> {handlePostClick()} : null}>
-            <h2>{props.post.title}</h2>
-            {props.fromFeed? null: <p>{props.post.body}</p>}
-        </PostBoxTitleDiv>
 
-        <PostBoxInteractionDiv>
-            <PostBoxUpvoteDiv>
+        <CommentInteractionDiv>
+
+            <CommentUpvoteDiv>
                 {upvoted ? <img alt="green upvote icon" src={greenUpvote} id="upvoteIcon" onClick={()=> {handleUpvote()}}/>
                 :<img alt="upvote icon" src={upvoteIcon} id="upvoteIcon" onClick={()=> {handleUpvote()}}/> }
 
-            <p> {` ${props.post.voteSum === null ? 0: (Number(props.post.voteSum)) }`}</p>  
+            <p> {` ${props.comment.voteSum === null ? 0 : (Number(props.comment.voteSum)) }`}</p>  
 
             {downvoted? <img alt=" reddownvote icon" src={redDownvote} id="downvoteIcon" onClick={()=> {handleDownvote()}}/> : 
             <img alt="downvote icon" src={downvoteIcon} id="downvoteIcon" onClick={()=> {handleDownvote()}}/>}
 
-            </PostBoxUpvoteDiv>
+            </CommentUpvoteDiv>
             
-           <PostBoxCommentDiv onClick={props.fromFeed? ()=> {handlePostClick()} : null}>
-           <img alt=" comment icon" src={commentIcon} />
-           <p> {` ${props.post.commentCount === null ? 0: props.post.commentCount}`}</p>
-           </PostBoxCommentDiv>
-           
-        </PostBoxInteractionDiv>
+         
+        </CommentInteractionDiv>
 
 
 
 
-    </PostBoxMainDiv>
+    </CommentMainDiv>
   )
 }
 
-export default PostBox
+export default CommentBox

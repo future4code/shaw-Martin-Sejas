@@ -24,7 +24,7 @@ Button {
 
     @media (min-width: 750px)
     {
-        font-size: 1.8rem; 
+        font-size: 1.5rem; 
     }
 
     

@@ -58,6 +58,37 @@ let Header = {
     }
 }
 
+
+export const  GetComments = async (url, token, setComments, setCommented) =>  {
+
+    let Header = {
+        headers: {
+            Authorization: token
+        }
+    }
+        
+        try{
+             const response = await axios.get(`${BASE_URL}${url}`,Header);
+             if(response.data.length > 0) { 
+                setComments(response.data)
+                setCommented(true); 
+             }
+
+             else
+             {
+                 setComments(["nada", "aqui"]); 
+                 setCommented(false); 
+             }
+            
+            
+    
+        }
+        catch(error){
+          
+        }
+    }
+    
+
 export const  CreatePost= async ( body, token) =>  {
 
     let Header = {
@@ -74,6 +105,23 @@ export const  CreatePost= async ( body, token) =>  {
           
         }
     }
+
+    export const  CreateComment= async ( body, token,id) =>  {
+
+        let Header = {
+            headers: {
+                Authorization: token
+            }
+        }
+            
+            try{
+                 const response = await axios.post(`${BASE_URL}posts/${id}/comments`,body,Header);
+                 return(response)
+            }
+            catch(error){
+              
+            }
+        }
 
     export const  CreatePostVote = async (url, body, token) =>  {
 

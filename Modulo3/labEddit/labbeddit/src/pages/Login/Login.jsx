@@ -17,12 +17,10 @@ function Login() {
 
   useEffect(() => {
     let myToken = window.localStorage.getItem('token'); 
- 
     if(myToken) {
       goToFeed(navigate); 
     }
    
-    
    }, [])
 
   return (
@@ -64,9 +62,7 @@ function Login() {
             window.localStorage.setItem("token", response.token)
             goToFeed(navigate); 
            
-          }).catch( (error) => {})
-
-      
+          }).catch( (error) => {})   
         }}
       >
         { (props) => {

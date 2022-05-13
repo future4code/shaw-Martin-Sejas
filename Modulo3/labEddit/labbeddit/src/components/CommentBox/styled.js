@@ -8,7 +8,7 @@ import "@fontsource/noto-sans/500.css";
 
 
 
-export const PostBoxMainDiv = styled.div`
+export const CommentMainDiv = styled.div`
 
 width: 100%; 
 height: max-content; 
@@ -23,7 +23,7 @@ margin-bottom: 10px;
 
 `
 
-export const PostBoxUserNameDiv = styled.div`
+export const CommentUserNameDiv = styled.div`
 width: 100%; 
 height: 25%; 
 font-family: ${MYFONTS.title}; 
@@ -34,7 +34,7 @@ color: ${COLORS.font.secondary};
 
 `
 
-export const PostBoxTitleDiv = styled.div`
+export const CommentBodyDiv = styled.div`
 width: 100%; 
 flex-grow: 1;
 font-family: ${MYFONTS.title}; 
@@ -42,6 +42,7 @@ font-size: 18px;
 font-weight: 500; 
 color: ${COLORS.font.subHeadings}; 
 padding: 18px 0; 
+
 
 p {
     font-weight: 400; 
@@ -52,7 +53,7 @@ p {
 
 `
 
-export const PostBoxInteractionDiv = styled.div`
+export const CommentInteractionDiv = styled.div`
 width: 100%;
 height: 40%; 
 display: flex; 
@@ -63,7 +64,7 @@ font-size: 12px;
 font-weight: 400; 
 flex-grow: 0; 
 `
-export const PostBoxUpvoteDiv = styled.div`
+export const CommentUpvoteDiv = styled.div`
 display: flex; 
 padding:5px; 
 border: 1px solid #ECECEC;
@@ -86,22 +87,4 @@ p {
     padding-right: 5px;
 }
 
-`
-
-export const PostBoxCommentDiv = styled.div`
-display: flex; 
-padding:5px; 
-border: 1px solid #ECECEC;
-border-radius: 28px;
-margin-right: 10px; 
-
-p {
-    padding: 0px 15px; 
-    font-family: ${MYFONTS.title};
-    font-weight: 500; 
-}
-
-img {
-    padding-left: 5px;
-}
 `

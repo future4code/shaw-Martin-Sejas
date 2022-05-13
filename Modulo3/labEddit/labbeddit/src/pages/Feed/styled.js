@@ -42,7 +42,7 @@ flex-direction: column;
 
     @media (min-width: 750px)
     {
-         
+         width: 40%; 
         align-self: center; 
         justify-self: center; 
        
@@ -58,6 +58,11 @@ display: flex;
 flex-direction: column; 
 width: 85%; 
 margin: 0 auto; 
+
+@media (min-width: 750px)
+    {
+        width: 40%; 
+    }
 
  
 
@@ -75,12 +80,18 @@ margin: 0 auto;
 .postBody{
     margin-top: 12px; 
     width: 100%; 
+    height: 15vh; 
     max-height: 35vh; 
     background-color: ${COLORS.backgroundSecondary}; 
-    border-radius: 0px; 
+    border-radius: 12px; 
     font-family: ${MYFONTS.title}; 
     font-size: 18px; 
-    color: '#323941'
+    color: '#323941';
+
+    @media (min-width: 750px)
+    {
+        height: 20vh;
+    }
 }
 
 
@@ -105,6 +116,8 @@ Button {
          
         align-self: center; 
         justify-self: center; 
+   
+
        
     }
 }
@@ -125,6 +138,11 @@ display: flex;
 flex-direction: column; 
 margin: 0 auto; 
 margin-top: 36px;
+
+@media (min-width: 750px)
+    {
+        width: 40%; 
+    }
 
 
 `

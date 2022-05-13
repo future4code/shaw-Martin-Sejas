@@ -6,7 +6,6 @@ import { FeedChoosePagesDiv, FeedContentDiv, FeedMainDiv, FeedPostsDiv, FeedSubm
 import {Button, Input, FormControl, FormErrorMessage, Textarea} from '@chakra-ui/react';
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
-import { Pagination } from '@mui/material';
 import { CreatePost, GetPosts } from '../../services/requests';
 import PostBox from '../../components/PostBox/PostBox';
 import {GlobalContext} from '../../contexts/GlobalContext/GlobalContext';
@@ -14,21 +13,14 @@ import {GlobalContext} from '../../contexts/GlobalContext/GlobalContext';
 
 function Feed() {
   const navigate = useNavigate(); 
-  
   const {states,setters,requests} = useContext(GlobalContext); 
 
   let {postsOnDisplay, pageCount} = states; 
-
-
   let {setPostsOnDisplay, setPageCount} = setters; 
-
   let {loadPostsToDisplay} = requests; 
 
   // let [pageCount, setPageCount] = useState(1); 
   
-
-  //
- 
   
   useEffect(() => {
     //check if loggedIn
@@ -38,8 +30,6 @@ function Feed() {
     }
 
    loadPostsToDisplay(); 
-
-  
   }, [])
 
 
@@ -47,9 +37,6 @@ function Feed() {
     loadPostsToDisplay(); 
   }, [postsOnDisplay,pageCount])
 
-
- 
-  
 
   let posts = postsOnDisplay && postsOnDisplay.length>0  && postsOnDisplay.map( (post)=> {
     return( <PostBox key={post.id} post={post} fromFeed={true} />)
