@@ -133,8 +133,6 @@ export const  CreatePost= async ( body, token) =>  {
             
             try{
                  const response = await axios.post(`${BASE_URL}${url}`,body,Header);
-                 console.log(response)
-                 console.log(body)
                  return(response)
             }
             catch(error){
