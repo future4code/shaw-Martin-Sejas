@@ -31,7 +31,6 @@ type AmostraDeDados = {
         
     }
 
-
 const amostraDeIdades: AmostraDeDados = {
     numeros: [21,18, 65, 44, 15, 18],
     obterEstatisticas: (numeros):object => {  const numerosOrdenados:number[] = numeros.sort(
