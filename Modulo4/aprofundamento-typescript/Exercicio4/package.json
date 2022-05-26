@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  },
+  "name": "exercicio4",
+  "version": "1.0.0",
+  "main": "exercicio-4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node build/exercicio-4.js"
+  },
+  "keywords": [],
+  "author": "Martin Sejas",
+  "license": "ISC",
+  "description": ""
+}
