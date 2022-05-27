@@ -253,12 +253,105 @@ console.log(calcularSaldo(clientes))
 //Exercicio 7
 console.log("\nExercicio 7 \n")
 
+const ajustaPreco = (preco :number): string => {
+	const valorAjustado: string = preco.toFixed(2).replace('.', ',')
+	return "R$ "+valorAjustado
+}
+
+type ProdutoEstoque = {
+    nome:string, 
+    quantidade: number, 
+    valorUnitario: number | string
+}
+
+let estoqueLoja:ProdutoEstoque[] = [
+	{ nome: "MacMugffin", quantidade: 37, valorUnitario: 51.040},
+	{ nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0},
+	{ nome: "Laço da verdade", quantidade: 32, valorUnitario: 571.5},
+	{ nome: "O precioso", quantidade: 1, valorUnitario: 9181.923},
+	{ nome: "Caneta de 250 cores", quantidade: 123, valorUnitario: 17},
+	{ nome: "Plumbus", quantidade: 13, valorUnitario: 140.44},
+	{ nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915}
+]
+
+
+function ajustarEstoque(estoque:ProdutoEstoque[]):ProdutoEstoque[]{
+
+    let precosAjustados = estoque.map( (produto) => {
+        produto.valorUnitario = ajustaPreco(produto.valorUnitario as number)
+        return produto; 
+    })
+
+    precosAjustados = precosAjustados.sort( (a,b) => {
+        return  b.quantidade - a.quantidade 
+    })
+
+
+
+    return precosAjustados; 
+}
+
+console.log(ajustarEstoque(estoqueLoja))
+
  
 //Exercicio 8
 console.log("\nExercicio 8 \n")
+
+function checarValidade(anoNascimento:string, anoEmissao:string):boolean {
+    let dataNascimento = anoNascimento.split('/'); 
+    let dataEmissao = anoEmissao.split('/')
+
+    let nascimento = new Date( Number((dataNascimento[2])), Number(dataNascimento[1]), Number(dataNascimento[0]))  ; 
+    let emissao = new Date(Number((dataEmissao[2])), Number(dataEmissao[1]), Number(dataEmissao[0])); 
+    let hoje = new Date( Date.now()); 
+
+    //ano em milisegundos
+    let ano = 1000*60*60*24*365; 
+    let idade = hoje.getTime() - nascimento.getTime(); 
+    let tempoDeEmissao = hoje.getTime() - emissao.getTime(); 
+
+    let renovarJovem:boolean = false; 
+    let renovarAdulto:boolean = false; 
+    let renovarIdoso:boolean = false; 
+
+    if (idade%ano <= 20 && tempoDeEmissao%ano > 5 ) renovarJovem = true 
+
+    if (idade%ano > 20 && idade%ano <= 50 && tempoDeEmissao%ano >10) renovarAdulto = true; 
+
+    if (idade%ano > 50 && tempoDeEmissao%ano>15) renovarIdoso = true; 
+
+    return renovarAdulto || renovarIdoso || renovarJovem; 
+
+
+}
+
+console.log(checarValidade("24/04/1993", "07/11/2010"))
+
  
 //Exercicio 9
 console.log("\nExercicio 9 \n")
+
+function calcularAnagramas(palavra:string):number{
+
+    let factorial = palavra.length; 
+
+    if (factorial === 0 || factorial === 1) return 1; 
+
+    else {
+        let total:number = 1; 
+        for(let i = 1; i <= factorial; i++)
+        {
+            total *= i; 
+        }
+
+        return total; 
+    }
+
+
+}
+
+
+console.log(calcularAnagramas("mesa"))
  
 //Exercicio 10
 console.log("\nExercicio 10 \n")
