@@ -444,88 +444,42 @@ function converterParaNumeroRomano(ano:number):string {
 
     let romanYear = ""; 
 
-    //eu tenho codigo que se repete muito, sinto que daria para refatorar, mas vou deixar para depois
+    let romanValues = [
+        {letter: 'M', value: 1000},
+        {letter: 'CM', value: 900},
+        {letter:'D', value: 500},
+        {letter: 'CD', value: 400},
+        {letter: 'C', value: 100},
+        {letter: 'XC', value: 90},
+        {letter: 'L', value: 50},
+        {letter: 'XL', value: 40},
+        {letter: 'C', value: 10},
+        {letter: 'IX', value: 9},
+        {letter: 'V', value: 5},
+        {letter: 'IV', value: 4},
+        {letter: 'I', value: 1}]
 
-    if(Math.floor(ano/1000)> 0) 
-    {
-        romanYear += ("M").repeat(Math.floor(ano/1000)); 
-        ano = ano - (1000*(Math.floor(ano/1000)))
-    }
+        function convertRoman( ano:number, index:number):string|undefined
+        {
+            if(Math.floor(ano/romanValues[index].value) > 0)
+            {
+                romanYear += (romanValues[index].letter).repeat(Math.floor(ano/romanValues[index].value)); 
+                ano = ano - (romanValues[index].value*(Math.floor(ano/romanValues[index].value)))
+            }
+
+            if(index < romanValues.length -1 || ano !== 0)
+            {
+                convertRoman(ano, (index+1))
+            }
+            else {
+               return romanYear; 
+            }
+            
+        }      
 
 
-    if(Math.floor(ano/900)> 0) 
-    {
-        romanYear += ("CM").repeat(Math.floor(ano/900)); 
-        ano = ano - (900*(Math.floor(ano/900)))
-    }
 
-    if(Math.floor(ano/500)> 0) 
-    {
-        romanYear += ("D").repeat(Math.floor(ano/500)); 
-        ano = ano - (500*(Math.floor(ano/500)))
-    }
-     
-    if(Math.floor(ano/400)> 0) 
-    {
-        romanYear += ("CD").repeat(Math.floor(ano/400)); 
-        ano = ano - (400*(Math.floor(ano/400)))
-    }
-     
-    if(Math.floor(ano/100)> 0) 
-    {
-        romanYear += ("C").repeat(Math.floor(ano/100)); 
-        ano = ano - (100*(Math.floor(ano/100)))
-    }
-  
-    if(Math.floor(ano/90)> 0) 
-    {
-        romanYear += ("XC").repeat(Math.floor(ano/90)); 
-        ano = ano - (90*(Math.floor(ano/90)))
-    }
-     
-    if(Math.floor(ano/50)> 0) 
-    {
-        romanYear += ("L").repeat(Math.floor(ano/50)); 
-        ano = ano - (50*(Math.floor(ano/50)))
-    }
-     
-    if(Math.floor(ano/40)> 0) 
-    {
-        romanYear += ("XL").repeat(Math.floor(ano/40)); 
-        ano = ano - (40*(Math.floor(ano/40)))
-    }
-    
-    if(Math.floor(ano/10)> 0) 
-    {
-        romanYear += ("X").repeat(Math.floor(ano/10)); 
-        ano = ano - (10*(Math.floor(ano/10)))
-    }
-
-    if(Math.floor(ano/9)> 0) 
-    {
-        romanYear += ("IX").repeat(Math.floor(ano/9)); 
-        ano = ano - (9*(Math.floor(ano/9)))
-    }
-
-     if(Math.floor(ano/5)> 0) 
-    {
-        romanYear += ("V").repeat(Math.floor(ano/5)); 
-        ano = ano - (5*(Math.floor(ano/5)))
-    }
-
-    if(Math.floor(ano/4)> 0) 
-    {
-        romanYear += ("IV").repeat(Math.floor(ano/4)); 
-        ano = ano - (4*(Math.floor(ano/4)))
-    }
-
-    if (ano !== 0) 
-    { 
-        romanYear += ("I").repeat(Math.floor(ano / 1));
-        ano = ano - (1 * (Math.floor(ano / 1)))
-        
-    }
-
+    convertRoman(ano, 0);
     return romanYear;
 }
 

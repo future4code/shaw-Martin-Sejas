@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node build/lista-typescript.js"
+    "start": "clear && tsc && node build/lista-typescript.js"
   },
   "keywords": [],
   "author": "",
