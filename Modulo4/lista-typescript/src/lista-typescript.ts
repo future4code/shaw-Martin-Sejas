@@ -56,7 +56,7 @@ function separarData(nome:string, data:string):string {
     return `Olá me chamo ${nome}, nasci no dia ${dataSeparada[0]} do mês de ${mes} do ano de ${dataSeparada[2]}`; 
 }
 
-console.log(separarData("Martin", "14/2/1997"))
+console.log(separarData("Martin", "14/02/1997"))
 
 
 
@@ -355,7 +355,179 @@ console.log(calcularAnagramas("mesa"))
  
 //Exercicio 10
 console.log("\nExercicio 10 \n")
+
+
+function validarCpf(cpf:string):boolean {
+    console.log(`VALIDANDO CPF: ${cpf}`)
+
+    //separar entre numeros base e DVs 123.456.789-11 -> [123.456.789], [11]
+    let cpfSeparado = cpf.split('-'); 
+
+    //remover pontos da base 123.456.789 -> 123456789
+    let cpfBaseSemFormatar = cpfSeparado[0].split('.'); 
+
+    //obter numero base depois de formatar
+    let cpfBase = cpfBaseSemFormatar.join('')
+
+    //removendo char extra do split
+    cpfSeparado[1] = cpfSeparado[1][0]+cpfSeparado[1][1]; 
+
+    //guardar variavel teste formatada
+    let cpfTeste = cpfBase.concat(cpfSeparado[1]); 
+
+
+
+    let sum:number = 0;  
+
+     //checagem de numero igual 
+     for(let c of cpfTeste)
+     {
+         if (c === cpfTeste[0]) sum++; 
+     }
+
+     if(sum === 11) return false
+
+     else {
+         sum = 0; 
+     }
+
+    let primeiroDV:number; 
+
+
+    //calculando primeiro dv
+    for (let i = 0; i < cpfBase.length; i++) 
+    {
+        sum += (10 - i)*(Number(cpfBase[i]));
+    }
+
+    if ((11 - (sum%11)) >= 10) primeiroDV = 0; 
+
+    else {
+        primeiroDV = (11 - (sum%11)); 
+    }
+
+    //adicionar para cpf base para validar ultimo digito verificador
+    cpfBase += (primeiroDV.toString()); 
+
+    //repetindo loop 
+    sum = 0; 
+    let segundoDV:number; 
+
+    //calculo de ultimo digito
+    for (let i = 0; i < cpfBase.length; i++) 
+    {
+        sum += (11 - i)*(Number(cpfBase[i]));
+    }
+
+    if ((11 - (sum%11)) >= 10) segundoDV = 0; 
+
+    else {
+        segundoDV = (11 - (sum%11)); 
+    }
+
+    //adicionando ultimo numero validado
+    cpfBase += (segundoDV.toString()); 
+
+   
+    return (cpfBase == cpfTeste)
+}
+
+console.log(validarCpf("145.382.206-20 "));
+console.log(validarCpf("145.382.206-19 "));
+console.log(validarCpf("111.111.111-11"))
  
 //Exercicio 11
 console.log("\nExercicio 11 \n")
+
+function converterParaNumeroRomano(ano:number):string {
+    console.log(`Convertendo numero: ${ano}`)
+
+    let romanYear = ""; 
+
+    //eu tenho codigo que se repete muito, sinto que daria para refatorar, mas vou deixar para depois
+
+    if(Math.floor(ano/1000)> 0) 
+    {
+        romanYear += ("M").repeat(Math.floor(ano/1000)); 
+        ano = ano - (1000*(Math.floor(ano/1000)))
+    }
+
+
+    if(Math.floor(ano/900)> 0) 
+    {
+        romanYear += ("CM").repeat(Math.floor(ano/900)); 
+        ano = ano - (900*(Math.floor(ano/900)))
+    }
+
+    if(Math.floor(ano/500)> 0) 
+    {
+        romanYear += ("D").repeat(Math.floor(ano/500)); 
+        ano = ano - (500*(Math.floor(ano/500)))
+    }
+     
+    if(Math.floor(ano/400)> 0) 
+    {
+        romanYear += ("CD").repeat(Math.floor(ano/400)); 
+        ano = ano - (400*(Math.floor(ano/400)))
+    }
+     
+    if(Math.floor(ano/100)> 0) 
+    {
+        romanYear += ("C").repeat(Math.floor(ano/100)); 
+        ano = ano - (100*(Math.floor(ano/100)))
+    }
+  
+    if(Math.floor(ano/90)> 0) 
+    {
+        romanYear += ("XC").repeat(Math.floor(ano/90)); 
+        ano = ano - (90*(Math.floor(ano/90)))
+    }
+     
+    if(Math.floor(ano/50)> 0) 
+    {
+        romanYear += ("L").repeat(Math.floor(ano/50)); 
+        ano = ano - (50*(Math.floor(ano/50)))
+    }
+     
+    if(Math.floor(ano/40)> 0) 
+    {
+        romanYear += ("XL").repeat(Math.floor(ano/40)); 
+        ano = ano - (40*(Math.floor(ano/40)))
+    }
+    
+    if(Math.floor(ano/10)> 0) 
+    {
+        romanYear += ("X").repeat(Math.floor(ano/10)); 
+        ano = ano - (10*(Math.floor(ano/10)))
+    }
+
+    if(Math.floor(ano/9)> 0) 
+    {
+        romanYear += ("IX").repeat(Math.floor(ano/9)); 
+        ano = ano - (9*(Math.floor(ano/9)))
+    }
+
+     if(Math.floor(ano/5)> 0) 
+    {
+        romanYear += ("V").repeat(Math.floor(ano/5)); 
+        ano = ano - (5*(Math.floor(ano/5)))
+    }
+
+    if(Math.floor(ano/4)> 0) 
+    {
+        romanYear += ("IV").repeat(Math.floor(ano/4)); 
+        ano = ano - (4*(Math.floor(ano/4)))
+    }
+
+    if (ano !== 0) 
+    { 
+        romanYear += ("I").repeat(Math.floor(ano / 1));
+        ano = ano - (1 * (Math.floor(ano / 1)))
+        
+    }
+
+    return romanYear;
+}
+
+console.log(converterParaNumeroRomano(3432))
  
