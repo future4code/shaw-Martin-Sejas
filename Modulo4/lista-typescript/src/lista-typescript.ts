@@ -439,11 +439,10 @@ console.log(validarCpf("111.111.111-11"))
 //Exercicio 11
 console.log("\nExercicio 11 \n")
 
-function converterParaNumeroRomano(ano:number):string|undefined {
+function converterParaNumeroRomano(ano:number):string {
     console.log(`Convertendo numero: ${ano}`)
 
-   
-
+    //mapeamento de valores, poderia acrescentar se necessario
     let romanValues = [
         {letter: 'M', value: 1000},
         {letter: 'CM', value: 900},
@@ -459,27 +458,28 @@ function converterParaNumeroRomano(ano:number):string|undefined {
         {letter: 'IV', value: 4},
         {letter: 'I', value: 1}]
 
-        function convertRoman( ano:number, index:number, romanYear:string):string|undefined
+        //inizialiacao de string vazia para converter
+        let romanYear = ""; 
+
+        //funcao recursiva simples para converter 
+        function convertRoman( ano:number, index:number):void
         {
+            //checa se o ano eh divisivel pela iteracao do mapeamento, se for, aplica a divisao e subtrai do ano
             if(Math.floor(ano/romanValues[index].value) > 0)
             {
                 romanYear += (romanValues[index].letter).repeat(Math.floor(ano/romanValues[index].value)); 
                 ano = ano - (romanValues[index].value*(Math.floor(ano/romanValues[index].value)))
             }
 
-            if(index < romanValues.length -1 || ano !== 0)
+            //checa se os valores ja foram convertidos, se nao, chama de novo a si mesmo com os valores atualizados
+            if(ano !== 0)
             {
-                convertRoman(ano, (index+1),romanYear)
-            }
-            else {
-               return romanYear; 
-            }
-            
+                convertRoman(ano, (index+1))
+            }                     
         }      
 
-
-        let romanYear =  convertRoman(ano, 0,'');
-        return romanYear;
+    convertRoman(ano, 0);
+    return romanYear;
 }
 
 console.log(converterParaNumeroRomano(3432))
