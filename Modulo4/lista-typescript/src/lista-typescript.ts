@@ -439,10 +439,10 @@ console.log(validarCpf("111.111.111-11"))
 //Exercicio 11
 console.log("\nExercicio 11 \n")
 
-function converterParaNumeroRomano(ano:number):string {
+function converterParaNumeroRomano(ano:number):string|undefined {
     console.log(`Convertendo numero: ${ano}`)
 
-    let romanYear = ""; 
+   
 
     let romanValues = [
         {letter: 'M', value: 1000},
@@ -459,7 +459,7 @@ function converterParaNumeroRomano(ano:number):string {
         {letter: 'IV', value: 4},
         {letter: 'I', value: 1}]
 
-        function convertRoman( ano:number, index:number):string|undefined
+        function convertRoman( ano:number, index:number, romanYear:string):string|undefined
         {
             if(Math.floor(ano/romanValues[index].value) > 0)
             {
@@ -469,7 +469,7 @@ function converterParaNumeroRomano(ano:number):string {
 
             if(index < romanValues.length -1 || ano !== 0)
             {
-                convertRoman(ano, (index+1))
+                convertRoman(ano, (index+1),romanYear)
             }
             else {
                return romanYear; 
@@ -478,9 +478,8 @@ function converterParaNumeroRomano(ano:number):string {
         }      
 
 
-
-    convertRoman(ano, 0);
-    return romanYear;
+        let romanYear =  convertRoman(ano, 0,'');
+        return romanYear;
 }
 
 console.log(converterParaNumeroRomano(3432))
