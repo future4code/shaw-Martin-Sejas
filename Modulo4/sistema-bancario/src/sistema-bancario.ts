@@ -1,9 +1,6 @@
 import express from "express";
 import cors from "cors"; 
-import fs from 'fs'; 
-import { getUsers, registerUser } from "./endpoints";
-
-
+import { getUserByCpf, getUsers, registerUser } from "./endpoints";
 
 
 //creating type for transactions
@@ -24,8 +21,6 @@ export type User = {
     transactions: (Transaction| undefined)[]
 }
 
-//json file representing global array of users
-export let users:User[] = require("../data/users.json")
 
 //initializing express instances
 const app = express(); 
@@ -39,6 +34,9 @@ app.get("/users", getUsers);
 
 //validates and adds new user if accepted
 app.post("/users", registerUser )
+
+//get a user by cpf as param
+app.get("/users/:cpf", getUserByCpf)
 
 
 

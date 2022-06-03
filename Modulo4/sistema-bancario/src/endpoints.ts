@@ -1,59 +1,28 @@
-import express, {Request, Response} from "express"
-import { users } from "./sistema-bancario"
-
-//check valid date of birth
-
-//function that received a data of birth returns true or false if the user is over 18
-function ValidDateOfBirth(dob:string):boolean {
-let dateInString = dob.split('/'); 
-
-let birthDate = new Date(Number(dateInString[0]), Number(dateInString[1]), Number(dateInString[2])); 
-let today = new Date(Date.now())
-
-//if year difference greater than 18, dob is valid
-if (today.getFullYear() -birthDate.getFullYear() > 18)
-{ 
-    return true; 
-}
-//if 18, must check if user already had their birthday or not
-else if (today.getFullYear() -birthDate.getFullYear() === 18)
-{
-    //if today's month is greater than birthday month user is 18, return true
-    if(today.getMonth() > birthDate.getMonth())
-    {
-        return true;
-    }
-    //if the month is the same, we check the day
-    else if (today.getMonth() === birthDate.getMonth())
-    {
-        //if today is their birthday, or it has already passed return true
-        if(today.getDay() <= birthDate.getDay())
-        {
-            return true;
-        }
-        //else return false
-        else {
-            return false; 
-        }
-    }
-    else {
-        return false;
-    }
-}
-else {
-    return false;
-}
-}
+import  {Request, Response} from "express"
+import { getClientData, validateDateOfBirth, validateCpf, updateClientData } from "./helperFunctions";
+import { User } from "./sistema-bancario";
 
 
 //gets all users
 export const getUsers = (req:Request, res:Response) => {
   try {
-      res.status(200).send(users)
+    //try to read from file
+    let data = getClientData(); 
+   
+    //if no data, file error
+    if(!(data.users.length > 0)) throw new Error("Unable to read file")
+
+    if (data.users!== undefined) res.status(200).send(data)
+    else throw new Error("unable to read data")
+
+
   } catch (error:any) {
       res.status(500).send({message: error.message})
   }
 }
+
+
+
 
 //validates and creates new user
 export const registerUser = (req:Request, res:Response) => {
@@ -86,15 +55,39 @@ export const registerUser = (req:Request, res:Response) => {
             throw new Error("Please enter a valid date. Format: DD/MM/YYYY")
         }
         //check to see if user is over 18
-        if (!ValidDateOfBirth(dateOfBirth))
+        if (!validateDateOfBirth(dateOfBirth))
         {
             throw new Error("Error: User must be over 18")
         }
 
-
-
-
+        let data = getClientData();
         
+        if(!data.users)
+        {
+            throw new Error("Couldn't access client data")
+        }
+
+         //if not valid, cpf already in use
+         if(!validateCpf(cpf,data.users)) 
+         {
+             statusCode = 409; 
+             throw new Error("Cpf already registered")
+         }
+
+        let newUser:User = {
+            name,
+            cpf, 
+            dateOfBirth,
+            accountBalance: 0,
+            transactions: []
+        }
+
+        //add user to array
+        data.users.push(newUser); 
+
+        //write new user to array
+        if(updateClientData(data)) res.status(201).send("User Registered Successfully")
+  
     } catch (error:any) {
         if (error.message === undefined)
         {
@@ -106,3 +99,58 @@ export const registerUser = (req:Request, res:Response) => {
         
     }
 }
+
+
+
+
+//gets user by cpf
+export const getUserByCpf = ((req:Request, res:Response) => {
+    let cpf = req.params.cpf; 
+    let statusCode = 400; 
+    try {
+        if (!cpf.match(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/))
+        {
+            throw new Error("Cpf must have format 000.000.000-00")
+        }
+        
+        let data = getClientData(); 
+
+        if(!(data.users.length > 0))
+        {
+            throw new Error("Couldn't read data from database")
+        }
+
+        if(validateCpf(cpf, data.users))
+        {
+            throw new Error("Cpf doesn't exist on database")
+        }
+
+        let clientBalance:number|undefined; 
+
+        for (let i =0; i<data.users.length; i++)
+        {
+            if (data.users[i].cpf === cpf)
+            {
+                clientBalance = data.users[i].accountBalance; 
+                
+            }
+        }
+        if(clientBalance === undefined)
+        {
+            throw new Error("Error reading client balance")
+        }
+        res.status(200).send({balance: clientBalance})
+        
+    } catch (error:any) {
+        if (error.message === undefined)
+        {
+            res.status(500).send({message: "Unexpected server error"})
+        }
+        else {
+            res.status(statusCode).send({message: error.message})
+        }
+    }
+
+})
+
+
