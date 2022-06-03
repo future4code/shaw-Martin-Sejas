@@ -80,5 +80,31 @@ export function updateClientData(newData: { users: [User] }): boolean {
     } catch (error: any) {
         return false;
     }
+}
 
+export function getCurrentDate():string{
+    let currentDate = new Date(Date.now()); 
+    let year = currentDate.getFullYear().toString(); 
+    let month:string; 
+    let day:string
+
+    if (currentDate.getMonth()+1 < 10) 
+    {
+        month = "0".concat((currentDate.getMonth()+1).toString())
+    }
+    else 
+    {
+        month = (currentDate.getMonth()+1).toString()
+    }
+
+
+    if (currentDate.getDate() < 10)
+    {
+        day = "0".concat(currentDate.getDate().toString())
+    }
+    else{
+        day = currentDate.getDate().toString();
+    }
+
+    return (`${day}/${month}/${year}`)
 }

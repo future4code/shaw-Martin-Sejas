@@ -1,6 +1,6 @@
 import  {Request, Response} from "express"
-import { getClientData, validateDateOfBirth, validateCpf, updateClientData } from "./helperFunctions";
-import { User } from "./sistema-bancario";
+import { getClientData, validateDateOfBirth, validateCpf, updateClientData, getCurrentDate } from "./helperFunctions";
+import { Transaction, User } from "./sistema-bancario";
 
 
 //gets all users
@@ -11,6 +11,8 @@ export const getUsers = (req:Request, res:Response) => {
    
     //if no data, file error
     if(!(data.users.length > 0)) throw new Error("Unable to read file")
+
+  
 
     if (data.users!== undefined) res.status(200).send(data)
     else throw new Error("unable to read data")
@@ -104,10 +106,11 @@ export const registerUser = (req:Request, res:Response) => {
 
 
 //gets user by cpf
-export const getUserByCpf = ((req:Request, res:Response) => {
+export const getUserBalance = ((req:Request, res:Response) => {
     let cpf = req.params.cpf; 
     let statusCode = 400; 
     try {
+        //check if cpf is on valid format
         if (!cpf.match(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/))
         {
             throw new Error("Cpf must have format 000.000.000-00")
@@ -115,11 +118,13 @@ export const getUserByCpf = ((req:Request, res:Response) => {
         
         let data = getClientData(); 
 
+        //check if data was read
         if(!(data.users.length > 0))
         {
             throw new Error("Couldn't read data from database")
         }
 
+        //check if cpf exists on database
         if(validateCpf(cpf, data.users))
         {
             throw new Error("Cpf doesn't exist on database")
@@ -131,8 +136,7 @@ export const getUserByCpf = ((req:Request, res:Response) => {
         {
             if (data.users[i].cpf === cpf)
             {
-                clientBalance = data.users[i].accountBalance; 
-                
+                clientBalance = data.users[i].accountBalance;              
             }
         }
         if(clientBalance === undefined)
@@ -154,3 +158,82 @@ export const getUserByCpf = ((req:Request, res:Response) => {
 })
 
 
+//updates userbalance
+export const putValueToUserBalance = (req:Request, res:Response) => {
+    let cpf = req.params.cpf; 
+    let statusCode = 400; 
+    try {
+        let {name, value} = req.body
+
+        //check to see if cpf is on correct format
+        if (!cpf.match(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/))
+        {
+            throw new Error("Cpf must have format 000.000.000-00")
+        }
+
+        //check if body values are missing
+        if (!name || !value)
+        {
+            throw new Error("Please check request body, must contain fields: name(string) and value(number)")
+        }
+
+        //check if body value types are correct
+        if(typeof name !== 'string' || typeof value !== 'number')
+        {
+            throw new Error("Please data types, fields must have following data types: name(string) and value(number)")
+        }
+
+        //check deposit is bigger than 0
+        if(value <= 0)
+        {
+            throw new Error("Deposits have to be bigger than 0")
+        }
+        
+        let data = getClientData(); 
+
+        //check data was read
+        if(!(data.users.length > 0))
+        {
+            throw new Error("Couldn't read data from database")
+        }
+
+        //check cpf exists
+        if(validateCpf(cpf, data.users))
+        {
+            throw new Error("Cpf doesn't exist on database")
+        }
+
+        for(let i = 0; i<data.users.length; i++)
+        {
+            if(data.users[i].cpf === cpf)
+            {
+                if(data.users[i].name !== name)
+                {
+                    throw new Error("Wrong client name, please verify request")
+                }
+                else {
+                    let deposit:Transaction = {
+                        value,
+                        date: getCurrentDate(),
+                        description: "Depósito de dinheiro"
+                    }
+                    data.users[i].transactions.push(deposit); 
+                    data.users[i].accountBalance+= value; 
+                }
+            }
+        }
+
+        updateClientData(data); 
+
+        res.status(200).send("Deposito efetuado com sucesso!")
+        
+    } catch (error:any) {
+        if (error.message === undefined)
+        {
+            res.status(500).send({message: "Unexpected server error"})
+        }
+        else {
+            res.status(statusCode).send({message: error.message})
+        }
+    }
+}

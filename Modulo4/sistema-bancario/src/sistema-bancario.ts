@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors"; 
-import { getUserByCpf, getUsers, registerUser } from "./endpoints";
+import { getUserBalance, getUsers, putValueToUserBalance, registerUser } from "./endpoints";
 
 
 //creating type for transactions
@@ -36,7 +36,10 @@ app.get("/users", getUsers);
 app.post("/users", registerUser )
 
 //get a user by cpf as param
-app.get("/users/:cpf", getUserByCpf)
+app.get("/users/:cpf", getUserBalance)
+
+//updates user balance of a user
+app.put("/users/:cpf", putValueToUserBalance)
 
 
 
