@@ -143,7 +143,6 @@ let statusCode = 400;
 app.post("/users", (req:Request, res:Response) => {
     let statusCode = 400; 
     try {
-        
         let {name, email, type, age} = req.body; 
 
         if(!name || !email || !type || !age)
@@ -194,6 +193,146 @@ app.post("/users", (req:Request, res:Response) => {
         }
 
         
+    }
+})
+
+//Exercicio 4 
+// a) mudou nada
+//b) nao, porque com os erros que botei no post soh posso submeter informacoes completas, e gero uma id nova tambem na transacao
+
+
+//Exercicio 5) 
+
+app.put('/users/:id', (req:Request, res:Response) => {
+    let id = Number(req.params.id); 
+    let statusCode = 400; 
+    try {
+        let name = req.body.name as string; 
+        if (id > users.length || id < 0) 
+        {
+            statusCode=404; 
+            throw new Error("User not found")
+        }
+
+        if(!name)
+        {
+            throw new Error("Invalid body format, need at least Name, or email, or type, or id")
+        }
+
+        if( typeof name !== 'string')
+        {
+            throw new Error("Invalid format for 'name', please input string")
+        }
+
+        for( let i =0; i<users.length; i++)
+        {
+       
+            if(users[i].id  === id)
+            {
+
+                users[i].name = `${name}-ALTERADO`;
+            }
+        }
+
+
+        res.status(201).send(); 
+
+    } catch (error:any) {
+        if(error.message === undefined) 
+        {
+            statusCode = 500; 
+            res.status(statusCode).send("Unexpected server error")
+        }
+        else {
+            res.status(statusCode).send({message: error.message})
+        }
+        
+    }
+
+})
+
+//Exercicio 6
+app.patch('/users/:id', (req:Request, res:Response) => {
+    let id = Number(req.params.id); 
+    let statusCode = 400; 
+    try {
+        let name = req.body.name as string; 
+        if (id > users.length || id < 0) 
+        {
+            statusCode=404; 
+            throw new Error("User not found")
+        }
+
+        if(!name)
+        {
+            throw new Error("Invalid body format, need at least Name, or email, or type, or id")
+        }
+
+        if( typeof name !== 'string')
+        {
+            throw new Error("Invalid format for 'name', please input string")
+        }
+
+        for( let i =0; i<users.length; i++)
+        {
+           
+            if(users[i].id  === id)
+            {
+
+                users[i].name = `${name}-REALTERADO`;
+            }
+        }
+
+
+        res.status(201).send(); 
+
+    } catch (error:any) {
+        if(error.message === undefined) 
+        {
+            statusCode = 500; 
+            res.status(statusCode).send("Unexpected server error")
+        }
+        else {
+            res.status(statusCode).send({message: error.message})
+        }
+        
+    }
+
+})
+
+// Exercicio 7
+app.delete("/users/:id", (req:Request, res:Response) => {
+    let id = Number(req.params.id); 
+    let statusCode = 400; 
+    try {
+        if (id > users.length || id < 0) 
+        {
+            statusCode=404; 
+            throw new Error("User not found")
+        }
+
+         let index = users.findIndex( (element) => {
+             if(element.id === id)
+             {
+                 return true
+             }
+         })
+
+         users.splice(index, 1); 
+
+         res.status(200).send(users);
+
+
+        
+    } catch (error:any) {
+        if(error.message === undefined) 
+        {
+            statusCode = 500; 
+            res.status(statusCode).send("Unexpected server error")
+        }
+        else {
+            res.status(statusCode).send({message: error.message})
+        }
     }
 })
 
