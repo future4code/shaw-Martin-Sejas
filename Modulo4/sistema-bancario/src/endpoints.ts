@@ -1,5 +1,5 @@
 import  {Request, Response} from "express"
-import { getClientData, validateDateOfBirth, validateCpf, updateClientData, getCurrentDate } from "./helperFunctions";
+import { getClientData, validateDateOfBirth, validateCpf, updateClientData, getCurrentDate, validateAccountName } from "./helperFunctions";
 import { Transaction, User } from "./sistema-bancario";
 
 
@@ -104,9 +104,6 @@ export const registerUser = (req:Request, res:Response) => {
     }
 }
 
-
-
-
 //desafio 2
 //get a user's balance by cpf 
 export const getUserBalance = ((req:Request, res:Response) => {
@@ -163,7 +160,7 @@ export const getUserBalance = ((req:Request, res:Response) => {
 
 //desafio 3 e desafio 4
 //updates balance of a user
-export const putValueToUserBalance = (req:Request, res:Response) => {
+export const depositValueToUser = (req:Request, res:Response) => {
     let cpf = req.params.cpf; 
     let statusCode = 400; 
     try {
@@ -429,5 +426,119 @@ export const updateAccountBalance = (req:Request, res:Response) => {
 //desafio 9,10,11
 //validates transfer between two accounts
 export const createTransfer = (req:Request, res:Response) => {
+let statusCode = 400; 
+let cpf = req.params.cpf; 
 
+
+try {
+      //check to see if cpf is on correct format
+      if (!cpf.match(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/))
+      {
+          throw new Error("Cpf must have format 000.000.000-00")
+      }
+
+      let {accountName, recipientName, recipientCpf, value} = req.body;
+
+      if(!accountName || !recipientName || !recipientCpf || !value)
+      {
+          throw new Error("Request must have accountName, recipientName, recipientCpf (strings) and value (number")
+      }
+
+      if(typeof accountName !== 'string' || typeof recipientName !== 'string' || typeof recipientCpf !== 'string' || typeof value !== 'number')
+      {
+          throw new Error("Invalid types on body, accountName, recipientName, reicipientCpf must be string, value must be number")
+      }
+      if(!recipientCpf.match(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/))
+      {
+          throw new Error("Invalid format for recipient cpf")
+      }
+
+      if(value <= 0)
+      {
+          throw new Error("value must be positive")
+      }
+
+      let data = getClientData(); 
+
+      if (validateCpf(cpf,data.users))
+      {
+          statusCode = 404;
+          throw new Error("User cpf not registered in database")
+      }
+
+      if(validateCpf(recipientCpf,data.users))
+      {
+          statusCode = 404;
+          throw new Error("Recipient cpf not registered in database")
+      }
+
+      if(validateAccountName(accountName, data.users))
+      {
+          statusCode = 404; 
+          throw new Error("Account name not registered in database")
+      }
+
+      if(validateAccountName(recipientName, data.users))
+      {
+          statusCode = 404; 
+          throw new Error("Recipient name not registered in database")
+      }
+
+      //find index for origin account
+      let originAccountIndex = data.users.findIndex((user) => {
+        if (user.name === accountName) {
+            return true;
+        }
+    })
+
+    //find index for receiving account
+    let recipientAccountIndex = data.users.findIndex((user) => {
+        if (user.name === recipientName) {
+            return true;
+        }
+    })
+
+    //check if destination account has funds
+    if (data.users[originAccountIndex].accountBalance < value)
+    {
+        throw new Error("Insufficient funds for requested transfer")
+    }
+
+    
+
+    //date and description same for both parties
+    let date = getCurrentDate(); 
+    let description = `Transferencia de ${accountName} para ${recipientName}`;
+
+    //process as payment for origin account 
+    let originTransfer:Transaction = {
+        value: value*-1,
+        date,
+        description,
+    }
+
+    data.users[originAccountIndex].transactions.push(originTransfer);
+
+    //process as deposit for receiving account 
+    let receivingTransfer:Transaction = {
+        value,
+        date,
+        description
+    }
+
+    data.users[recipientAccountIndex].transactions.push(receivingTransfer); 
+
+    //update to database 
+    updateClientData(data);
+
+    res.status(200).send({message: "Transfer successful!", user: data.users[originAccountIndex]})
+} catch (error:any) {
+    if (error.message === undefined)
+    {
+        res.status(500).send({message: "Unexpected server error"})
+    }
+    else {
+        res.status(statusCode).send({message: error.message})
+    }
+}
 }

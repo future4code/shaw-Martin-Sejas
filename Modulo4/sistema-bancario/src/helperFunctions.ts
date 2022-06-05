@@ -58,6 +58,16 @@ export function validateCpf(cpf: string, users: User[]): boolean {
     return cpfIndex === -1;
 }
 
+export function validateAccountName(name:string, users: User[]):boolean {
+    let nameIndex = users.findIndex((user) => {
+        if (user.name === name) {
+            return true;
+        }
+    })
+
+    return nameIndex === -1;
+}
+
 
 
 

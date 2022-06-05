@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors"; 
-import { getUserBalance, getUsers, registerClientBill, putValueToUserBalance, registerUser, updateAccountBalance, createTransfer } from "./endpoints";
+import { getUserBalance, getUsers, registerClientBill, depositValueToUser, registerUser, updateAccountBalance, createTransfer } from "./endpoints";
 
 
 //creating type for transactions
@@ -33,22 +33,58 @@ app.use(cors());
 
 //exercicio 6
 //gets all users
+// GET localhost:3003/users
 app.get("/users", getUsers);
+
+
+
+
 
 //exercicio 5 e 7 e Desafio 1
 //validates and adds new user
+// POST localhost:3003/users
+/* 
+sample_request_body = {
+    name:string, 
+    cpf:string - (format: 000.000.000-00),
+    dateOfBirth:string - (format: DD/MM/YYYY)
+}
+*/ 
 app.post("/users", registerUser )
+
+
+
 
 //desafio 2
 //get a user's balance by cpf 
+//need valid cpf as param
 app.get("/users/:cpf", getUserBalance)
 
+
+
 //desafio 3 e desafio 4
-//updates balance of a user
-app.put("/users/:cpf", putValueToUserBalance)
+//makes a deposit to a a user
+/* 
+sample_request_body = {
+    name:string, 
+    value:number
+}
+*/
+app.put("/users/:cpf", depositValueToUser)
+
+
+
+
 
 //desafio 5 e desafio 7 e desafio 8
 //registers a bill of a client given the cpf
+/* 
+sample_request_body = {
+    date(optonal):string, 
+    value:number,
+    description:string
+}
+*/
 app.post("/users/:cpf", registerClientBill)
 
 //desafio 6
@@ -57,7 +93,15 @@ app.put("/users/:cpf/balance", updateAccountBalance)
 
 //desafio 9,10,11
 //validates transfer between two accounts
-app.post("users/:cpf/transfer", createTransfer )
+/* 
+sample_request_body = {
+    accountName:string, 
+    recipientName:string,
+    recipientCpf:string,
+    value:number
+}
+*/
+app.post("/users/:cpf/transfer", createTransfer )
 
 //starting server
 app.listen(3003, ()=> {
