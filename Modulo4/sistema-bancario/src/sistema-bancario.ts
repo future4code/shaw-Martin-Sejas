@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors"; 
-import { getUserBalance, getUsers, putValueToUserBalance, registerUser } from "./endpoints";
+import { getUserBalance, getUsers, registerClientBill, putValueToUserBalance, registerUser, updateAccountBalance, createTransfer } from "./endpoints";
 
 
 //creating type for transactions
+//Exercicio 3
 export type Transaction = {
     value: number, 
     date: string, 
@@ -13,6 +14,7 @@ export type Transaction = {
 
 //crating type for user
 //unique cpfs always, starting balance 0
+//Exercicio 1
 export type User = {
     name: string, 
     cpf: string, 
@@ -29,19 +31,33 @@ app.use(cors());
 
 //endpoints (imported from endpoints.ts)
 
+//exercicio 6
 //gets all users
 app.get("/users", getUsers);
 
-//validates and adds new user if accepted
+//exercicio 5 e 7 e Desafio 1
+//validates and adds new user
 app.post("/users", registerUser )
 
-//get a user by cpf as param
+//desafio 2
+//get a user's balance by cpf 
 app.get("/users/:cpf", getUserBalance)
 
-//updates user balance of a user
+//desafio 3 e desafio 4
+//updates balance of a user
 app.put("/users/:cpf", putValueToUserBalance)
 
+//desafio 5 e desafio 7 e desafio 8
+//registers a bill of a client given the cpf
+app.post("/users/:cpf", registerClientBill)
 
+//desafio 6
+//updates the account balance , given a cpf
+app.put("/users/:cpf/balance", updateAccountBalance)
+
+//desafio 9,10,11
+//validates transfer between two accounts
+app.post("users/:cpf/transfer", createTransfer )
 
 //starting server
 app.listen(3003, ()=> {
