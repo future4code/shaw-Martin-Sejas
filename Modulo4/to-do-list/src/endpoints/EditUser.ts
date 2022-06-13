@@ -20,18 +20,19 @@ export const EditUser = async (req:Request, res:Response) => {
 
         if(name && typeof name !== 'string')
         {
+            statusCode= 422; 
             throw new Error("Please input name as a string")
         }
 
         if(nickname && typeof nickname !== 'string')
         {
+            statusCode = 422;
             throw new Error("Please input nickname as a string")
         }
 
-        if(!name)
-        {
-            let response = UpdateUser(,nickname)
-        }
+       let response = await UpdateUser(id,name, nickname)
+
+       res.status(200).send({message: "Updated!"});
 
 
  
