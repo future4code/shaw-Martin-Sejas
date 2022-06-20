@@ -1,0 +1,30 @@
+
+# Exercicio 1A
+GET http://localhost:3003/users1A?nome=Paula
+
+### 
+
+#Exercicio 1B
+
+GET http://localhost:3003/users1B?tipo=Teacher
+
+###
+
+#Exercicio 2
+GET http://localhost:3003/users2?order=desc
+
+###
+GET http://localhost:3003/users2
+
+### 
+GET http://localhost:3003/users2?nome=a&tipo=Tea&order=desc
+
+###
+
+#Exercicio 3
+### 
+GET http://localhost:3003/users3?page=1
+
+###
+#Exercicio 4
+GET http://localhost:3003/users4?tipo=Teacher&order=asc
