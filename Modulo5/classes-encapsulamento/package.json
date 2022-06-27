@@ -1,0 +1,21 @@
+{
+  "name": "classes-encapsulamento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "start": "tsc  && node ./build/index.js", 
+     "Exercicio1": "tsc && node ./build/exercicio1.js", 
+     "Exercicio2": "tsc && node ./build/exercicio2.js", 
+     "Exercicio3": "tsc && node ./build/exercicio3.js",
+     "dev": "ts-node-dev ./src/index.ts"
+     },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.4"
+  }
+}
