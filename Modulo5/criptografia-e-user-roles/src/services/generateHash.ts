@@ -10,3 +10,7 @@ export async function generateHash(s:string):Promise<string> {
 
     return result; 
 }
+
+export async function compareHash(s:string,hash:string): Promise<boolean> {
+    return bycrypt.compare(s ,hash);
+}
