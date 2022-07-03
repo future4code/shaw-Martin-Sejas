@@ -47,12 +47,11 @@ export const signupUser = async (req:Request, res:Response) => {
         let token = tokenHandler.generateToken({id}); 
 
         res.status(201).send({
-            message: "User Succesfully created!", 
-            token,
+            access_token: token
         })
 
     } catch (error:any) {
-        console.log(error); 
+        
         if (error.message || error.sqlMessage)
         {
             res.status(400).send({error: error.message})

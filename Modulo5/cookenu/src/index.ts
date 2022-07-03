@@ -1,17 +1,21 @@
 import dotenv from "dotenv"; 
 import {AddressInfo} from "net"; 
 import app from "./app";
+import { loginUser } from "./endpoints/LoginUser";
 import { signupUser } from "./endpoints/SignupUser";
 import { CookenuUsersTable } from "./services/CookenuUsersTable";
 import { schemaValidation } from "./services/SchemaValidation";
-import { cookenuUserSignUpSchema } from "./validations/UserValidation";
+import { cookenuUserSignUpSchema } from "./validations/CookenuUserValidationSchema";
+import { userLoginValidationSchema } from "./validations/UserLoginValidationSchema";
 
 
 dotenv.config();  
 export const cookenuUserTable = new CookenuUsersTable(); 
 
 //establish endpoints
-app.post("/signup",schemaValidation(cookenuUserSignUpSchema), signupUser)
+app.post("/signup",schemaValidation(cookenuUserSignUpSchema), signupUser); 
+
+app.post("/login", schemaValidation(userLoginValidationSchema),loginUser )
 
 //server definition
 let server = app.listen(process.env.PORT || 3003, () => {
