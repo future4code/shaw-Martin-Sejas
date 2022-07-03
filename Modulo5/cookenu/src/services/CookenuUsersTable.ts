@@ -18,5 +18,8 @@ export class CookenuUsersTable extends MainDatabaseConnection{
    async insertNewUser(newUser:CookenuUser):Promise<void>{
     let result =  await this.connection(this.TABLE_NAME).insert(newUser); 
    }
-
+   
+   async findUserbyId(id:string){
+      return await this.connection(this.TABLE_NAME).select('*').where({id}); 
+   }
 }
