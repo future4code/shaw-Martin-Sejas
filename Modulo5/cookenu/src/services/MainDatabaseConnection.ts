@@ -1,8 +1,13 @@
 import knex, {Knex} from "knex"; 
+import { v4 } from "uuid";
 
 export class MainDatabaseConnection {
      
     public connection:Knex; 
+
+    public static generateId():string{
+        return v4();
+    }
 
     constructor(){
         this.connection = knex({

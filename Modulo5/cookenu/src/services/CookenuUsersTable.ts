@@ -1,3 +1,4 @@
+import { CookenuUser } from "../types/CookenuUser";
 import { MainDatabaseConnection } from "./MainDatabaseConnection";
 
 export class CookenuUsersTable extends MainDatabaseConnection{
@@ -7,7 +8,15 @@ export class CookenuUsersTable extends MainDatabaseConnection{
         super(); 
      }
 
-    async checkExistingEmail(email:string):boolean{
-        
-     }
+
+     //complete function to check if email already exists 
+    async findUserEmail(email:string){
+      //check for given email in database
+     return await this.connection(this.TABLE_NAME).select('*').where({email}); 
+   }
+
+   async insertNewUser(newUser:CookenuUser):Promise<void>{
+    let result =  await this.connection(this.TABLE_NAME).insert(newUser); 
+   }
+
 }

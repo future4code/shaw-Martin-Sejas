@@ -2,11 +2,13 @@ import dotenv from "dotenv";
 import {AddressInfo} from "net"; 
 import app from "./app";
 import { signupUser } from "./endpoints/SignupUser";
+import { CookenuUsersTable } from "./services/CookenuUsersTable";
 import { schemaValidation } from "./services/SchemaValidation";
 import { cookenuUserSignUpSchema } from "./validations/UserValidation";
 
 
 dotenv.config();  
+export const cookenuUserTable = new CookenuUsersTable(); 
 
 //establish endpoints
 app.post("/signup",schemaValidation(cookenuUserSignUpSchema), signupUser)
