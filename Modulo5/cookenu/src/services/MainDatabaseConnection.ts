@@ -1,7 +1,7 @@
 import knex, {Knex} from "knex"; 
 import { v4 } from "uuid";
 
-export class MainDatabaseConnection {
+export abstract class MainDatabaseConnection {
      
     public connection:Knex; 
 
