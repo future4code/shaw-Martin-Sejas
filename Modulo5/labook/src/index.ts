@@ -9,6 +9,7 @@ import { HashManager } from "./services/HashManager";
 import { IdGenerator } from "./services/IdGenerator";
 import { WebTokenAuthenticator } from "./services/WebTokenAuthenticator";
 import {AddressInfo} from "net"; 
+import { labookUserLoginSchema } from "./controller/validationSchemas/LabookUserLoginSchema";
 
 
 dotenv.config(); 
@@ -23,6 +24,7 @@ const userBusiness = new LabookUserBusiness(
 const userController = new LabookUserController(userBusiness)
 
 app.post("/register", validateSchema(labookUserRegistrationSchema), userController.registerNewUser); 
+app.post("/login",validateSchema(labookUserLoginSchema),userController.loginUser );
 
 
 const server = app.listen(process.env.PORT || 3003, ()=> {
