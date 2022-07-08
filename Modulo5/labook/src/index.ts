@@ -11,6 +11,9 @@ import { WebTokenAuthenticator } from "./services/WebTokenAuthenticator";
 import {AddressInfo} from "net"; 
 import { labookUserLoginSchema } from "./controller/Validation/validationSchemas/LabookUserLoginSchema";
 import { labookPostCreationSchema } from "./controller/Validation/validationSchemas/LabookPostCreationSchema";
+import { LabookPostController } from "./controller/LabookPostController";
+import { LabookPostBusiness } from "./business/LabookPostBusiness";
+import { LabookPostsDatabaseTable } from "./data/PostData";
 
 
 dotenv.config(); 
@@ -22,11 +25,21 @@ const userBusiness = new LabookUserBusiness(
     new LabookUsersDatabaseTable()
 )
 
-const userController = new LabookUserController(userBusiness)
+const userController = new LabookUserController(userBusiness);
+
+const postBusiness = new LabookPostBusiness(
+    new HashManager(), 
+    new IdGenerator(), 
+    new WebTokenAuthenticator(), 
+    new LabookPostsDatabaseTable(), 
+)
+
+const postController = new LabookPostController(postBusiness)
 
 app.post("/register", validateSchema(labookUserRegistrationSchema), userController.registerNewUser); 
 app.post("/login",validateSchema(labookUserLoginSchema),userController.loginUser );
 app.post("/posts", validateSchema(labookPostCreationSchema), postController.createPost)
+app.get("/posts/:id", postController.getPostbyId)
 
 
 const server = app.listen(process.env.PORT || 3003, ()=> {

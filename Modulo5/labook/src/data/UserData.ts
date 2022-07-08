@@ -1,5 +1,5 @@
 import { LabookUser } from "../model/User";
-import { LabookUserFindbyEmailResponse } from "../types/LabookUserFindbyEmailResponse";
+import { LabookUserFindbyEmailResponse, LabookUserFindbyIdResponse } from "../types/LabookUserFindbyEmailResponse";
 import { MainDatabaseConnection } from "./MainDatabaseConnection";
 
 export class LabookUsersDatabaseTable extends MainDatabaseConnection {
@@ -26,6 +26,24 @@ export class LabookUsersDatabaseTable extends MainDatabaseConnection {
                 throw new Error("Error accessing database")
             }
 
+        }
+    }
+
+    findUserById = async (id:string) => {
+        try {
+            let queryResponse: LabookUserFindbyIdResponse = await this.connection(this.TABLE_NAME)
+            .select('*')
+            .where({id}); 
+            return queryResponse[0]; 
+            
+        } catch (error:any) {
+            if(error.sqlMessage)
+                {
+                    throw new Error(error.sqlMessage)
+                }
+                else{
+                    throw new Error("Error accessing database")
+                }
         }
     }
 

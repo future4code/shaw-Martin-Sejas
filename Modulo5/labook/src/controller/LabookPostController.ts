@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { LabookPostBusiness } from "../business/LabookPostBusiness";
-import { LabookPostCreationDTO } from "../model/Post";
+import { LabookPost, LabookPostByIdDTO, LabookPostCreationDTO } from "../model/Post";
 
 
 export class LabookPostController {
@@ -9,11 +9,15 @@ export class LabookPostController {
     ){}
 
     createPost = async(req:Request,res:Response) => {
-        let {Authorization} = req.headers; 
+        let {authorization} = req.headers; 
+        if(!authorization) 
+        {
+            throw new Error("Missing or Invalid Authorization token")
+        }
         let {picture, description, postType} = req.body; 
 
         let newLabookPost:LabookPostCreationDTO = {
-            Authorization: Authorization as string,
+            authorization: authorization as string,
             picture,
             description,
             postType
@@ -21,6 +25,7 @@ export class LabookPostController {
 
         try {
             await this.postBusiness.createNewPost(newLabookPost)
+            res.status(201).send({message: "Post successful!"})
         } catch (error) {
             if( error instanceof Error)
             {
@@ -32,7 +37,36 @@ export class LabookPostController {
                 res.status(500).send({error: "Error inesperado no signup"})
             }
         }
+    }
 
+    getPostbyId = async(req:Request, res:Response) => {
+        let {authorization} = req.headers; 
 
+        if(!authorization) 
+        {
+            throw new Error("Missing or Invalid Authorization token")
+        }
+        let {id} = req.params; 
+
+        let postById:LabookPostByIdDTO = {
+            authorization: authorization as string, 
+            id
+        }
+
+        try {
+            let post:LabookPost = await this.postBusiness.getPostById(postById);
+            res.status(200).send({post})
+        } catch (error) {
+            if( error instanceof Error)
+            {
+                res.status(400).send({
+                    error: error.message
+                })
+            }
+            else {
+                res.status(500).send({error: "Unexpected Server Error"})
+            }
+            
+        }
     }
 }

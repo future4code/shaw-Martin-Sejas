@@ -14,8 +14,13 @@ export type LabookPost= {
 }
 
 export interface LabookPostCreationDTO {
-    Authorization:string,
+    authorization:string,
     picture:string,
     description:string, 
     postType: POST_TYPE
+}
+
+export interface LabookPostByIdDTO {
+    authorization:string, 
+    id:string
 }

@@ -1,5 +1,6 @@
 import { LabookPostsDatabaseTable } from "../data/PostData";
-import { LabookPost, LabookPostCreationDTO } from "../model/Post";
+import { LabookUsersDatabaseTable } from "../data/UserData";
+import { LabookPost, LabookPostByIdDTO, LabookPostCreationDTO } from "../model/Post";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { WebTokenAuthenticator } from "../services/WebTokenAuthenticator";
@@ -11,7 +12,7 @@ export class LabookPostBusiness {
     protected hashManager:HashManager,
     protected idGenerator:IdGenerator,
     protected tokenAuthenticator:WebTokenAuthenticator,
-    protected LabookPostsData:LabookPostsDatabaseTable
+    protected labookPostsData:LabookPostsDatabaseTable,
    ){} 
 
    authenticateToken = (token:string):string => {
@@ -20,7 +21,9 @@ export class LabookPostBusiness {
    }
 
    createNewPost = async (newLabookPost:LabookPostCreationDTO) => {
-      let creatorId = this.authenticateToken(newLabookPost.Authorization); 
+      let creatorId = this.authenticateToken(newLabookPost.authorization); 
+    
+
       let {picture, description, postType} = newLabookPost; 
       let id = this.idGenerator.generateId(); 
       let createdAt:Date = new Date(Date.now()); 
@@ -34,6 +37,24 @@ export class LabookPostBusiness {
          postType
       }
 
-      //insert post on database, check if creatorId is correct perhaps?
+      await this.labookPostsData.insertNewPost(newPost); 
+   }
+
+   getPostById = async (postById:LabookPostByIdDTO) => {
+     let creatorId = this.authenticateToken(postById.authorization); 
+
+     let {id} = postById; 
+
+     let retrievedPosts:LabookPost[] = await this.labookPostsData.getPostById(id); 
+
+     if(retrievedPosts.length === 0)
+     {
+      throw new Error("Unable to find post with this id")
+     }
+
+     else {
+      return retrievedPosts[0]; 
+     }
+
    }
 }
