@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { getUsers } from "../data/getUsers";
+import app from "../app";
 
 
-export const getAllUsers = (req:Request, res:Response) => {
+app.get("/users", (req:Request, res:Response) => {
     let statusCode= 400; 
     try {
+        //getUsers eh uma funcao de data para SQL 
         getUsers().then( (response) => {
             res.status(200).send(response)
         })
@@ -21,4 +23,5 @@ export const getAllUsers = (req:Request, res:Response) => {
         
     }
 
-}
+})
+

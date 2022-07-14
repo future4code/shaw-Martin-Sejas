@@ -1,15 +1,13 @@
 import app from "./app"; 
 import {AddressInfo} from "net"; 
 import { registerUser } from "./endpoints/registerUser";
-import { getAllUsers } from "./endpoints/getAllUsers";
 import { registerProduct } from "./endpoints/registerProduct";
 import { getAllProducts } from "./endpoints/getAllProducts";
 import { registerPurchase } from "./endpoints/registerPurchase";
 import { getPurchaseByUser } from "./endpoints/getPurchaseByUser";
 
 
-//Exercicio2
-app.get("/users", getAllUsers)
+
 
 //Exercicio 1
 app.post("/users", registerUser)
