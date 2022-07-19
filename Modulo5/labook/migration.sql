@@ -1,0 +1,16 @@
+CREATE TABLE Labook_Users(
+ id VARCHAR(255) PRIMARY KEY, 
+ name VARCHAR(255) NOT NULL, 
+ email VARCHAR(255) UNIQUE NOT NULL, 
+ password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Labook_Posts(
+id VARCHAR(255) PRIMARY KEY,
+creatorId VARCHAR(255),
+description TEXT(500) NOT NULL, 
+picture VARCHAR(255) NOT NULL, 
+createdAt DATETIME NOT NULL, 
+type ENUM('NORMAL', 'EVENT') default 'NORMAL',
+FOREIGN KEY Labook_Posts(creatorId) REFERENCES Labook_Users(id)
+); 
