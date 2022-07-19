@@ -29,7 +29,7 @@ export class CuboUserData extends MainDatabaseConnection {
 
    selectAllUsers = async () => {
     try {
-         let users:CuboUser[] = await this.connection(this.TABLE_NAME).select('*'); 
+         let users:CuboUser[] = await this.connection(this.TABLE_NAME).select('id').select('first_name as firstName').select('last_name as lastName').select('participation'); 
          let totalParticipation = await this.connection(this.TABLE_NAME).sum('participation as totalParticipation'); 
          let response = {
             users: users,
