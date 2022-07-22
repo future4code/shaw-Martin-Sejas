@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { getUsers } from '../../services/requests';
+import { VictoryPie } from 'victory';
+import { deleteUsers, getUsers } from '../../services/requests';
 import { CuboUserData } from '../../Types/User';
 import TableRow from '../TableRow/TableRow';
-import { MainDataContainerDiv, MainDataDisplayDiv, MainTableDiv, PieChartDiv } from './styled'
+import { MainDataContainerDiv, MainDataDisplayDiv, MainTableDiv, PieChartContainerDiv, PieChartDiv } from './styled'
 
 type MainDataDisplayProps = {
     children: React.ReactNode; 
@@ -25,6 +26,19 @@ export const MainDataDisplay = (props:MainDataDisplayProps) => {
                       lastName = {user.lastName}
                       participation = {`${participationUser}%`} />
   })
+
+  let pieChartData = users.map( (user:CuboUserData) => {
+    let name = `${user.firstName} ${user.lastName}`; 
+    let dataPoint = {x:name, y:user.participation, label: name}
+    return dataPoint
+  })
+
+
+
+  const resetTable = async () => {
+     await deleteUsers(); 
+     getUsers(setUsers, setTotalParticipation)
+  }
   
   return (
     <MainDataDisplayDiv>
@@ -40,11 +54,20 @@ export const MainDataDisplay = (props:MainDataDisplayProps) => {
               participation = "Participation"/>
               {displayedUsers}
 
-              
+              <button onClick={()=>resetTable()}>RESET TABLE</button>
+
+
           </MainTableDiv>
 
           <PieChartDiv>
-              sdfdsfdsf
+              <PieChartContainerDiv>
+            {pieChartData.length > 0 ?     <VictoryPie
+              data={pieChartData}
+              innerRadius={80}
+              colorScale="qualitative"
+              labelPlacement={"perpendicular"}
+              />: <span></span>}
+              </PieChartContainerDiv>
           </PieChartDiv>
         </MainDataContainerDiv>
         

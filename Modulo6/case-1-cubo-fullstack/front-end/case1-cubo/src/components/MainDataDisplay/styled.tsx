@@ -38,11 +38,25 @@ export const MainTableDiv = styled.div`
     align-items: center;
     justify-content: center;
 
+    button{
+        margin-top: 40px;
+    }
+
 `
 
 export const PieChartDiv = styled.div`
     display: flex; 
-    background-color: green; 
     width: 50%; 
     height:100%; 
+    align-items: center;
+    justify-content: center;
+`
+
+export const PieChartContainerDiv = styled.div`
+    display:flex; 
+    max-width: 80%; 
+    max-height: 50%; 
+    align-items: center;
+    justify-content: center;
+
 `

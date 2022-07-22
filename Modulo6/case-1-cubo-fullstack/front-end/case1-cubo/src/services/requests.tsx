@@ -22,3 +22,12 @@ export const getUsers = async (setUsers:Function, setTotalParticipation:Function
       console.log(error)
    })
 }
+
+
+export const deleteUsers = async () => {
+   axios.delete(`${BASE_URL}users`).then( (response) => {
+      alert("Users Deleted!")
+   }).catch( (error:any) => {
+      console.log(error)
+   })
+}
