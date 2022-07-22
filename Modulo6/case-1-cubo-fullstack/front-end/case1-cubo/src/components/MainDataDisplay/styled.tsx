@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const MainDataDisplayDiv = styled.div`
-height: 80vh;
+min-height: 80vh;
+height: auto;
 width: 100vw;     
 display: flex; 
 flex-direction: column; 
@@ -18,4 +19,30 @@ h3{
 }
 
 
+`
+
+export const MainDataContainerDiv = styled.div`
+    width: 100%; 
+    min-height:100%;
+    display: flex; 
+    align-items: center;
+    
+
+`
+
+export const MainTableDiv = styled.div`
+    display: flex;
+    flex-direction:column;
+    width: 50%; 
+    min-height:100%; 
+    align-items: center;
+    justify-content: center;
+
+`
+
+export const PieChartDiv = styled.div`
+    display: flex; 
+    background-color: green; 
+    width: 50%; 
+    height:100%; 
 `

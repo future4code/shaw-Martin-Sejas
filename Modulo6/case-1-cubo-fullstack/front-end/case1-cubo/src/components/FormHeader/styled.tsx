@@ -17,21 +17,27 @@ export const FormHeaderDiv = styled.div`
     }
 
     input{
-        height: 25%; 
+        height: 28%; 
         width: 15%;
         margin-right: 2%; 
         border-radius: 3px; 
         border-color: none;
         border-width: 0px; 
         text-indent: 20px;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        color: black;
+        background-color: white;
 
         :focus{
             border:  0px; 
         }
+        ::placeholder{
+            color: #252525; 
+            font-weight: 500;
+        }
     }
     button {
-        height: 26%; 
+        height: 28%; 
         width: 7%; 
         font-size: 1.5rem; 
         background-color:#00b8e2; 

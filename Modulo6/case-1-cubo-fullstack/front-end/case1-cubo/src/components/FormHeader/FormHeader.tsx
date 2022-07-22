@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'; 
+import { registerUser } from '../../services/requests';
+import { CuboUser } from '../../Types/User';
 import { FormHeaderDiv } from './styled';
 
 
@@ -13,24 +15,28 @@ export const FormHeader = (props:FormHeaderProps) => {
   let [lastName, setLastName] = useState(""); 
   let [participation, setParticipation] = useState("")
 
-  let sendInformation = (event:any) => {
+  let sendInformation = async (event:any) => {
 
     event.preventDefault()
     if(isNaN(Number(participation)) ){
       alert(" 'Participation' must be an integer")
     }
     else {
-      let newUser = {
+      let newUser:CuboUser = {
         firstName,
         lastName,
         participation: Number(participation)
       }
 
       //send to backend
+      
 
       setFirstName("");
       setLastName("");
       setParticipation("");
+
+      await registerUser(newUser) 
+      
     } 
   }
 
