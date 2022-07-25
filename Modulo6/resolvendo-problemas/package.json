@@ -1,0 +1,17 @@
+{
+  "name": "resolvendo-problemas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "Exercicio1": "tsc && node ./Exercicio1.js",
+    "Exercicio2": "tsc && node ./Exercicio2.js",
+    "Exercicio3": "tsc && node ./Exercicio3.js",
+    "Exercicio4": "tsc && node ./Exercicio4.js",
+    "Exercicio5": "tsc && node ./Exercicio5.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
