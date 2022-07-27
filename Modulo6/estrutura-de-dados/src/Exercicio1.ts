@@ -67,8 +67,5 @@ export class LinkedList {
 
 let myList = new LinkedList(); 
 
-myList.add(5); 
-myList.add(6); 
-myList.add(7)
 
-myList.printList(); 
+
