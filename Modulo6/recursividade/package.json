@@ -1,0 +1,19 @@
+{
+  "name": "recursividade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "Exercicio1": "tsc && node ./build/Exercicio1.js",
+    "Exercicio2": "tsc && node ./build/Exercicio2.js", 
+    "Exercicio3": "tsc && node ./build/Exercicio3.js", 
+    "Exercicio4": "tsc && node ./build/Exercicio4.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
